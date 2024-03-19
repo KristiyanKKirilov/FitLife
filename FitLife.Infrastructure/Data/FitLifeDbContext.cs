@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FitLife.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class FitLifeDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public FitLifeDbContext(DbContextOptions<FitLifeDbContext> options)
             : base(options)
         {
         }
