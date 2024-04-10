@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
+using static FitLife.Data.Models.Constants.DataConstants;
 
 namespace FitLife.Areas.Identity.Pages.Account
 {
@@ -91,6 +92,26 @@ namespace FitLife.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "First Name")]
+            [StringLength(NameMaxLength,
+                MinimumLength = NameMinLength,
+                ErrorMessage = "The {0} must be between {2} and {1} characters long.")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "Last Name")]
+            [StringLength(NameMaxLength,
+               MinimumLength = NameMinLength,
+               ErrorMessage = "The {0} must be between {2} and {1} characters long.")]
+            public string LastName { get; set; }
+
+            [Required]            
+            [StringLength(CityMaxLength,
+               MinimumLength = CityMinLength,
+               ErrorMessage = "The {0} must be between {2} and {1} characters long.")]
+            public string City { get; set; }
         }
 
 
@@ -107,6 +128,12 @@ namespace FitLife.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.City = Input.City; 
+                user.CreatedOn = DateTime.Now;
+                user.IsDeleted = false;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

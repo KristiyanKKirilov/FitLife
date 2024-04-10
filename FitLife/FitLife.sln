@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitLife.Data", "..\FitLife.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{F23BE018-082D-48DF-BCC8-509F2ABBCF17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitLife.Data.Models", "..\FitLife.Data.Models\FitLife.Data.Models.csproj", "{65C3EBC6-94A3-49B7-A95F-379FB60F15F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitLife.Data.Models", "..\FitLife.Data.Models\FitLife.Data.Models.csproj", "{65C3EBC6-94A3-49B7-A95F-379FB60F15F7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{E645BDC2-EAFA-4954-9CFE-37FD2CA1A869}"
 EndProject
