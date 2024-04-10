@@ -1,4 +1,5 @@
 ﻿using FitLife.Data;
+using FitLife.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,7 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IServiceCollection AddApplicationIdentity(this IServiceCollection services, IConfiguration config)
         {
-            services.AddDefaultIdentity<IdentityUser>(options => 
+            services.AddDefaultIdentity<Participant>(options => 
             { 
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireDigit = false;

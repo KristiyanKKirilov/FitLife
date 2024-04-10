@@ -1,7 +1,7 @@
-using FitLife.Data;
 using FitLife.ModelBinders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using FitLife.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
