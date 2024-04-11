@@ -1,4 +1,5 @@
 ﻿using FitLife.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -12,8 +13,9 @@ namespace FitLife.Controllers
         {
             _logger = logger;
         }
-        
-        public IActionResult Index()
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Index()
         {
             return View();
         }
