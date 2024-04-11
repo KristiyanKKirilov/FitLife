@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
-using static FitLife.Data.Models.Constants.DataConstants;
+using static FitLife.GlobalConstants.DataConstants;
 
 namespace FitLife.Areas.Identity.Pages.Account
 {
@@ -107,7 +107,7 @@ namespace FitLife.Areas.Identity.Pages.Account
                ErrorMessage = "The {0} must be between {2} and {1} characters long.")]
             public string LastName { get; set; }
 
-            [Required]            
+            [Required]
             [StringLength(CityMaxLength,
                MinimumLength = CityMinLength,
                ErrorMessage = "The {0} must be between {2} and {1} characters long.")]
@@ -131,7 +131,7 @@ namespace FitLife.Areas.Identity.Pages.Account
 
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
-                user.City = Input.City; 
+                user.City = Input.City;
                 user.CreatedOn = DateTime.Now;
                 user.IsDeleted = false;
 

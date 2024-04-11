@@ -1,4 +1,4 @@
-﻿using FitLife.Models;
+﻿using FitLife.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -12,13 +12,8 @@ namespace FitLife.Controllers
         {
             _logger = logger;
         }
-
+        
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }

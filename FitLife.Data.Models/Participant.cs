@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using static FitLife.Data.Models.Constants.DataConstants;
+using static FitLife.GlobalConstants.DataConstants;
 
 namespace FitLife.Data.Models
 {

@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static FitLife.Data.Models.Constants.DataConstants;
-using static FitLife.Data.Models.Constants.DataConstants.Event;
+using static FitLife.GlobalConstants.DataConstants;
+using static FitLife.GlobalConstants.DataConstants.Event;
 
 namespace FitLife.Data.Models
 {

@@ -2,8 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using static FitLife.Data.Models.Constants.DataConstants;
-using static FitLife.Data.Models.Constants.DataConstants.TrainingProgram;
+using static FitLife.GlobalConstants.DataConstants.TrainingProgram;
+using static FitLife.GlobalConstants.DataConstants;
+
 
 namespace FitLife.Data.Models
 {
@@ -68,5 +69,5 @@ namespace FitLife.Data.Models
 
         public ICollection<TrainingProgramParticipant> TrainingProgramsParticipants { get; set; }
 
-        }    
+    }
 }
