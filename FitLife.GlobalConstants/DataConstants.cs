@@ -12,7 +12,7 @@ namespace FitLife.GlobalConstants
         /// <summary>
         /// Date format
         /// </summary>
-        public const string DateFormat = "dd/MM/yyyy";
+        public const string DateFormat = "dd/MM/yyyy HH:mm";
 
         /// <summary>
         /// Title minimum length

@@ -1,19 +1,24 @@
 ﻿using FitLife.Core.Contracts;
+using FitLife.Data.Models;
 using FitLife.GlobalConstants;
 using FitLife.Web.ViewModels.TrainingProgram;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
+using System.Security.Claims;
 
 namespace FitLife.Controllers
 {
     public class TrainingProgramController : BaseController
     {
         private readonly ITrainingProgramService trainingProgramService;
+        private readonly ITrainerService trainerService;
 
-        public TrainingProgramController(ITrainingProgramService _trainingProgramService)
+        public TrainingProgramController(ITrainingProgramService _trainingProgramService, ITrainerService trainerService)
         {
             trainingProgramService = _trainingProgramService;
+            this.trainerService = trainerService;
+
         }
 
         [AllowAnonymous]
@@ -52,6 +57,20 @@ namespace FitLife.Controllers
             {
                 ModelState.AddModelError(nameof(model.StartDate), ErrorMessages.InvalidDateFormatError);
             }
+
+            if(ModelState.IsValid == false)
+            {
+                model.TrainingProgramCategories = await trainingProgramService.AllCategoriesAsync();
+                return View(model);
+            }
+
+            string trainerId = await trainerService.GetTrainerByIdAsync(User.Id());
+
+            if(trainerId != null)
+            {
+                string newTrainingProgram = await trainingProgramService.CreateAsync(model, trainerId);
+            }
+            
 
             return RedirectToAction(nameof(All));
         }

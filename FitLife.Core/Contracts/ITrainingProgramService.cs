@@ -6,11 +6,11 @@ namespace FitLife.Core.Contracts
     {
         //Task<TrainingProgramQueryServiceModel> AllAsync(int currentPage = 1, int housesPerPage = 1);
         Task<IEnumerable<TrainingProgramCategoryServiceModel>> AllCategoriesAsync();
-        Task DeleteAsync(string trainingProgramCategoryId);
+        //Task DeleteAsync(string trainingProgramCategoryId);
         //Task<IEnumerable<TrainingProgramServiceModel>> AllTrainingProgramsByTrainerAsync(string trainerId);
         //Task<IEnumerable<TrainingProgramServiceModel>> AllTrainingProgramsByParticipantAsync(string participantId);
 
-        //Task<int> CreateAsync(TrainingProgramFormModel model, int trainerId);
+        Task<string> CreateAsync(TrainingProgramFormModel model, string trainerId);
         //Task DeleteAsync(int trainingProgramId);
         //Task EditAsync(int trainingProgramId, TrainingProgramFormModel model);
 

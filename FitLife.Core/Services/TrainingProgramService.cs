@@ -3,6 +3,7 @@ using FitLife.Data.Common;
 using FitLife.Data.Models;
 using FitLife.Web.ViewModels.TrainingProgram;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace FitLife.Core.Services
 {
@@ -26,11 +27,35 @@ namespace FitLife.Core.Services
                  }).ToListAsync();
         }
 
-        public async Task DeleteAsync(string trainingProgramCategoryId)
+        public async Task<string> CreateAsync(TrainingProgramFormModel model, string trainerId)
         {
-            var model = await repository.GetByIdAsync<TrainingProgramCategory>(trainingProgramCategoryId);
+            var date = DateTime.Now;
+           
 
-            
+            if(!DateTime.TryParseExact(model.StartDate, "dd/MM/yyyy hh:mm", 
+                CultureInfo.InvariantCulture, 
+                DateTimeStyles.None,
+                out date))
+            {
+                throw new ArgumentException();
+            }
+
+            var trainingProgram = new TrainingProgram()
+            {
+                Title = model.Title,
+                Description = model.Description,
+                ImageUrl = model.ImageUrl,
+                StartDate = date,
+                DurationDays = model.DurationDays,
+                CategoryId = model.CategoryId,
+                CreatorId = trainerId
+            };
+            await repository.AddAsync(trainingProgram);
+            await repository.SaveChangesAsync();
+
+            return trainingProgram.Id;
+
+
         }
     }
 }
