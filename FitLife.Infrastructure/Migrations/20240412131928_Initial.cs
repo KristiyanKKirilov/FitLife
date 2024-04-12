@@ -294,7 +294,7 @@ namespace FitLife.Data.Migrations
                         column: x => x.CreatorId,
                         principalTable: "Trainers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 },
                 comment: "Events");
 
@@ -357,33 +357,6 @@ namespace FitLife.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 },
                 comment: "ParticipantsEvents");
-
-            migrationBuilder.CreateTable(
-                name: "TrainersEvents",
-                columns: table => new
-                {
-                    TrainerId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Trainer's identifier"),
-                    EventId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Event's identifier"),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Time of creation"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "Order's state")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TrainersEvents", x => new { x.TrainerId, x.EventId });
-                    table.ForeignKey(
-                        name: "FK_TrainersEvents_Events_EventId",
-                        column: x => x.EventId,
-                        principalTable: "Events",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_TrainersEvents_Trainers_TrainerId",
-                        column: x => x.TrainerId,
-                        principalTable: "Trainers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                },
-                comment: "TrainersEvents");
 
             migrationBuilder.CreateTable(
                 name: "TrainingProgramParticipant",
@@ -509,11 +482,6 @@ namespace FitLife.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TrainersEvents_EventId",
-                table: "TrainersEvents",
-                column: "EventId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_TrainingProgramParticipant_TrainingProgramId",
                 table: "TrainingProgramParticipant",
                 column: "TrainingProgramId");
@@ -558,9 +526,6 @@ namespace FitLife.Data.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "TrainersEvents");
-
-            migrationBuilder.DropTable(
                 name: "TrainingProgramParticipant");
 
             migrationBuilder.DropTable(
@@ -570,10 +535,10 @@ namespace FitLife.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "Events");
 
             migrationBuilder.DropTable(
-                name: "Events");
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "TrainingPrograms");

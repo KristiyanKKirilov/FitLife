@@ -12,5 +12,7 @@ namespace FitLife.Data.Configuration
                  .WithMany(p => p.Orders)
                  .OnDelete(DeleteBehavior.Restrict);
         }
+
+        
     }
 }

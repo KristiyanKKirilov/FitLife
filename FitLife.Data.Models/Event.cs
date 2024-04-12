@@ -13,7 +13,6 @@ namespace FitLife.Data.Models
         public Event()
         {
             Id = Guid.NewGuid().ToString();
-            TrainersEvents = new HashSet<TrainerEvent>();
             ParticipantsEvents = new HashSet<ParticipantEvent>();
         }
 
@@ -67,9 +66,7 @@ namespace FitLife.Data.Models
 
         [Required]
         [Comment("Event's state")]
-        public bool IsDeleted { get; set; }
-
-        public ICollection<TrainerEvent> TrainersEvents { get; set; }
+        public bool IsDeleted { get; set; }       
 
         public ICollection<ParticipantEvent> ParticipantsEvents { get; set; }
 

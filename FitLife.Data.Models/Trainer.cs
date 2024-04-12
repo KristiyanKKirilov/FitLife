@@ -13,7 +13,7 @@ namespace FitLife.Data.Models
         {
             Id = Guid.NewGuid().ToString();
             TrainingProgramsTrainers = new HashSet<TrainingProgramTrainer>();
-            TrainersEvents = new HashSet<TrainerEvent>();
+            Events = new HashSet<Event>();
         }
 
         [Key]
@@ -51,7 +51,7 @@ namespace FitLife.Data.Models
 
         public ICollection<TrainingProgramTrainer> TrainingProgramsTrainers { get; set; }
 
-        public ICollection<TrainerEvent> TrainersEvents { get; set; }
+        public ICollection<Event> Events { get; set; }
         
     }
 }

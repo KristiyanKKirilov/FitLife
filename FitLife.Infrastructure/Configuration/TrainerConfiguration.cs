@@ -8,7 +8,34 @@ namespace FitLife.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Trainer> builder)
         {
-            throw new NotImplementedException();
+            builder.HasData(SeedTrainers());
+        }
+
+        private Trainer[] SeedTrainers()
+        {
+            return new Trainer[]
+            {
+                new Trainer()
+                {
+                    Id = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
+                    FirstName = "Ivan",
+                    LastName = "Ivanov",
+                    Email = "first@gmail.com",
+                    UserId = "dea12856-c198-4129-b3f3-b893d8395082",
+                    CreatedOn = DateTime.Parse("04/11/2024"),
+                    IsDeleted = false
+                },
+                new Trainer()
+                {
+                    Id = "5525ab80-3107-4466-a27b-463fb35ad0eo",
+                    FirstName = "Nikola",
+                    LastName = "Nikolaev",
+                    Email = "second@gmail.com",
+                    UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
+                    CreatedOn = DateTime.Parse("04/11/2024"),
+                    IsDeleted = false
+                }
+            };
         }
     }
 }

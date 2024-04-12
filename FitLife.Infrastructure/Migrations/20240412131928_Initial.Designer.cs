@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitLife.Data.Migrations
 {
     [DbContext(typeof(FitLifeDbContext))]
-    [Migration("20240410180930_Initial")]
+    [Migration("20240412131928_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -372,33 +372,6 @@ namespace FitLife.Data.Migrations
                     b.HasComment("Trainers");
                 });
 
-            modelBuilder.Entity("FitLife.Data.Models.TrainerEvent", b =>
-                {
-                    b.Property<string>("TrainerId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasComment("Trainer's identifier");
-
-                    b.Property<string>("EventId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasComment("Event's identifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2")
-                        .HasComment("Time of creation");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasComment("Order's state");
-
-                    b.HasKey("TrainerId", "EventId");
-
-                    b.HasIndex("EventId");
-
-                    b.ToTable("TrainersEvents");
-
-                    b.HasComment("TrainersEvents");
-                });
-
             modelBuilder.Entity("FitLife.Data.Models.TrainingProgram", b =>
                 {
                     b.Property<string>("Id")
@@ -688,9 +661,9 @@ namespace FitLife.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("FitLife.Data.Models.Trainer", "Creator")
-                        .WithMany()
+                        .WithMany("Events")
                         .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Category");
@@ -744,25 +717,6 @@ namespace FitLife.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("FitLife.Data.Models.TrainerEvent", b =>
-                {
-                    b.HasOne("FitLife.Data.Models.Event", "Event")
-                        .WithMany("TrainersEvents")
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("FitLife.Data.Models.Trainer", "Trainer")
-                        .WithMany("TrainersEvents")
-                        .HasForeignKey("TrainerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Event");
-
-                    b.Navigation("Trainer");
                 });
 
             modelBuilder.Entity("FitLife.Data.Models.TrainingProgram", b =>
@@ -876,8 +830,6 @@ namespace FitLife.Data.Migrations
             modelBuilder.Entity("FitLife.Data.Models.Event", b =>
                 {
                     b.Navigation("ParticipantsEvents");
-
-                    b.Navigation("TrainersEvents");
                 });
 
             modelBuilder.Entity("FitLife.Data.Models.EventCategory", b =>
@@ -901,7 +853,7 @@ namespace FitLife.Data.Migrations
 
             modelBuilder.Entity("FitLife.Data.Models.Trainer", b =>
                 {
-                    b.Navigation("TrainersEvents");
+                    b.Navigation("Events");
 
                     b.Navigation("TrainingProgramsTrainers");
                 });
