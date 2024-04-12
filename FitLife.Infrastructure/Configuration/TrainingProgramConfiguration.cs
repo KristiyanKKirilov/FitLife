@@ -28,8 +28,7 @@ namespace FitLife.Data.Configuration
                     DurationDays = 14,
                     CategoryId = 2,
                     CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
-                    CreatedOn = DateTime.Parse("04/11/2024"),
-                    IsDeleted = false
+                    
                 },
                 new TrainingProgram()
                 {
@@ -41,8 +40,7 @@ namespace FitLife.Data.Configuration
                     DurationDays = 90,
                     CategoryId = 3,
                     CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
-                    CreatedOn = DateTime.Parse("04/11/2024"),
-                    IsDeleted = false,                    
+                                        
                 },
             };
         }

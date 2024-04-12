@@ -8,7 +8,7 @@ using static FitLife.GlobalConstants.DataConstants.Event;
 namespace FitLife.Data.Models
 {
     [Comment("Events")]
-    public class Event : IDeletableEntity
+    public class Event 
     {
         public Event()
         {
@@ -58,15 +58,7 @@ namespace FitLife.Data.Models
         [Comment("Event's creator identifier")]
         public string CreatorId { get; set; } = null!;
         [ForeignKey(nameof(CreatorId))]
-        public Trainer Creator { get; set; } = null!;
-
-        [Required]
-        [Comment("Time of creation")]
-        public DateTime CreatedOn { get; set; }
-
-        [Required]
-        [Comment("Event's state")]
-        public bool IsDeleted { get; set; }       
+        public Trainer Creator { get; set; } = null!;              
 
         public ICollection<ParticipantEvent> ParticipantsEvents { get; set; }
 

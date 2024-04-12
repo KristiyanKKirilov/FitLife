@@ -35,7 +35,7 @@ namespace FitLife.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new ParticipantConfiguration());
-           builder.ApplyConfiguration(new EventCategoryConfiguration());
+            builder.ApplyConfiguration(new EventCategoryConfiguration());
             builder.ApplyConfiguration(new TrainingProgramCategoryConfiguration());
             builder.ApplyConfiguration(new TrainerConfiguration());
             builder.ApplyConfiguration(new EventConfiguration());

@@ -19,22 +19,19 @@ namespace FitLife.Data.Configuration
                 {
                     Id = 1,
                     Name = "Beginner",
-                    CreatedOn = DateTime.Parse("04/11/2024"),
-                    IsDeleted = false
+                    
                 },
                 new TrainingProgramCategory()
                 {
                     Id = 2,
                     Name = "Intermediate",
-                    CreatedOn = DateTime.Parse("04/11/2024"),
-                    IsDeleted = false
+                    
                 },
                 new TrainingProgramCategory()
                 {
                     Id = 3,
                     Name = "Expert",
-                    CreatedOn = DateTime.Parse("04/11/2024"),
-                    IsDeleted = false
+                   
                 },
 
             };

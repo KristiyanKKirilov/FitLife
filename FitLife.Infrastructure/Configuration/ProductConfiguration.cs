@@ -24,8 +24,7 @@ namespace FitLife.Data.Configuration
                     IsAvailable = true,
                     AvailableStockCount = 250,
                     Count = 1,
-                    CreatedOn = DateTime.Parse("04/11/2024"),
-                    IsDeleted = false
+                   
                 },
                 new Product()
                 {
@@ -36,8 +35,7 @@ namespace FitLife.Data.Configuration
                     IsAvailable = true,
                     AvailableStockCount = 100,
                     Count = 1,
-                    CreatedOn = DateTime.Parse("04/11/2024"),
-                    IsDeleted = false
+                    
                 }
             };
         }

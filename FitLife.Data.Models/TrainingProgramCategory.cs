@@ -6,7 +6,7 @@ using static FitLife.GlobalConstants.DataConstants;
 namespace FitLife.Data.Models
 {
     [Comment("TrainingProgramCategories")]
-    public class TrainingProgramCategory : IDeletableEntity
+    public class TrainingProgramCategory
     {
         public TrainingProgramCategory()
         {
@@ -20,15 +20,7 @@ namespace FitLife.Data.Models
         [Required]
         [MaxLength(NameMaxLength)]
         [Comment("TrainingProgram category's name")]
-        public string Name { get; set; } = null!;
-
-        [Required]
-        [Comment("Time of creation")]
-        public DateTime CreatedOn { get; set; }
-
-        [Required]
-        [Comment("Training program category's state")]
-        public bool IsDeleted { get; set; }
+        public string Name { get; set; } = null!;     
 
         public ICollection<TrainingProgram> TrainingPrograms { get; set; }
         

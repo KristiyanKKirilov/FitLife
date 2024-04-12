@@ -31,8 +31,6 @@ namespace FitLife.Data.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "Participant's first name"),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "Participant's last name"),
                     City = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false, comment: "Participant's living town"),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Time of creation"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "Participant's state"),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -60,9 +58,7 @@ namespace FitLife.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false, comment: "Event category's identifier")
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "Event category's name"),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Time of creation"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "Event category's state")
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "Event category's name")
                 },
                 constraints: table =>
                 {
@@ -76,9 +72,7 @@ namespace FitLife.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false, comment: "TrainingProgram category's identifier")
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "TrainingProgram category's name"),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Time of creation"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "Training program category's state")
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "TrainingProgram category's name")
                 },
                 constraints: table =>
                 {
@@ -198,9 +192,7 @@ namespace FitLife.Data.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Order identifier"),
                     ParticipantId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Order's participant identifier"),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false, comment: "Order's total price"),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Time of creation"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "Order's state")
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false, comment: "Order's total price")
                 },
                 constraints: table =>
                 {
@@ -222,9 +214,7 @@ namespace FitLife.Data.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "Trainer's first name"),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "Trainer's last name"),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Trainer's email address"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Trainer's user identifier"),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Time of creation"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "Trainer's state")
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Trainer's user identifier")
                 },
                 constraints: table =>
                 {
@@ -249,8 +239,6 @@ namespace FitLife.Data.Migrations
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false, comment: "Product's state"),
                     AvailableStockCount = table.Column<int>(type: "int", nullable: false, comment: "Product's available count in storage"),
                     Count = table.Column<int>(type: "int", nullable: false, comment: "Product's count in a participant's order"),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Time of creation"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "Product's state"),
                     OrderId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -276,9 +264,7 @@ namespace FitLife.Data.Migrations
                     Address = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false, comment: "Event's address in detail described"),
                     StartTime = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Event's start time in format dd/MM/yyyy hh:mm"),
                     CategoryId = table.Column<int>(type: "int", nullable: false, comment: "Event's category identifier"),
-                    CreatorId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Event's creator identifier"),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Time of creation"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "Event's state")
+                    CreatorId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Event's creator identifier")
                 },
                 constraints: table =>
                 {
@@ -309,9 +295,7 @@ namespace FitLife.Data.Migrations
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Training program's date of start in format dd/MM/yyyy hh:mm"),
                     DurationDays = table.Column<int>(type: "int", nullable: false, comment: "Training program's duration in days"),
                     CategoryId = table.Column<int>(type: "int", nullable: false, comment: "Training program's category identifier"),
-                    CreatorId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Training program's creator"),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Time of creation"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "Training program's state")
+                    CreatorId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Training program's creator")
                 },
                 constraints: table =>
                 {
@@ -336,9 +320,7 @@ namespace FitLife.Data.Migrations
                 columns: table => new
                 {
                     ParticipantId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Participant's identifier"),
-                    EventId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Event's identifier"),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Time of creation"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "Order's state")
+                    EventId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Event's identifier")
                 },
                 constraints: table =>
                 {
@@ -363,9 +345,7 @@ namespace FitLife.Data.Migrations
                 columns: table => new
                 {
                     ParticipantId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Participant's identifier"),
-                    TrainingProgramId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Training program's identifier"),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Time of creation"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "TrainingProgramParticipant's state")
+                    TrainingProgramId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Training program's identifier")
                 },
                 constraints: table =>
                 {
@@ -390,9 +370,7 @@ namespace FitLife.Data.Migrations
                 columns: table => new
                 {
                     TrainerId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Trainer's identifier"),
-                    TrainingProgramId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Training program's identifier"),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Time of creation"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, comment: "TrainingProgramsTrainers state")
+                    TrainingProgramId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Training program's identifier")
                 },
                 constraints: table =>
                 {

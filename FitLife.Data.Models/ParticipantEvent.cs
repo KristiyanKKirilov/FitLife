@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FitLife.Data.Models
 {
     [Comment("ParticipantsEvents")]
-    public class ParticipantEvent : IDeletableEntity
+    public class ParticipantEvent 
     {
         [Required]
         [Comment("Participant's identifier")]
@@ -18,14 +18,6 @@ namespace FitLife.Data.Models
         [Comment("Event's identifier")]
         public string EventId { get; set; } = null!;
         [ForeignKey(nameof(EventId))]
-        public Event Event { get; set; } = null!;
-
-        [Required]
-        [Comment("Time of creation")]
-        public DateTime CreatedOn { get; set; }
-
-        [Required]
-        [Comment("Order's state")]
-        public bool IsDeleted { get; set; }
+        public Event Event { get; set; } = null!;        
     }
 }

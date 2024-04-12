@@ -1,0 +1,13 @@
+﻿@model TrainingProgramFormModel
+@{
+	ViewData["Title"] = "Add Training Program";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<partial name="_TrainingProgramFormPartial" model="@Model" />
+
+@section Scripts{
+		<partial name="_ValidationScriptsPartial"/>
+}

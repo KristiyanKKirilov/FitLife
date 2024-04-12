@@ -21,11 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FitLife.Infrastructure\FitLife.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\FitLife.Web.ViewModels\FitLife.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

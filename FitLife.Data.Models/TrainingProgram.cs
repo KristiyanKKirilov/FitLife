@@ -9,7 +9,7 @@ using static FitLife.GlobalConstants.DataConstants;
 namespace FitLife.Data.Models
 {
     [Comment("TrainingPrograms")]
-    public class TrainingProgram : IDeletableEntity
+    public class TrainingProgram
     {
         public TrainingProgram()
         {
@@ -55,15 +55,7 @@ namespace FitLife.Data.Models
         [Comment("Training program's creator")]
         public string CreatorId { get; set; } = null!;
         [ForeignKey(nameof(CreatorId))]
-        public Trainer Creator { get; set; } = null!;
-
-        [Required]
-        [Comment("Time of creation")]
-        public DateTime CreatedOn { get; set; }
-
-        [Required]
-        [Comment("Training program's state")]
-        public bool IsDeleted { get; set; }
+        public Trainer Creator { get; set; } = null!;        
 
         public ICollection<TrainingProgramTrainer> TrainingProgramsTrainers { get; set; }
 

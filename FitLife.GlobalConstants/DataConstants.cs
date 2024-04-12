@@ -8,6 +8,12 @@ namespace FitLife.GlobalConstants
 {
     public static class DataConstants
     {
+
+        /// <summary>
+        /// Date format
+        /// </summary>
+        public const string DateFormat = "dd/MM/yyyy";
+
         /// <summary>
         /// Title minimum length
         /// </summary>

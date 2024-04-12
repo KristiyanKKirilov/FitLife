@@ -6,7 +6,7 @@ using static FitLife.GlobalConstants.DataConstants;
 namespace FitLife.Data.Models
 {
     [Comment("Products")]
-    public class Product : IDeletableEntity
+    public class Product
     {
         public Product()
         {
@@ -41,14 +41,6 @@ namespace FitLife.Data.Models
 
         [Required]
         [Comment("Product's count in a participant's order")]
-        public int Count { get; set; }
-
-        [Required]
-        [Comment("Time of creation")]
-        public DateTime CreatedOn { get; set; }
-
-        [Required]
-        [Comment("Product's state")]
-        public bool IsDeleted { get; set; }
+        public int Count { get; set; }       
     }
 }

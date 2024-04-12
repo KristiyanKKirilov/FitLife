@@ -26,8 +26,7 @@ namespace FitLife.Data.Configuration
                 Email = "first@gmail.com",
                 NormalizedEmail = "first@gmail.com",
                 City = "Sofia",
-                CreatedOn = DateTime.Parse("04/11/2024"),
-                IsDeleted = false
+                
             };
 
             firstUser.PasswordHash = hasher.HashPassword(firstUser, "A123456b");
@@ -42,8 +41,7 @@ namespace FitLife.Data.Configuration
                 Email = "second@gmail.com",
                 NormalizedEmail = "second@gmail.com",
                 City = "Varna",
-                CreatedOn = DateTime.Parse("04/11/2024"),
-                IsDeleted = false       
+                      
             };
 
             secondUser.PasswordHash = hasher.HashPassword(secondUser, "A123456b");

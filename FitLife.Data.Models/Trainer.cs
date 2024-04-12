@@ -7,7 +7,7 @@ using static FitLife.GlobalConstants.DataConstants;
 namespace FitLife.Data.Models
 {
     [Comment("Trainers")]
-    public class Trainer : IDeletableEntity
+    public class Trainer
     {
         public Trainer()
         {
@@ -39,15 +39,7 @@ namespace FitLife.Data.Models
         [Comment("Trainer's user identifier")]
         public string UserId { get; set; } = null!;
         [ForeignKey(nameof(UserId))]
-        public Participant User { get; set; } = null!;
-
-        [Required]
-        [Comment("Time of creation")]
-        public DateTime CreatedOn { get; set; }
-
-        [Required]
-        [Comment("Trainer's state")]
-        public bool IsDeleted { get; set; }
+        public Participant User { get; set; } = null!;       
 
         public ICollection<TrainingProgramTrainer> TrainingProgramsTrainers { get; set; }
 

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FitLife.GlobalConstants\FitLife.GlobalConstants.csproj" />
+	  <ProjectReference Include="..\FitLife.Data.Models\FitLife.Data.Models.csproj" />
   </ItemGroup>
 
 </Project>

@@ -13,6 +13,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using static FitLife.GlobalConstants.DataConstants;
+using static FitLife.GlobalConstants.ErrorMessages;
 
 namespace FitLife.Areas.Identity.Pages.Account
 {
@@ -97,20 +98,20 @@ namespace FitLife.Areas.Identity.Pages.Account
             [Display(Name = "First Name")]
             [StringLength(NameMaxLength,
                 MinimumLength = NameMinLength,
-                ErrorMessage = "The {0} must be between {2} and {1} characters long.")]
+                ErrorMessage = StringLengthError)]
             public string FirstName { get; set; }
 
             [Required]
             [Display(Name = "Last Name")]
             [StringLength(NameMaxLength,
                MinimumLength = NameMinLength,
-               ErrorMessage = "The {0} must be between {2} and {1} characters long.")]
+               ErrorMessage = StringLengthError)]
             public string LastName { get; set; }
 
             [Required]
             [StringLength(CityMaxLength,
                MinimumLength = CityMinLength,
-               ErrorMessage = "The {0} must be between {2} and {1} characters long.")]
+               ErrorMessage = StringLengthError)]
             public string City { get; set; }
         }
 
@@ -131,9 +132,7 @@ namespace FitLife.Areas.Identity.Pages.Account
 
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
-                user.City = Input.City;
-                user.CreatedOn = DateTime.Now;
-                user.IsDeleted = false;
+                user.City = Input.City;                
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

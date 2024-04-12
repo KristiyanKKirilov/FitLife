@@ -22,8 +22,7 @@ namespace FitLife.Data.Configuration
                     LastName = "Ivanov",
                     Email = "first@gmail.com",
                     UserId = "dea12856-c198-4129-b3f3-b893d8395082",
-                    CreatedOn = DateTime.Parse("04/11/2024"),
-                    IsDeleted = false
+                    
                 },
                 new Trainer()
                 {
@@ -32,8 +31,7 @@ namespace FitLife.Data.Configuration
                     LastName = "Nikolaev",
                     Email = "second@gmail.com",
                     UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
-                    CreatedOn = DateTime.Parse("04/11/2024"),
-                    IsDeleted = false
+                    
                 }
             };
         }

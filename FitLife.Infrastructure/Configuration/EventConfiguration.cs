@@ -34,8 +34,7 @@ namespace FitLife.Data.Configuration
                     StartTime = DateTime.Parse("04/12/2024"),
                     CategoryId = 1,
                     CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
-                    CreatedOn = DateTime.Parse("04/11/2024"),
-                    IsDeleted = false
+                   
                 },
                 new Event()
                 {
@@ -48,8 +47,7 @@ namespace FitLife.Data.Configuration
                     StartTime = DateTime.Parse("04/12/2024"),
                     CategoryId = 2,
                     CreatorId = "5525ab80-3107-4466-a27b-463fb35ad0eo",
-                    CreatedOn = DateTime.Parse("04/11/2024"),
-                    IsDeleted = false
+                    
                 },
             };
         }

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FitLife.Data.Models
 {
     [Comment("Orders")]
-    public class Order : IDeletableEntity
+    public class Order
     {
         public Order()
         {
@@ -26,15 +26,7 @@ namespace FitLife.Data.Models
 
         [Required]
         [Comment("Order's total price")]
-        public decimal TotalPrice { get; set; }
-
-        [Required]
-        [Comment("Time of creation")]
-        public DateTime CreatedOn { get; set; }
-
-        [Required]
-        [Comment("Order's state")]
-        public bool IsDeleted { get; set; }
+        public decimal TotalPrice { get; set; }       
 
         public ICollection<Product> Products { get; set; }
         

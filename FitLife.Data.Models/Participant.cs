@@ -7,7 +7,7 @@ using static FitLife.GlobalConstants.DataConstants;
 namespace FitLife.Data.Models
 {
     [Comment("Participants")]
-    public class Participant : IdentityUser, IDeletableEntity
+    public class Participant : IdentityUser
     {
         public Participant()
         {           
@@ -32,15 +32,7 @@ namespace FitLife.Data.Models
         [Required]
         [MaxLength(CityMaxLength)]
         [Comment("Participant's living town")]
-        public string City { get; set; } = null!;
-
-        [Required]
-        [Comment("Time of creation")]
-        public DateTime CreatedOn { get; set; }
-
-        [Required]
-        [Comment("Participant's state")]
-        public bool IsDeleted { get; set; }
+        public string City { get; set; } = null!;       
 
         public ICollection<Order> Orders { get; set; }
 

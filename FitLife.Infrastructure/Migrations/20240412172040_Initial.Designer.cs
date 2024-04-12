@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitLife.Data.Migrations
 {
     [DbContext(typeof(FitLifeDbContext))]
-    [Migration("20240412132643_DataSeeded")]
-    partial class DataSeeded
+    [Migration("20240412172040_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,10 +46,6 @@ namespace FitLife.Data.Migrations
                         .HasColumnType("nvarchar(60)")
                         .HasComment("Event's city");
 
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2")
-                        .HasComment("Time of creation");
-
                     b.Property<string>("CreatorId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)")
@@ -65,10 +61,6 @@ namespace FitLife.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasComment("Event's image url");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasComment("Event's state");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2")
@@ -89,36 +81,6 @@ namespace FitLife.Data.Migrations
                     b.ToTable("Events");
 
                     b.HasComment("Events");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "5526ab8f-3107-4466-a27b-463fb35ad0e9",
-                            Address = "Park",
-                            CategoryId = 1,
-                            City = "Varna",
-                            CreatedOn = new DateTime(2024, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
-                            Description = "Starting our run together at 8 am in the central park. Prepare yourself with comfortable shoes and big smile.",
-                            ImageUrl = "https://hips.hearstapps.com/hmg-prod/images/running-is-one-of-the-best-ways-to-stay-fit-royalty-free-image-1036780592-1553033495.jpg?crop=0.88976xw:1xh;center,top&resize=1200:*",
-                            IsDeleted = false,
-                            StartTime = new DateTime(2024, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Morning Run"
-                        },
-                        new
-                        {
-                            Id = "1525ab8f-3107-4466-a27b-463fb35ad0e9",
-                            Address = "street. Bulgaria",
-                            CategoryId = 2,
-                            City = "Sofia",
-                            CreatedOn = new DateTime(2024, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = "5525ab80-3107-4466-a27b-463fb35ad0eo",
-                            Description = "Seminar at the new bussines building in Sofia, we are going to discuss calorie deficit and proper training program",
-                            ImageUrl = "https://images.squarespace-cdn.com/content/v1/5e113e254eae7b30460a0fba/1585970390295-ASEJJYD8ZYPY28IO48SE/IMG_6324.jpg",
-                            IsDeleted = false,
-                            StartTime = new DateTime(2024, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Healthy Food"
-                        });
                 });
 
             modelBuilder.Entity("FitLife.Data.Models.EventCategory", b =>
@@ -129,14 +91,6 @@ namespace FitLife.Data.Migrations
                         .HasComment("Event category's identifier");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2")
-                        .HasComment("Time of creation");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasComment("Event category's state");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -149,29 +103,6 @@ namespace FitLife.Data.Migrations
                     b.ToTable("EventCategories");
 
                     b.HasComment("EventCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedOn = new DateTime(2024, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "Sport"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedOn = new DateTime(2024, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "Seminar"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedOn = new DateTime(2024, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "Entertainment"
-                        });
                 });
 
             modelBuilder.Entity("FitLife.Data.Models.Order", b =>
@@ -179,14 +110,6 @@ namespace FitLife.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)")
                         .HasComment("Order identifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2")
-                        .HasComment("Time of creation");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasComment("Order's state");
 
                     b.Property<string>("ParticipantId")
                         .IsRequired()
@@ -224,10 +147,6 @@ namespace FitLife.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2")
-                        .HasComment("Time of creation");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -240,10 +159,6 @@ namespace FitLife.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasComment("Participant's first name");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasComment("Participant's state");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -297,50 +212,6 @@ namespace FitLife.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
 
                     b.HasComment("Participants");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "dea12856-c198-4129-b3f3-b893d8395082",
-                            AccessFailedCount = 0,
-                            City = "Sofia",
-                            ConcurrencyStamp = "5b9bdff6-6a12-41d6-a7f6-a3882b93c432",
-                            CreatedOn = new DateTime(2024, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "first@gmail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Ivan",
-                            IsDeleted = false,
-                            LastName = "Ivanov",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "first@gmail.com",
-                            NormalizedUserName = "first@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOhj0MaBHcjqWYlNsxT0kruZpT9TN5hbH9f+imbwgTfQiBu/mRZ8y7WGP7ULB9XRqA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "37e7871b-66e3-4d7c-9261-3f795cca357e",
-                            TwoFactorEnabled = false,
-                            UserName = "first@gmail.com"
-                        },
-                        new
-                        {
-                            Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
-                            AccessFailedCount = 0,
-                            City = "Varna",
-                            ConcurrencyStamp = "a083e548-25f4-4d99-828d-f593dbbe57ad",
-                            CreatedOn = new DateTime(2024, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "second@gmail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Nikola",
-                            IsDeleted = false,
-                            LastName = "Nikolaev",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "second@gmail.com",
-                            NormalizedUserName = "second@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOBkbWl3rr8naQIkbXGaINLAExtVkMA7raBJ8eXxIuZSwc5xSGGoVr5zi0fp/jEovg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "262b704e-1ef3-44e4-9d27-ca0249e8ef51",
-                            TwoFactorEnabled = false,
-                            UserName = "second@gmail.com"
-                        });
                 });
 
             modelBuilder.Entity("FitLife.Data.Models.ParticipantEvent", b =>
@@ -352,14 +223,6 @@ namespace FitLife.Data.Migrations
                     b.Property<string>("EventId")
                         .HasColumnType("nvarchar(450)")
                         .HasComment("Event's identifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2")
-                        .HasComment("Time of creation");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasComment("Order's state");
 
                     b.HasKey("ParticipantId", "EventId");
 
@@ -384,10 +247,6 @@ namespace FitLife.Data.Migrations
                         .HasColumnType("int")
                         .HasComment("Product's count in a participant's order");
 
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2")
-                        .HasComment("Time of creation");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -395,10 +254,6 @@ namespace FitLife.Data.Migrations
                         .HasComment("Product's nutrition described");
 
                     b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit")
-                        .HasComment("Product's state");
-
-                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit")
                         .HasComment("Product's state");
 
@@ -422,32 +277,6 @@ namespace FitLife.Data.Migrations
                     b.ToTable("Products");
 
                     b.HasComment("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "eea12856-c198-4129-b3f3-b893d8395022",
-                            AvailableStockCount = 250,
-                            Count = 1,
-                            CreatedOn = new DateTime(2024, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "30g of protein, 230 calories",
-                            IsAvailable = true,
-                            IsDeleted = false,
-                            Name = "Protein cookie",
-                            Price = 3.20m
-                        },
-                        new
-                        {
-                            Id = "dea12856-c198-4129-b3f3-b803d8395022",
-                            AvailableStockCount = 100,
-                            Count = 1,
-                            CreatedOn = new DateTime(2024, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Ideal for diets, 0% sugar, 30 calories per 100g",
-                            IsAvailable = true,
-                            IsDeleted = false,
-                            Name = "Sugarfree chocolate",
-                            Price = 12m
-                        });
                 });
 
             modelBuilder.Entity("FitLife.Data.Models.Trainer", b =>
@@ -455,10 +284,6 @@ namespace FitLife.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)")
                         .HasComment("Trainer's identifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2")
-                        .HasComment("Time of creation");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -470,10 +295,6 @@ namespace FitLife.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasComment("Trainer's first name");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasComment("Trainer's state");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -493,28 +314,6 @@ namespace FitLife.Data.Migrations
                     b.ToTable("Trainers");
 
                     b.HasComment("Trainers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
-                            CreatedOn = new DateTime(2024, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "first@gmail.com",
-                            FirstName = "Ivan",
-                            IsDeleted = false,
-                            LastName = "Ivanov",
-                            UserId = "dea12856-c198-4129-b3f3-b893d8395082"
-                        },
-                        new
-                        {
-                            Id = "5525ab80-3107-4466-a27b-463fb35ad0eo",
-                            CreatedOn = new DateTime(2024, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "second@gmail.com",
-                            FirstName = "Nikola",
-                            IsDeleted = false,
-                            LastName = "Nikolaev",
-                            UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e"
-                        });
                 });
 
             modelBuilder.Entity("FitLife.Data.Models.TrainingProgram", b =>
@@ -526,10 +325,6 @@ namespace FitLife.Data.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int")
                         .HasComment("Training program's category identifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2")
-                        .HasComment("Time of creation");
 
                     b.Property<string>("CreatorId")
                         .IsRequired()
@@ -551,10 +346,6 @@ namespace FitLife.Data.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasComment("Training program's image url");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasComment("Training program's state");
-
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2")
                         .HasComment("Training program's date of start in format dd/MM/yyyy hh:mm");
@@ -574,34 +365,6 @@ namespace FitLife.Data.Migrations
                     b.ToTable("TrainingPrograms");
 
                     b.HasComment("TrainingPrograms");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "dea11856-c198-4129-b3f3-a893d8395022",
-                            CategoryId = 2,
-                            CreatedOn = new DateTime(2024, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
-                            Description = "Burpies and jumping jacks to do in the morning and 20 minutes cardio afternoon are only the begining. Join us to be fit for the summer!",
-                            DurationDays = 14,
-                            ImageUrl = "https://media.istockphoto.com/id/637772834/photo/set-your-fitness-goals-high-and-reach-them.jpg?s=612x612&w=0&k=20&c=w0ZkUVwEOm6AUJO8eGqxeHt-Jrx5us5uK4BfWW9HDy8=",
-                            IsDeleted = false,
-                            StartDate = new DateTime(2024, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Jumping Month"
-                        },
-                        new
-                        {
-                            Id = "dea22856-c198-4129-b3f3-a893d8395022",
-                            CategoryId = 3,
-                            CreatedOn = new DateTime(2024, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
-                            Description = "Gym is your second home and you want to achieve even more? Subscribe for our program to become better version of yourself only for 3 months!",
-                            DurationDays = 90,
-                            ImageUrl = "https://img.freepik.com/free-photo/low-angle-view-unrecognizable-muscular-build-man-preparing-lifting-barbell-health-club_637285-2497.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1712793600&semt=sph",
-                            IsDeleted = false,
-                            StartDate = new DateTime(2024, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Mass gain"
-                        });
                 });
 
             modelBuilder.Entity("FitLife.Data.Models.TrainingProgramCategory", b =>
@@ -612,14 +375,6 @@ namespace FitLife.Data.Migrations
                         .HasComment("TrainingProgram category's identifier");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2")
-                        .HasComment("Time of creation");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasComment("Training program category's state");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -632,29 +387,6 @@ namespace FitLife.Data.Migrations
                     b.ToTable("TrainingProgramCategories");
 
                     b.HasComment("TrainingProgramCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedOn = new DateTime(2024, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "Beginner"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedOn = new DateTime(2024, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "Intermediate"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedOn = new DateTime(2024, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "Expert"
-                        });
                 });
 
             modelBuilder.Entity("FitLife.Data.Models.TrainingProgramParticipant", b =>
@@ -666,14 +398,6 @@ namespace FitLife.Data.Migrations
                     b.Property<string>("TrainingProgramId")
                         .HasColumnType("nvarchar(450)")
                         .HasComment("Training program's identifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2")
-                        .HasComment("Time of creation");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasComment("TrainingProgramParticipant's state");
 
                     b.HasKey("ParticipantId", "TrainingProgramId");
 
@@ -693,14 +417,6 @@ namespace FitLife.Data.Migrations
                     b.Property<string>("TrainingProgramId")
                         .HasColumnType("nvarchar(450)")
                         .HasComment("Training program's identifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2")
-                        .HasComment("Time of creation");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit")
-                        .HasComment("TrainingProgramsTrainers state");
 
                     b.HasKey("TrainerId", "TrainingProgramId");
 

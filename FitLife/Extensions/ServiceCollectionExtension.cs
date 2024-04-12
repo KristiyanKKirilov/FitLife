@@ -1,6 +1,8 @@
-﻿using FitLife.Data;
+﻿using FitLife.Core.Contracts;
+using FitLife.Core.Services;
+using FitLife.Data;
+using FitLife.Data.Common;
 using FitLife.Data.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -9,6 +11,8 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<ITrainingProgramService, TrainingProgramService>(); 
+            
             return services;
         }
 
@@ -17,6 +21,8 @@ namespace Microsoft.Extensions.DependencyInjection
             var connectionString = config.GetConnectionString("DefaultConnection");
             services.AddDbContext<FitLifeDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            services.AddScoped<IRepository, Repository>();
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
