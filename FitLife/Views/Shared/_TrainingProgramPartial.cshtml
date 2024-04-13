@@ -1,0 +1,43 @@
+﻿@model TrainingProgramServiceModel
+@inject ITrainerService trainerService
+@inject ITrainingProgramService trainingProgramService
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        <img class="card-img-top" src="@Model.ImageUrl" alt="TrainingProgram Image">
+        <div class="card-body text-center">
+            <h4>@Model.Title</h4>
+            <h6>Start Date: <b>@Model.StartDate.ToString("dd/MM/yyyy hh:mm")</b></h6>
+            <h6>
+                Duration:
+                <b>@Model.Duration days</b>
+            </h6>
+            <h6>
+                Trainer:
+                <b>@Model.CreatorName</b>
+            </h6>
+            <h6>
+                Category:
+                <b>@Model.CategoryName</b>
+            </h6>
+            <br />
+            <a asp-controller="TrainingProgram" asp-action="Details" asp-route-id="@Model.Id"
+                class="btn btn-success">Details</a>
+
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                @if (await trainingProgramService.HasTrainerWithIdAsync(Model.Id, User.Id()))
+                {
+                    <a asp-controller="TrainingProgram" asp-action="Modify" asp-route-id="@Model.Id"
+                    class="btn btn-warning">Modify</a>
+                }
+                else if(await trainerService.ExistsByIdAsync(User.Id()) == false)
+                {                    
+                    <a asp-controller="TrainingProgram" asp-action="Subscribe" asp-route-id="@Model.Id"
+                       class="btn btn-warning">Subscribe</a>
+                }
+            }
+           
+        </div>
+    </div>
+</div>
