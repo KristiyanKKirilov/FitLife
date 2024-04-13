@@ -10,6 +10,6 @@
         public static string Email(this ClaimsPrincipal user)
         {
             return user.FindFirstValue(ClaimTypes.Email);
-        }
+        }        
     }
 }
