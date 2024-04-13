@@ -2,7 +2,7 @@
 {
     public interface ITrainerService
     {
-        Task<bool> ExistsByIdAsync(string trainerId);
+        Task<bool> ExistsByIdAsync(string userId);
         Task<bool> TrainerHasTrainingProgramsAsync(string trainerId);
         Task<string?> GetTrainerByIdAsync(string userId);
     }

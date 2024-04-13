@@ -16,6 +16,25 @@ namespace FitLife.Core.Services
             repository = _repository;
         }
 
+        public async Task<TrainingProgramQueryServiceModel> AllAsync(int currentPage = 1, int housesPerPage = 1)
+        {
+            var trainingProgramsToShow = repository.AllReadOnly<TrainingProgram>();
+
+            var trainingPrograms = await trainingProgramsToShow
+                .Skip((currentPage - 1) * housesPerPage)
+                .Take(housesPerPage)
+                .ProjectToTrainingProgramServiceModel()
+                .ToListAsync();
+
+            int totalTrainingPrograms = await trainingProgramsToShow.CountAsync();
+
+            return new TrainingProgramQueryServiceModel()
+            {
+                TotalTrainingPrograms = totalTrainingPrograms,
+                TrainingPrograms = trainingPrograms
+            };
+        }
+
         public async Task<IEnumerable<TrainingProgramCategoryServiceModel>> AllCategoriesAsync()
         {           
 
@@ -56,6 +75,13 @@ namespace FitLife.Core.Services
             return trainingProgram.Id;
 
 
+        }
+
+        public async Task<bool> HasTrainerWithIdAsync(string trainingProgramId, string userId)
+        {
+            return await repository
+                .AllReadOnly<TrainingProgram>()
+                .AnyAsync(tp => tp.Id == trainingProgramId && tp.Creator.UserId == userId);
         }
     }
 }

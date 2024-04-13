@@ -14,17 +14,25 @@ namespace FitLife.Controllers
         private readonly ITrainingProgramService trainingProgramService;
         private readonly ITrainerService trainerService;
 
-        public TrainingProgramController(ITrainingProgramService _trainingProgramService, ITrainerService trainerService)
+        public TrainingProgramController(ITrainingProgramService _trainingProgramService, ITrainerService _trainerService)
         {
             trainingProgramService = _trainingProgramService;
-            this.trainerService = trainerService;
+            trainerService = _trainerService;
 
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All([FromQuery]AllTrainingProgramsQueryModel model)
         {
-            return View();
+            var trainingPrograms = await trainingProgramService.AllAsync(
+                model.CurrentPage,
+                model.TrainingProgramsPerPage);
+
+            model.TotalTrainingProgramsCount = trainingPrograms.TotalTrainingPrograms;
+            model.TrainingPrograms = trainingPrograms.TrainingPrograms;
+
+            return View(model);
+
         }
 
         [AllowAnonymous]

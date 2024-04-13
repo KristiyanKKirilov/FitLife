@@ -19,9 +19,11 @@ namespace FitLife.Core.Services
             repository = _repository;
         }
 
-        public Task<bool> ExistsByIdAsync(string trainerId)
+        public async Task<bool> ExistsByIdAsync(string userId)
         {
-            throw new NotImplementedException();
+           return await repository
+                .AllReadOnly<Trainer>()
+                .AnyAsync(t => t.UserId == userId);
         }
 
         public async Task<string?> GetTrainerByIdAsync(string userId)
