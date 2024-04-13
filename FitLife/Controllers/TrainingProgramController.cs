@@ -36,9 +36,17 @@ namespace FitLife.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(string id)
         {
-            return View();
+            if(await trainingProgramService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            var model = await trainingProgramService.TrainingProgramDetailsByIdAsync(id);
+
+
+            return View(model);
         }
 
         [HttpGet]

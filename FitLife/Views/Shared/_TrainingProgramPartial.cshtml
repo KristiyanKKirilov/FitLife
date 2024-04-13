@@ -34,7 +34,7 @@
                 else if(await trainerService.ExistsByIdAsync(User.Id()) == false)
                 {                    
                     <a asp-controller="TrainingProgram" asp-action="Subscribe" asp-route-id="@Model.Id"
-                       class="btn btn-warning">Subscribe</a>
+                       class="btn btn-primary">Subscribe</a>
                 }
             }
            

@@ -11,4 +11,8 @@
 	  <ProjectReference Include="..\FitLife.Data.Models\FitLife.Data.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Trainer\" />
+  </ItemGroup>
+
 </Project>

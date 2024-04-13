@@ -69,6 +69,7 @@ namespace FitLife.Core.Services
                 CategoryId = model.CategoryId,
                 CreatorId = trainerId
             };
+
             await repository.AddAsync(trainingProgram);
             await repository.SaveChangesAsync();
 
@@ -77,11 +78,37 @@ namespace FitLife.Core.Services
 
         }
 
+        public async Task<bool> ExistsAsync(string trainingProgramId)
+        {
+            return await repository
+                .AllReadOnly<TrainingProgram>()
+                .AnyAsync(tp => tp.Id == trainingProgramId);
+        }
+
         public async Task<bool> HasTrainerWithIdAsync(string trainingProgramId, string userId)
         {
             return await repository
                 .AllReadOnly<TrainingProgram>()
                 .AnyAsync(tp => tp.Id == trainingProgramId && tp.Creator.UserId == userId);
+        }
+
+        public async Task<TrainingProgramDetailsServiceModel> TrainingProgramDetailsByIdAsync(string trainingProgramId)
+        {
+            return await repository
+                .AllReadOnly<TrainingProgram>()
+                .Where(tp => tp.Id == trainingProgramId)
+                .Select(tp => new TrainingProgramDetailsServiceModel()
+                {
+                    Id = tp.Id,
+                    Title = tp.Title,
+                    ImageUrl = tp.ImageUrl,
+                    Description = tp.Description,
+                    Duration = tp.DurationDays,
+                    StartDate = tp.StartDate,
+                    CategoryName = tp.Category.Name,
+                    CreatorEmail = tp.Creator.Email,
+                    CreatorName = tp.Creator.FirstName + " " + tp.Creator.LastName,
+                }).FirstAsync();
         }
     }
 }

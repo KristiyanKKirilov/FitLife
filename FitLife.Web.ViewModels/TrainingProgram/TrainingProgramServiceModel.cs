@@ -26,7 +26,7 @@ namespace FitLife.Web.ViewModels.TrainingProgram
 
         [Required(ErrorMessage = RequiredError)]
         [Display(Name = "Category")]
-        public string CategoryName { get; set; }       
+        public string CategoryName { get; set; } = null!;
 
         [Required(ErrorMessage = RequiredError)]
         [Display(Name = "Trainer")]
