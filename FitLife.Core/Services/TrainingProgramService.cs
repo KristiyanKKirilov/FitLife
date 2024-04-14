@@ -1,8 +1,10 @@
 ﻿using FitLife.Core.Contracts;
 using FitLife.Data.Common;
 using FitLife.Data.Models;
+using FitLife.GlobalConstants;
 using FitLife.Web.ViewModels.TrainingProgram;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using System.Globalization;
 
 namespace FitLife.Core.Services
@@ -46,6 +48,13 @@ namespace FitLife.Core.Services
                  }).ToListAsync();
         }
 
+        public async Task<bool> CategoryExistsAsync(int categoryId)
+        {
+            return await repository
+                .AllReadOnly<TrainingProgramCategory>()
+                .AnyAsync(tpc => tpc.Id ==  categoryId);    
+        }
+
         public async Task<string> CreateAsync(TrainingProgramFormModel model, string trainerId)
         {
             var date = DateTime.Now;
@@ -78,6 +87,18 @@ namespace FitLife.Core.Services
 
         }
 
+        public async Task DeleteAsync(string trainingProgramId)
+        {
+            var trainingProgram = await repository
+                .GetByIdAsync<TrainingProgram>(trainingProgramId);
+            
+            if(trainingProgram != null)
+            {
+                repository.Remove(trainingProgram);
+                await repository.SaveChangesAsync();
+            }
+        }
+
         public async Task<bool> ExistsAsync(string trainingProgramId)
         {
             return await repository
@@ -85,11 +106,66 @@ namespace FitLife.Core.Services
                 .AnyAsync(tp => tp.Id == trainingProgramId);
         }
 
-        public async Task<bool> HasTrainerWithIdAsync(string trainingProgramId, string userId)
+		public async Task<TrainingProgramModifyModel?> GetTrainingProgramModifyModelByIdAsync(string trainingProgramId)
+		{
+            var categories = AllCategoriesAsync();
+
+            var trainingProgram = await repository
+                .AllReadOnly<TrainingProgram>()
+                .Where(tp => tp.Id == trainingProgramId)
+                .Select(tp => new TrainingProgramModifyModel()
+                {
+                    Id = tp.Id,
+                    Title = tp.Title,
+                    ImageUrl = tp.ImageUrl,
+                    StartDate = tp.StartDate.ToString(FitLife.GlobalConstants.DataConstants.DateFormat),
+                    CategoryId = tp.CategoryId,
+                    Description = tp.Description,
+                    DurationDays= tp.DurationDays
+                }).FirstOrDefaultAsync();
+
+            if(trainingProgram != null)
+            {
+                trainingProgram.TrainingProgramCategories = await AllCategoriesAsync();
+            }
+
+            return trainingProgram;
+		}
+
+		public async Task<bool> HasTrainerWithIdAsync(string trainingProgramId, string userId)
         {
             return await repository
                 .AllReadOnly<TrainingProgram>()
                 .AnyAsync(tp => tp.Id == trainingProgramId && tp.Creator.UserId == userId);
+        }
+
+        public async Task ModifyAsync(string trainingProgramId, TrainingProgramModifyModel model)
+        {
+            var trainingProgram = await repository
+                .GetByIdAsync<TrainingProgram>(trainingProgramId);
+
+            var date = DateTime.Now;
+
+            if (!DateTime.TryParseExact(model.StartDate,
+                DataConstants.DateFormat,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out date))
+            {
+                throw new Exception();
+            }
+
+            if (trainingProgram != null)
+            {
+                trainingProgram.Title = model.Title;
+                trainingProgram.ImageUrl = model.ImageUrl;
+                trainingProgram.Description = model.Description;
+                trainingProgram.StartDate = date;
+                trainingProgram.DurationDays = model.DurationDays;
+                trainingProgram.CategoryId = model.CategoryId;
+
+                await repository.SaveChangesAsync();
+            }
         }
 
         public async Task<TrainingProgramDetailsServiceModel> TrainingProgramDetailsByIdAsync(string trainingProgramId)

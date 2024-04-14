@@ -5,6 +5,7 @@ using FitLife.Web.ViewModels.TrainingProgram;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Security.Claims;
 
 namespace FitLife.Controllers
@@ -99,26 +100,81 @@ namespace FitLife.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Modify(int id)
+        public async Task<IActionResult> Modify(string id)
         {
-            return View();
+            if(await trainingProgramService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            string userId = User.Id();
+
+            if(await trainingProgramService.HasTrainerWithIdAsync(id, userId) == false)
+            {
+                return Unauthorized();
+            }
+
+            var trainingProgram = await trainingProgramService.GetTrainingProgramModifyModelByIdAsync(id);
+                        
+            return View(trainingProgram);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Modify()
+        public async Task<IActionResult> Modify(TrainingProgramModifyModel model)
         {
-            return View();
-        }
+            if (!await trainingProgramService.ExistsAsync(model.Id))
+            {
+                return BadRequest();
+            }
 
-        [HttpGet]
-        public async Task<IActionResult> Edit(int it)
-        {
-            return View();
-        }
+            string userId = User.Id();
+
+            if (!await trainingProgramService.HasTrainerWithIdAsync(model.Id, userId))
+            {
+                return Unauthorized();
+            }
+
+            if (await trainingProgramService.CategoryExistsAsync(model.CategoryId) == false)
+            {
+                ModelState.AddModelError(nameof(model.CategoryId), "Category does not exist");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.TrainingProgramCategories = await trainingProgramService.AllCategoriesAsync();
+                return View(model);
+            }
+
+            await trainingProgramService.ModifyAsync(model.Id, model);
+            return RedirectToAction(nameof(Details), new { model.Id });
+
+            
+            
+        }        
 
         [HttpPost]
         public async Task<IActionResult> Subscribe()
         {
+            return RedirectToAction(nameof(All));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(TrainingProgramModifyModel model)
+        {
+            if(await trainingProgramService.ExistsAsync(model.Id) == false)
+            {
+                return BadRequest();
+            }
+
+            string userId = User.Id();
+
+            if(await trainingProgramService.HasTrainerWithIdAsync(model.Id, userId) == false)
+            {
+                return Unauthorized();
+            }
+
+            await trainingProgramService.DeleteAsync(model.Id);
+
             return RedirectToAction(nameof(All));
         }
     }

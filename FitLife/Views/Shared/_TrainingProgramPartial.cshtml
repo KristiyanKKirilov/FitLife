@@ -28,8 +28,8 @@
             {
                 @if (await trainingProgramService.HasTrainerWithIdAsync(Model.Id, User.Id()))
                 {
-                    <a asp-controller="TrainingProgram" asp-action="Modify" asp-route-id="@Model.Id"
-                    class="btn btn-warning">Modify</a>
+                    <a asp-controller="TrainingProgram" asp-action="Modify" asp-route-id="@Model.Id" 
+                       class="btn btn-warning">Modify</a>
                 }
                 else if(await trainerService.ExistsByIdAsync(User.Id()) == false)
                 {                    

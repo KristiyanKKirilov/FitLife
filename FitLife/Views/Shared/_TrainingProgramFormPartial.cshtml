@@ -15,12 +15,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="ImageUrl"></label>
-                <textarea asp-for="ImageUrl" rows="4" class="form-control" placeholder="Your fine URL here..."></textarea>
+                <textarea asp-for="ImageUrl" rows="4" class="form-control" placeholder="Image Url"></textarea>
                 <span asp-validation-for="ImageUrl" class="small text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="StartDate"></label>
-                <input asp-for="StartDate" class="form-control" placeholder="01/01/2024 00:00">
+                <input asp-for="StartDate" class="form-control" placeholder="dd/MM/yyyy HH:mm">
                 <span asp-validation-for="StartDate" class="small text-danger"></span>
             </div>
             <div class="form-group">
@@ -28,15 +28,16 @@
                 <input asp-for="DurationDays" class="form-control">
                 <span asp-validation-for="DurationDays" class="small text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CategoryId"></label>
-                <select asp-for="CategoryId" class="form-control">
+            <div class="mb-3">
+                <label asp-for="@Model.CategoryId" class="form-label-add-edit">Select Category</label>
+                <select asp-for="@Model.CategoryId" class="form-control" aria-required="true">
+                    <option disabled selected value="">Select Category...</option>
                     @foreach (var category in Model.TrainingProgramCategories)
                     {
-                                <option value="@category.Id">@category.Name</option>
+                        <option value="@category.Id">@category.Name</option>
                     }
                 </select>
-                <span asp-validation-for="CategoryId" class="small text-danger"></span>
+                <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
             </div>
 
             <div class="text-center">
