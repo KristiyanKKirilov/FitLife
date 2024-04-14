@@ -52,10 +52,11 @@
                 <input type="submit" value="Modify" class="btn btn-warning" />
             </div>
 
-            <form class="ml-2" asp-controller="Event"
-                  asp-action="Delete" asp-route-id="@Model.Id" method="post">
-                <input class="btn btn-primary" type="submit" value="Delete" />
-            </form>
+           
         </div>
     </div>
+</form>
+<form class="ml-2" asp-controller="Event"
+      asp-action="Delete" asp-route-id="@Model.Id" method="post">
+    <input class="btn btn-primary" type="submit" value="Delete" />
 </form>
