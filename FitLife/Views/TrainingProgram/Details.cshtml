@@ -39,10 +39,24 @@
 
                     @if (await trainerService.ExistsByIdAsync(User.Id()) == false)
                     {
-                        <form class="ml-2" asp-controller="TrainingProgram"
-                              asp-action="Subscribe" asp-route-id="@Model.Id" method="post">
-                            <input class="btn btn-primary" type="submit" value="Subscribe" />
-                        </form>
+                        @if (await trainingProgramService.HasParticipantWithIdAsync(@Model.Id, User.Id()))
+                        {
+                            <br />
+                            <br />
+                            <form class="ml-2" asp-controller="TrainingProgram"
+                                  asp-action="Subscribe" asp-route-id="@Model.Id" method="post">
+                                <input class="btn btn-primary" type="submit" value="Subscribed" disabled />
+                            </form>
+                        }
+                        else
+                        {
+                            <br />
+                            <br />
+                            <form class="ml-2" asp-controller="TrainingProgram"
+                                  asp-action="Subscribe" asp-route-id="@Model.Id" method="post">
+                                <input class="btn btn-primary" type="submit" value="Subscribe" />
+                            </form>
+                        }
                     }
                 }
                 else

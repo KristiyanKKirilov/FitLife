@@ -38,9 +38,9 @@ namespace FitLife.Core.Services
         }
 
         public async Task<IEnumerable<TrainingProgramCategoryServiceModel>> AllCategoriesAsync()
-        {           
+        {
 
-            return await repository.All<TrainingProgramCategory>()                
+            return await repository.All<TrainingProgramCategory>()
                  .Select(tpc => new TrainingProgramCategoryServiceModel()
                  {
                      Id = tpc.Id,
@@ -52,16 +52,16 @@ namespace FitLife.Core.Services
         {
             return await repository
                 .AllReadOnly<TrainingProgramCategory>()
-                .AnyAsync(tpc => tpc.Id ==  categoryId);    
+                .AnyAsync(tpc => tpc.Id == categoryId);
         }
 
         public async Task<string> CreateAsync(TrainingProgramFormModel model, string trainerId)
         {
             var date = DateTime.Now;
-           
 
-            if(!DateTime.TryParseExact(model.StartDate, "dd/MM/yyyy hh:mm", 
-                CultureInfo.InvariantCulture, 
+
+            if (!DateTime.TryParseExact(model.StartDate, "dd/MM/yyyy hh:mm",
+                CultureInfo.InvariantCulture,
                 DateTimeStyles.None,
                 out date))
             {
@@ -91,8 +91,8 @@ namespace FitLife.Core.Services
         {
             var trainingProgram = await repository
                 .GetByIdAsync<TrainingProgram>(trainingProgramId);
-            
-            if(trainingProgram != null)
+
+            if (trainingProgram != null)
             {
                 repository.Remove(trainingProgram);
                 await repository.SaveChangesAsync();
@@ -106,8 +106,8 @@ namespace FitLife.Core.Services
                 .AnyAsync(tp => tp.Id == trainingProgramId);
         }
 
-		public async Task<TrainingProgramModifyModel?> GetTrainingProgramModifyModelByIdAsync(string trainingProgramId)
-		{
+        public async Task<TrainingProgramModifyModel?> GetTrainingProgramModifyModelByIdAsync(string trainingProgramId)
+        {
             var categories = AllCategoriesAsync();
 
             var trainingProgram = await repository
@@ -121,18 +121,38 @@ namespace FitLife.Core.Services
                     StartDate = tp.StartDate.ToString(FitLife.GlobalConstants.DataConstants.DateFormat),
                     CategoryId = tp.CategoryId,
                     Description = tp.Description,
-                    DurationDays= tp.DurationDays
+                    DurationDays = tp.DurationDays
                 }).FirstOrDefaultAsync();
 
-            if(trainingProgram != null)
+            if (trainingProgram != null)
             {
                 trainingProgram.TrainingProgramCategories = await AllCategoriesAsync();
             }
 
             return trainingProgram;
-		}
+        }
 
-		public async Task<bool> HasTrainerWithIdAsync(string trainingProgramId, string userId)
+        public async Task<bool> HasParticipantWithIdAsync(string trainingProgramId, string participantId)
+        {
+            var trainingProgram = await repository
+                .AllReadOnly<TrainingProgram>()
+                .Where(tp => tp.Id == trainingProgramId)
+                .Include(tp => tp.TrainingProgramsParticipants)
+                .FirstOrDefaultAsync();
+            if (trainingProgram != null)
+            {
+                if (trainingProgram.TrainingProgramsParticipants
+                .Any(tp => tp.ParticipantId == participantId && tp.TrainingProgramId == trainingProgramId))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
+        }
+
+        public async Task<bool> HasTrainerWithIdAsync(string trainingProgramId, string userId)
         {
             return await repository
                 .AllReadOnly<TrainingProgram>()
@@ -163,6 +183,23 @@ namespace FitLife.Core.Services
                 trainingProgram.StartDate = date;
                 trainingProgram.DurationDays = model.DurationDays;
                 trainingProgram.CategoryId = model.CategoryId;
+
+                await repository.SaveChangesAsync();
+            }
+        }
+
+        public async Task SubscribeAsync(string trainingProgramId, string userId)
+        {
+            var trainingProgram = await repository
+                .GetByIdAsync<TrainingProgram>(trainingProgramId);
+
+            if (trainingProgram != null)
+            {
+                trainingProgram.TrainingProgramsParticipants.Add(new TrainingProgramParticipant()
+                {
+                    ParticipantId = userId,
+                    TrainingProgramId = trainingProgramId
+                });
 
                 await repository.SaveChangesAsync();
             }

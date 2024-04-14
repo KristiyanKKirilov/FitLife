@@ -92,11 +92,23 @@ namespace FitLife.Controllers
             return RedirectToAction(nameof(All));
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Mine()
         {
-            return View();
+            //var userId = User.Id();
+            //IEnumerable<TrainingProgramServiceModel> model;
+
+            //if(await trainerService.ExistsByIdAsync(userId))
+            //{
+            //    string? trainerId = await trainerService.GetTrainerByIdAsync(userId);
+            //    model = await trainingProgramService.AllTrainingProgramsByTrainerAsync(userId);
+            //}
+            //else
+            //{
+            //    model = await trainingProgramService.AllTrainingProgramsByParticipantAsync(userId);
+            //}
+
+            return View(model);
         }
 
         [HttpGet]
@@ -146,15 +158,33 @@ namespace FitLife.Controllers
             }
 
             await trainingProgramService.ModifyAsync(model.Id, model);
-            return RedirectToAction(nameof(Details), new { model.Id });
-
+            return RedirectToAction(nameof(Details), new { model.Id });            
             
-            
-        }        
+        }
+        
 
         [HttpPost]
-        public async Task<IActionResult> Subscribe()
+        public async Task<IActionResult> Subscribe(string id)
         {
+            if(await trainingProgramService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            string userId = User.Id();
+
+            if(await trainerService.ExistsByIdAsync(userId))
+            {
+                return Unauthorized();
+            }
+
+            if(await trainingProgramService.HasParticipantWithIdAsync(id, userId))
+            {
+                return BadRequest();
+            }
+
+            await trainingProgramService.SubscribeAsync(id, userId);
+
             return RedirectToAction(nameof(All));
         }
 
