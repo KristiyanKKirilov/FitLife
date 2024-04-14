@@ -189,21 +189,21 @@ namespace FitLife.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Delete(TrainingProgramModifyModel model)
+        public async Task<ActionResult> Delete(string id)
         {
-            if(await trainingProgramService.ExistsAsync(model.Id) == false)
+            if(await trainingProgramService.ExistsAsync(id) == false)
             {
                 return BadRequest();
             }
 
             string userId = User.Id();
 
-            if(await trainingProgramService.HasTrainerWithIdAsync(model.Id, userId) == false)
+            if(await trainingProgramService.HasTrainerWithIdAsync(id, userId) == false)
             {
                 return Unauthorized();
             }
 
-            await trainingProgramService.DeleteAsync(model.Id);
+            await trainingProgramService.DeleteAsync(id);
 
             return RedirectToAction(nameof(All));
         }

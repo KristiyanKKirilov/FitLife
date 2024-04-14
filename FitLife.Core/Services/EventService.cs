@@ -140,9 +140,16 @@ namespace FitLife.Core.Services
             return newEvent.Id;
         }
 
-        public Task DeleteAsync(string eventId)
+        public async Task DeleteAsync(string eventId)
         {
-            throw new NotImplementedException();
+            var currentEvent = await repository
+                 .GetByIdAsync<Event>(eventId);
+
+            if(currentEvent != null)
+            {
+                repository.Remove(currentEvent);
+                await repository.SaveChangesAsync();
+            }
         }
 
         public async Task<EventDetailsServiceModel> EventDetailsByIdAsync(string eventId)

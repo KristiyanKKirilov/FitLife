@@ -3,6 +3,7 @@ using FitLife.Core.Contracts;
 using FitLife.Core.Services;
 using FitLife.GlobalConstants;
 using FitLife.Web.ViewModels.Event;
+using FitLife.Web.ViewModels.TrainingProgram;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
@@ -154,6 +155,36 @@ namespace FitLife.Web.Controllers
 			await eventService.ModifyAsync(model.Id, model);
 
 			return RedirectToAction(nameof(Details), new { model.Id});
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Delete(string id)
+		{
+			if(await eventService.ExistsAsync(id) == false)
+			{
+				return BadRequest();
+			}
+
+			if(await eventService.HasTrainerWithIdAsync(id, User.Id()) == false)
+			{
+				return Unauthorized();
+			}
+
+			await eventService.DeleteAsync(id);
+
+			return RedirectToAction(nameof(All));
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Mine(string id)
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Join(string id, string userId)
+		{
+			return View();
 		}
 	}
 }
