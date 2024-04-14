@@ -50,13 +50,13 @@ namespace FitLife.Web.ViewModels.Event
 		/// </summary>
 		[Required(ErrorMessage = RequiredError)]
 		[Display(Name = "Start time")]
-		public string StartTime { get; set; }
+		public string StartTime { get; set; } = null!;
 
 		/// <summary>
 		/// Event's duration in days
 		/// </summary>
 		[Required(ErrorMessage = RequiredError)]
-		[Range(CityMaxLength, CityMinLength, ErrorMessage = StringLengthError)]
+		[StringLength(CityMaxLength, MinimumLength = CityMinLength, ErrorMessage = StringLengthError)]
 		public string City { get; set; } = null!;
 
 		/// <summary>
