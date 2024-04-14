@@ -94,5 +94,18 @@ namespace FitLife.Web.Controllers
 
 			return RedirectToAction(nameof(All));
 		}
+
+		[HttpGet]
+		public async Task<IActionResult> Details(string id)
+		{
+			if(await eventService.ExistsAsync(id) == false)
+			{
+				return BadRequest();
+			}
+
+			var model = await eventService.EventDetailsByIdAsync(id);
+
+			return View(model);
+		}
 	}
 }

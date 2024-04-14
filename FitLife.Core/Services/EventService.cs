@@ -142,14 +142,31 @@ namespace FitLife.Core.Services
             throw new NotImplementedException();
         }
 
-        public Task<EventDetailsServiceModel> EventDetailsByIdAsync(string eventId)
+        public async Task<EventDetailsServiceModel> EventDetailsByIdAsync(string eventId)
         {
-            throw new NotImplementedException();
+            return await repository
+                .AllReadOnly<Event>()
+                .Where(e => e.Id == eventId)
+                .Select(e => new EventDetailsServiceModel()
+                {
+                    Id = e.Id,
+                    Title = e.Title,
+                    Address = e.Address,
+                    CategoryName = e.Category.Name,
+                    Description = e.Description,
+                    City = e.City,
+                    StartTime = e.StartTime,
+                    CreatorEmail = e.Creator.Email,
+                    CreatorName = e.Creator.FirstName + " " + e.Creator.LastName,
+                    ImageUrl = e.ImageUrl
+                }).FirstAsync();
         }
 
-        public Task<bool> ExistsAsync(string eventId)
+        public async Task<bool> ExistsAsync(string eventId)
         {
-            throw new NotImplementedException();
+            return await repository
+                .AllReadOnly<Event>()
+                .AnyAsync(e => e.Id == eventId);
         }
 
         public Task<EventModifyModel?> GetEventModifyModelByIdAsync(string eventId)
