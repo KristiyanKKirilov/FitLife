@@ -43,7 +43,13 @@
                               asp-action="Subscribe" asp-route-id="@Model.Id" method="post">
                             <input class="btn btn-primary" type="submit" value="Subscribe" />
                         </form>
-                    }                    
+                    }
+                }
+                else
+                {
+                    <a asp-area="Identity" asp-page="/Account/Register"
+                       class="btn btn-primary">Subscribe</a>
+                    
                 }
             </div>
             <p></p>

@@ -33,9 +33,17 @@
                 }
                 else if(await trainerService.ExistsByIdAsync(User.Id()) == false)
                 {                    
+                    
                     <a asp-controller="TrainingProgram" asp-action="Subscribe" asp-route-id="@Model.Id"
                        class="btn btn-primary">Subscribe</a>
                 }
+            }
+            else
+            {
+                <a asp-area="Identity" asp-page="/Account/Register"
+                   class="btn btn-primary">Subscribe</a>
+                
+
             }
            
         </div>
