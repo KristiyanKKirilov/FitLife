@@ -24,7 +24,7 @@ namespace FitLife.Core.Contracts
 		Task<bool> CategoryExistsAsync(int categoryId);
 		Task ModifyAsync(string eventId, EventModifyModel model);
 		Task<bool> ExistsAsync(string eventId);
-		Task SubscribeAsync(string eventId, string userId);
+		Task JoinAsync(string eventId, string userId);
 		Task<bool> HasTrainerWithIdAsync(string eventId, string userId);
 	}
 }

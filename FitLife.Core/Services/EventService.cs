@@ -92,14 +92,23 @@ namespace FitLife.Core.Services
                 .ToListAsync();
         }
 
-        public Task<IEnumerable<EventServiceModel>> AllEventsByParticipantAsync(string participantId)
+        public async Task<IEnumerable<EventServiceModel>> AllEventsByParticipantAsync(string participantId)
         {
-            throw new NotImplementedException();
+            return await repository
+                .AllReadOnly<Event>()
+                .Include(e => e.ParticipantsEvents)
+                .Where(e => e.ParticipantsEvents.Any(pe => pe.ParticipantId == participantId))
+                .ProjectToEventServiceModel()
+                .ToListAsync();
         }
 
-        public Task<IEnumerable<EventServiceModel>> AllEventsByTrainerAsync(string trainerId)
+        public async Task<IEnumerable<EventServiceModel>> AllEventsByTrainerAsync(string trainerId)
         {
-            throw new NotImplementedException();
+            return await repository
+                .AllReadOnly<Event>()
+                .Where(e => e.CreatorId == trainerId)
+                .ProjectToEventServiceModel()
+                .ToListAsync();
         }
 
         public async Task<bool> CategoryExistsAsync(int categoryId)
@@ -145,7 +154,7 @@ namespace FitLife.Core.Services
             var currentEvent = await repository
                  .GetByIdAsync<Event>(eventId);
 
-            if(currentEvent != null)
+            if (currentEvent != null)
             {
                 repository.Remove(currentEvent);
                 await repository.SaveChangesAsync();
@@ -183,7 +192,7 @@ namespace FitLife.Core.Services
         {
             var currentEvent = await repository
                 .AllReadOnly<Event>()
-                .Where (e => e.Id == eventId)
+                .Where(e => e.Id == eventId)
                 .Select(e => new EventModifyModel()
                 {
                     Id = e.Id,
@@ -261,9 +270,22 @@ namespace FitLife.Core.Services
             }
         }
 
-        public Task SubscribeAsync(string eventId, string userId)
+        public async Task JoinAsync(string eventId, string userId)
         {
-            throw new NotImplementedException();
+            var currentEvent = await repository
+                .GetByIdAsync<Event>(eventId);
+
+            if (currentEvent != null)
+            {
+                currentEvent.ParticipantsEvents.Add(new ParticipantEvent()
+                {
+                    ParticipantId = userId,
+                    EventId = eventId
+                });
+
+                await repository.SaveChangesAsync();
+
+            }
         }
     }
 }

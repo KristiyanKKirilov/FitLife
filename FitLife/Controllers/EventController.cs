@@ -11,180 +11,213 @@ using System.Security.Claims;
 
 namespace FitLife.Web.Controllers
 {
-	public class EventController : BaseController
-	{
-		private readonly IEventService eventService;
-		private readonly ITrainerService trainerService;
-		private readonly IParticipantService participantService;
+    public class EventController : BaseController
+    {
+        private readonly IEventService eventService;
+        private readonly ITrainerService trainerService;
+        private readonly IParticipantService participantService;
 
         public EventController(IEventService _eventService,
-			ITrainerService _trainerService,
-			IParticipantService _participantService)
+            ITrainerService _trainerService,
+            IParticipantService _participantService)
         {
             eventService = _eventService;
-			trainerService = _trainerService;
-			participantService = _participantService;
+            trainerService = _trainerService;
+            participantService = _participantService;
         }
 
-		[AllowAnonymous]
-        public async Task<IActionResult> All([FromQuery]AllEventsQueryModel model)
-		{
-			var userId = User.Id();
-			string userCity = string.Empty;
+        [AllowAnonymous]
+        public async Task<IActionResult> All([FromQuery] AllEventsQueryModel model)
+        {
+            var userId = User.Id();
+            string userCity = string.Empty;
 
-			if(userId != null)
-			{
-				 userCity = await participantService.ParticipantCity(User.Id());
-
-				
-			}
-
-			var events = await eventService.AllAsync(
-				userCity,
-				model.Category,
-				model.SearchTerm,
-				model.Sorting,
-				model.CurrentPage,
-				model.EventsPerPage);
+            if (userId != null)
+            {
+                userCity = await participantService.ParticipantCity(User.Id());
 
 
-			model.TotalEventsCount = events.TotalEventsCount;
-			model.Events = events.Events;
+            }
 
-			model.Categories = await eventService.AllCategoriesNamesAsync();
-			return View(model);
-		}
+            var events = await eventService.AllAsync(
+                userCity,
+                model.Category,
+                model.SearchTerm,
+                model.Sorting,
+                model.CurrentPage,
+                model.EventsPerPage);
 
-		[HttpGet]
-		public async Task<IActionResult> Add()
-		{
-			EventFormModel model = new()
-			{
-				EventCategories = await eventService.AllCategoriesAsync()
-			};
 
-			return View(model);
-		}
+            model.TotalEventsCount = events.TotalEventsCount;
+            model.Events = events.Events;
 
-		[HttpPost]
-		public async Task<IActionResult> Add(EventFormModel model)
-		{
-			DateTime date = DateTime.Now;	
+            model.Categories = await eventService.AllCategoriesNamesAsync();
+            return View(model);
+        }
 
-			if(!DateTime.TryParseExact(model.StartTime,
-				DataConstants.DateFormat,
-				CultureInfo.InvariantCulture,
-				DateTimeStyles.None,
-				out date))
-			{
-				ModelState.AddModelError(nameof(model.StartTime), $"Invalid date format! Format should be {DataConstants.DateFormat}");
-			}
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            EventFormModel model = new()
+            {
+                EventCategories = await eventService.AllCategoriesAsync()
+            };
 
-			if(ModelState.IsValid == false)
-			{
-				model.EventCategories = await eventService.AllCategoriesAsync();
-				return View(model);
-			}
+            return View(model);
+        }
 
-			string trainerId = await trainerService.GetTrainerByIdAsync(User.Id());
+        [HttpPost]
+        public async Task<IActionResult> Add(EventFormModel model)
+        {
+            DateTime date = DateTime.Now;
 
-			if(trainerId != null)
-			{
-				string newEvent = await eventService.CreateAsync(model, trainerId);
-			}
+            if (!DateTime.TryParseExact(model.StartTime,
+                DataConstants.DateFormat,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out date))
+            {
+                ModelState.AddModelError(nameof(model.StartTime), $"Invalid date format! Format should be {DataConstants.DateFormat}");
+            }
 
-			return RedirectToAction(nameof(All));
-		}
+            if (ModelState.IsValid == false)
+            {
+                model.EventCategories = await eventService.AllCategoriesAsync();
+                return View(model);
+            }
 
-		[HttpGet]
-		public async Task<IActionResult> Details(string id)
-		{
-			if(await eventService.ExistsAsync(id) == false)
-			{
-				return BadRequest();
-			}
+            string trainerId = await trainerService.GetTrainerByIdAsync(User.Id());
 
-			var model = await eventService.EventDetailsByIdAsync(id);
+            if (trainerId != null)
+            {
+                string newEvent = await eventService.CreateAsync(model, trainerId);
+            }
 
-			return View(model);
-		}
+            return RedirectToAction(nameof(All));
+        }
 
-		[HttpGet]
-		public async Task<IActionResult> Modify(string id)
-		{
-			if(await eventService.ExistsAsync(id) == false)
-			{
-				return BadRequest();
-			}			
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            if (await eventService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
 
-			if(await eventService.HasTrainerWithIdAsync(id, User.Id()) == false)
-			{
-				return Unauthorized();
-			}
+            var model = await eventService.EventDetailsByIdAsync(id);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Modify(string id)
+        {
+            if (await eventService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await eventService.HasTrainerWithIdAsync(id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
 
             var model = await eventService.GetEventModifyModelByIdAsync(id);
 
             return View(model);
-			
-		}
 
-		[HttpPost]
-		public async Task<IActionResult> Modify(EventModifyModel model)
-		{
-			if(await eventService.ExistsAsync(model.Id) == false)
-			{
-				return BadRequest();
-			}
+        }
 
-			if (await eventService.HasTrainerWithIdAsync(model.Id, User.Id()) == false)
-			{
-				return Unauthorized();
-			}
+        [HttpPost]
+        public async Task<IActionResult> Modify(EventModifyModel model)
+        {
+            if (await eventService.ExistsAsync(model.Id) == false)
+            {
+                return BadRequest();
+            }
 
-			if(await eventService.CategoryExistsAsync(model.CategoryId) == false)
-			{
-				ModelState.AddModelError(nameof(model.CategoryId), "Category does not exist!");
-			}
+            if (await eventService.HasTrainerWithIdAsync(model.Id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
 
-			if(ModelState.IsValid == false)
-			{
-				model.EventCategories = await eventService.AllCategoriesAsync();
-				return View(model);
-			}
+            if (await eventService.CategoryExistsAsync(model.CategoryId) == false)
+            {
+                ModelState.AddModelError(nameof(model.CategoryId), "Category does not exist!");
+            }
 
-			await eventService.ModifyAsync(model.Id, model);
+            if (ModelState.IsValid == false)
+            {
+                model.EventCategories = await eventService.AllCategoriesAsync();
+                return View(model);
+            }
 
-			return RedirectToAction(nameof(Details), new { model.Id});
-		}
+            await eventService.ModifyAsync(model.Id, model);
 
-		[HttpPost]
-		public async Task<IActionResult> Delete(string id)
-		{
-			if(await eventService.ExistsAsync(id) == false)
-			{
-				return BadRequest();
-			}
+            return RedirectToAction(nameof(Details), new { model.Id });
+        }
 
-			if(await eventService.HasTrainerWithIdAsync(id, User.Id()) == false)
-			{
-				return Unauthorized();
-			}
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (await eventService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
 
-			await eventService.DeleteAsync(id);
+            if (await eventService.HasTrainerWithIdAsync(id, User.Id()) == false)
+            {
+                return Unauthorized();
+            }
 
-			return RedirectToAction(nameof(All));
-		}
+            await eventService.DeleteAsync(id);
 
-		[HttpGet]
-		public async Task<IActionResult> Mine(string id)
-		{
-			return View();
-		}
+            return RedirectToAction(nameof(All));
+        }
 
-		[HttpPost]
-		public async Task<IActionResult> Join(string id, string userId)
-		{
-			return View();
-		}
-	}
+        [HttpGet]
+        public async Task<IActionResult> Mine()
+        {
+            string userId = User.Id();
+            IEnumerable<EventServiceModel> events;
+
+            if (await trainerService.ExistsByIdAsync(userId))
+            {
+                string? trainerId = await trainerService.GetTrainerByIdAsync(userId);
+
+                events = await eventService.AllEventsByTrainerAsync(trainerId);
+
+
+            }
+            else
+            {
+                events = await eventService.AllEventsByParticipantAsync(userId);
+            }
+
+            return View(events);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Join(string id)
+        {
+            if (await eventService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            if (await trainerService.ExistsByIdAsync(User.Id()))
+            {
+                return BadRequest();
+            }
+
+            if (await eventService.HasParticipantWithIdAsync(id, User.Id()))
+            {
+                return BadRequest();
+            }
+
+            await eventService.JoinAsync(id, User.Id());
+
+            return RedirectToAction(nameof(All));
+        }
+    }
 }
