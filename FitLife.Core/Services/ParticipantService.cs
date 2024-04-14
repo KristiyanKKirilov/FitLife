@@ -27,5 +27,19 @@ namespace FitLife.Core.Services
 
             return participant.FirstName;
         }
-    }
+
+		public async Task<string> ParticipantCity(string userId)
+		{
+			var participant = await repository
+				.AllReadOnly<Participant>()
+				.FirstAsync(p => p.Id == userId);
+
+			if (string.IsNullOrEmpty(participant.FirstName))
+			{
+				return null;
+			}
+
+			return participant.City;
+		}
+	}
 }
