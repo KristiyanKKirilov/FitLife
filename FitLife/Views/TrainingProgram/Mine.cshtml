@@ -1,0 +1,20 @@
+﻿@model IEnumerable<TrainingProgramServiceModel>
+
+@{
+	ViewData["Title"] = "My Training Programs";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+@if (!Model.Any())
+{
+	<h2 class="text-center">You have no training programs yet!</h2>
+}
+
+<div class="row">
+	@foreach (var trainingProgram in Model)
+	{
+		<partial name="_TrainingProgramPartial" model=@trainingProgram />
+	}
+</div>

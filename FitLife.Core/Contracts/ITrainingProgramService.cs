@@ -7,8 +7,8 @@ namespace FitLife.Core.Contracts
         Task<TrainingProgramQueryServiceModel> AllAsync(int currentPage = 1, int housesPerPage = 1);
         Task<IEnumerable<TrainingProgramCategoryServiceModel>> AllCategoriesAsync();
         Task<TrainingProgramModifyModel?> GetTrainingProgramModifyModelByIdAsync(string trainingProgramId);
-        //Task<IEnumerable<TrainingProgramServiceModel>> AllTrainingProgramsByTrainerAsync(string trainerId);
-        //Task<IEnumerable<TrainingProgramServiceModel>> AllTrainingProgramsByParticipantAsync(string participantId);
+        Task<IEnumerable<TrainingProgramServiceModel>> AllTrainingProgramsByTrainerAsync(string trainerId);
+        Task<IEnumerable<TrainingProgramServiceModel>> AllTrainingProgramsByParticipantAsync(string participantId);
         Task<TrainingProgramDetailsServiceModel> TrainingProgramDetailsByIdAsync(string trainingProgramId);
 
         Task<bool> HasParticipantWithIdAsync(string trainingProgramId, string participantId);

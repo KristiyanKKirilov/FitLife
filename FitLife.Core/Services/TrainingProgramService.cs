@@ -48,6 +48,25 @@ namespace FitLife.Core.Services
                  }).ToListAsync();
         }
 
+        public async Task<IEnumerable<TrainingProgramServiceModel>> AllTrainingProgramsByParticipantAsync(string participantId)
+        {
+            return await repository
+                .AllReadOnly<TrainingProgram>()
+                .Include(tp => tp.TrainingProgramsParticipants)
+                .Where(tp => tp.TrainingProgramsParticipants.Any(tpp => tpp.ParticipantId == participantId))
+                .ProjectToTrainingProgramServiceModel()
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<TrainingProgramServiceModel>> AllTrainingProgramsByTrainerAsync(string trainerId)
+        {
+            return await repository
+                .AllReadOnly<TrainingProgram>()
+                .Where(tp => tp.CreatorId == trainerId)
+                .ProjectToTrainingProgramServiceModel()
+                .ToListAsync();
+        }
+
         public async Task<bool> CategoryExistsAsync(int categoryId)
         {
             return await repository
@@ -83,8 +102,6 @@ namespace FitLife.Core.Services
             await repository.SaveChangesAsync();
 
             return trainingProgram.Id;
-
-
         }
 
         public async Task DeleteAsync(string trainingProgramId)

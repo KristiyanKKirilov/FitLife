@@ -95,18 +95,18 @@ namespace FitLife.Controllers
         [HttpGet]
         public async Task<IActionResult> Mine()
         {
-            //var userId = User.Id();
-            //IEnumerable<TrainingProgramServiceModel> model;
+            var userId = User.Id();
+            IEnumerable<TrainingProgramServiceModel> model;
 
-            //if(await trainerService.ExistsByIdAsync(userId))
-            //{
-            //    string? trainerId = await trainerService.GetTrainerByIdAsync(userId);
-            //    model = await trainingProgramService.AllTrainingProgramsByTrainerAsync(userId);
-            //}
-            //else
-            //{
-            //    model = await trainingProgramService.AllTrainingProgramsByParticipantAsync(userId);
-            //}
+            if (await trainerService.ExistsByIdAsync(userId))
+            {
+                string? trainerId = await trainerService.GetTrainerByIdAsync(userId);
+                model = await trainingProgramService.AllTrainingProgramsByTrainerAsync(userId);
+            }
+            else
+            {
+                model = await trainingProgramService.AllTrainingProgramsByParticipantAsync(userId);
+            }
 
             return View(model);
         }
