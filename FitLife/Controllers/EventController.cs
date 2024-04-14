@@ -107,5 +107,53 @@ namespace FitLife.Web.Controllers
 
 			return View(model);
 		}
+
+		[HttpGet]
+		public async Task<IActionResult> Modify(string id)
+		{
+			if(await eventService.ExistsAsync(id) == false)
+			{
+				return BadRequest();
+			}			
+
+			if(await eventService.HasTrainerWithIdAsync(id, User.Id()) == false)
+			{
+				return Unauthorized();
+			}
+
+            var model = await eventService.GetEventModifyModelByIdAsync(id);
+
+            return View(model);
+			
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Modify(EventModifyModel model)
+		{
+			if(await eventService.ExistsAsync(model.Id) == false)
+			{
+				return BadRequest();
+			}
+
+			if (await eventService.HasTrainerWithIdAsync(model.Id, User.Id()) == false)
+			{
+				return Unauthorized();
+			}
+
+			if(await eventService.CategoryExistsAsync(model.CategoryId) == false)
+			{
+				ModelState.AddModelError(nameof(model.CategoryId), "Category does not exist!");
+			}
+
+			if(ModelState.IsValid == false)
+			{
+				model.EventCategories = await eventService.AllCategoriesAsync();
+				return View(model);
+			}
+
+			await eventService.ModifyAsync(model.Id, model);
+
+			return RedirectToAction(nameof(Details), new { model.Id});
+		}
 	}
 }

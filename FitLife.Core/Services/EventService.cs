@@ -2,6 +2,7 @@
 using FitLife.Data.Common;
 using FitLife.Data.Models;
 using FitLife.Data.Models.Enumerations;
+using FitLife.GlobalConstants;
 using FitLife.Web.ViewModels.Event;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
@@ -101,9 +102,11 @@ namespace FitLife.Core.Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> CategoryExistsAsync(int categoryId)
+        public async Task<bool> CategoryExistsAsync(int categoryId)
         {
-            throw new NotImplementedException();
+            return await repository
+                .AllReadOnly<EventCategory>()
+                .AnyAsync(e => e.Id == categoryId);
         }
 
         public async Task<string> CreateAsync(EventFormModel model, string trainerId)
@@ -169,9 +172,29 @@ namespace FitLife.Core.Services
                 .AnyAsync(e => e.Id == eventId);
         }
 
-        public Task<EventModifyModel?> GetEventModifyModelByIdAsync(string eventId)
+        public async Task<EventModifyModel?> GetEventModifyModelByIdAsync(string eventId)
         {
-            throw new NotImplementedException();
+            var currentEvent = await repository
+                .AllReadOnly<Event>()
+                .Where (e => e.Id == eventId)
+                .Select(e => new EventModifyModel()
+                {
+                    Id = e.Id,
+                    StartTime = e.StartTime.ToString(DataConstants.DateFormat),
+                    Address = e.Address,
+                    City = e.City,
+                    ImageUrl = e.ImageUrl,
+                    CategoryId = e.Category.Id,
+                    Description = e.Description,
+                    Title = e.Title
+                }).FirstOrDefaultAsync();
+
+            if (currentEvent != null)
+            {
+                currentEvent.EventCategories = await AllCategoriesAsync();
+            }
+
+            return currentEvent;
         }
 
         public async Task<bool> HasParticipantWithIdAsync(string eventId, string participantId)
@@ -200,9 +223,35 @@ namespace FitLife.Core.Services
                 .AnyAsync(tp => tp.Id == eventId && tp.Creator.UserId == userId);
         }
 
-        public Task ModifyAsync(string eventId, EventModifyModel model)
+        public async Task ModifyAsync(string eventId, EventModifyModel model)
         {
-            throw new NotImplementedException();
+            var currentEvent = await repository
+                .GetByIdAsync<Event>(eventId);
+
+            var date = DateTime.Now;
+
+            if (!DateTime.TryParseExact(
+                model.StartTime,
+                DataConstants.DateFormat,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out date))
+            {
+                throw new Exception();
+            }
+
+            if (currentEvent != null)
+            {
+                currentEvent.Title = model.Title;
+                currentEvent.Description = model.Description;
+                currentEvent.Address = model.Address;
+                currentEvent.City = model.City;
+                currentEvent.ImageUrl = model.ImageUrl;
+                currentEvent.CategoryId = model.CategoryId;
+                currentEvent.StartTime = date;
+
+                await repository.SaveChangesAsync();
+            }
         }
 
         public Task SubscribeAsync(string eventId, string userId)
