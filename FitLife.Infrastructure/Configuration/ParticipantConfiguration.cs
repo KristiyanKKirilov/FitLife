@@ -76,7 +76,22 @@ namespace FitLife.Data.Configuration
 
             fourthUser.PasswordHash = hasher.HashPassword(fourthUser, "A123456b");
 
-            Participant[] participants = new Participant[] { firstUser, secondUser, thirdUser, fourthUser };
+			Participant adminUser = new Participant()
+			{
+				Id = "e04b5ff6-29e7-44d5-9b3b-0099d18de007",
+				FirstName = "Admin",
+				LastName = "ItSelf",
+				UserName = "admin@gmail.com",
+				NormalizedUserName = "ADMIN@GMAIL.COM",
+				Email = "admin@gmail.com",
+				NormalizedEmail = "ADMIN@GMAIL.COM",
+				City = "Varna",
+
+			};
+
+			adminUser.PasswordHash = hasher.HashPassword(adminUser, "A123456b");
+
+			Participant[] participants = new Participant[] { firstUser, secondUser, thirdUser, fourthUser, adminUser };
 
             return participants;
 

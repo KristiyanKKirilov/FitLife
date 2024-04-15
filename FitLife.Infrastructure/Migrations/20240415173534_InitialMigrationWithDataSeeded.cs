@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FitLife.Data.Migrations
 {
-    public partial class InitialWithDataSeeded : Migration
+    public partial class InitialMigrationWithDataSeeded : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -371,10 +371,11 @@ namespace FitLife.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "City", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "Varna", "719c92ec-f3f9-4ccc-b26c-51882097fe16", "second@gmail.com", false, "Freddy", "Philips", false, null, "second@gmail.com", "second@gmail.com", "AQAAAAEAACcQAAAAEHg/aVUoNJ0NC8liykkKTIq6r6obgZxZ+nWLb/v2MLLsPVY2mWNpM3h5t9eA/UAe6Q==", null, false, "c010f836-4ea1-4444-9788-3c89db27d167", false, "second@gmail.com" },
-                    { "ad1cc9c3-9fda-440a-a729-1baa02aef94d", 0, "Ruse", "5e0f06f8-ecec-49f2-968e-0a34728516c0", "third@gmail.com", false, "Chris", "Stevens", false, null, "THIRD@GMAIL.COM", "THIRD@GMAIL.COM", "AQAAAAEAACcQAAAAEPf3sjW5iTEB+JS/9Si8Lzs3IZT1hRtg4pW/7kv9LejxeS6bZAUZyDorSsE0h8KFvg==", null, false, "79c59180-f206-4834-a6b0-7446d9fb65c3", false, "third@gmail.com" },
-                    { "dea12856-c198-4129-b3f3-b893d8395082", 0, "Sofia", "50275506-2909-4aef-84ee-8fe7faa1a1e9", "first@gmail.com", false, "Tom", "Johnson", false, null, "first@gmail.com", "first@gmail.com", "AQAAAAEAACcQAAAAENbKKS0lRwWiL8hVYD7u1AtyDZXGdaY9JgxA1Rrvf2KNCfPpla/9O0i2hXOjpizY+Q==", null, false, "6cbe5f7b-d3af-4f10-b9db-be6db9dd18eb", false, "first@gmail.com" },
-                    { "e04b5ff6-29e7-44d5-9b3b-0099d18debd7", 0, "SOFIA", "03d795d7-7d17-4d19-9f64-bf96d10ae078", "test@softuni.bg", false, "TEST", "SOFTUNI", false, null, "TEST@SOFTUNI.BG", "TEST@SOFTUNI.BG", "AQAAAAEAACcQAAAAEN1Jrlwk/2oZR4GkZ5Q9esxgKpZqgXErdH0vA39fHJyTQYZyzZaEgTEnIKFZ/rjkyg==", null, false, "dfc6affe-2506-4065-90ac-c4b8311b118e", false, "test@softuni.bg" }
+                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "Varna", "7b43e891-d8e3-4e07-8439-10cdb0a5236b", "second@gmail.com", false, "Freddy", "Philips", false, null, "second@gmail.com", "second@gmail.com", "AQAAAAEAACcQAAAAEIc4gOpBmfI3TG9LZz9Zkedylx2daNtDhhPa9RuGcMCvsFYQpyqehGXqzkcHPj/6YQ==", null, false, "fb1a2b01-8295-4fc3-85ea-956a124427c4", false, "second@gmail.com" },
+                    { "ad1cc9c3-9fda-440a-a729-1baa02aef94d", 0, "Ruse", "486c20dd-9c8f-4b75-a278-224a4ae745ca", "third@gmail.com", false, "Chris", "Stevens", false, null, "THIRD@GMAIL.COM", "THIRD@GMAIL.COM", "AQAAAAEAACcQAAAAEPfwMx+8vSn57NHykXozPX6LHOmMtGFAH+8IAZy9/hMQFe6BXxzCLJy9sZNCBfqsbQ==", null, false, "d4b9c4c9-6ab6-4df1-89b3-a59e303d4b13", false, "third@gmail.com" },
+                    { "dea12856-c198-4129-b3f3-b893d8395082", 0, "Sofia", "d0d667d0-3999-4e7a-a9cd-dbcfefc76be8", "first@gmail.com", false, "Tom", "Johnson", false, null, "first@gmail.com", "first@gmail.com", "AQAAAAEAACcQAAAAENQPG0SUtTDDk4dKqkvO4xfK1m5fhflHtfWe1Z+7Gsb8KGvH+5UcDpjOmFmCIDhEFQ==", null, false, "4ea9af59-a44d-43ac-9264-a3a8ca89a713", false, "first@gmail.com" },
+                    { "e04b5ff6-29e7-44d5-9b3b-0099d18de007", 0, "Varna", "0153a984-aa4e-41b9-ad37-6dbeb467f450", "admin@gmail.com", false, "Admin", "ItSelf", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEBYL2VKD4rrIZdkFOfcZ+S7lRxEDr6hDQwUcWnhsPFabd/Dn6GLuCfwx0bEk/chypA==", null, false, "bc7da542-537c-4a40-b63e-98189bf23ff5", false, "admin@gmail.com" },
+                    { "e04b5ff6-29e7-44d5-9b3b-0099d18debd7", 0, "SOFIA", "c392c91b-993d-4806-b0fd-a88753914234", "test@softuni.bg", false, "TEST", "SOFTUNI", false, null, "TEST@SOFTUNI.BG", "TEST@SOFTUNI.BG", "AQAAAAEAACcQAAAAEK8mRSeNJ9S6EahcbvrYIzwWmo6ZuRgx1kqVAXABudFTaoMq3/Bl1cq+B58IL2slxQ==", null, false, "16857607-f38c-4403-a0fa-3a90e09c766c", false, "test@softuni.bg" }
                 });
 
             migrationBuilder.InsertData(
@@ -406,6 +407,11 @@ namespace FitLife.Data.Migrations
                     { 2, "Intermediate" },
                     { 3, "Expert" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Trainers",
+                columns: new[] { "Id", "Email", "FirstName", "LastName", "UserId" },
+                values: new object[] { "5525ab80-3107-4466-a27b-463fb35ad0bb", "admin@gmail.com", "Admin", "ItSelf", "e04b5ff6-29e7-44d5-9b3b-0099d18de007" });
 
             migrationBuilder.InsertData(
                 table: "Trainers",

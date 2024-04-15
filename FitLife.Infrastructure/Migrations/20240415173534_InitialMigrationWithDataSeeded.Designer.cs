@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitLife.Data.Migrations
 {
     [DbContext(typeof(FitLifeDbContext))]
-    [Migration("20240415134217_InitialWithDataSeeded")]
-    partial class InitialWithDataSeeded
+    [Migration("20240415173534_InitialMigrationWithDataSeeded")]
+    partial class InitialMigrationWithDataSeeded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -274,7 +274,7 @@ namespace FitLife.Data.Migrations
                             Id = "dea12856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
                             City = "Sofia",
-                            ConcurrencyStamp = "50275506-2909-4aef-84ee-8fe7faa1a1e9",
+                            ConcurrencyStamp = "d0d667d0-3999-4e7a-a9cd-dbcfefc76be8",
                             Email = "first@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Tom",
@@ -282,9 +282,9 @@ namespace FitLife.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "first@gmail.com",
                             NormalizedUserName = "first@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAENbKKS0lRwWiL8hVYD7u1AtyDZXGdaY9JgxA1Rrvf2KNCfPpla/9O0i2hXOjpizY+Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENQPG0SUtTDDk4dKqkvO4xfK1m5fhflHtfWe1Z+7Gsb8KGvH+5UcDpjOmFmCIDhEFQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6cbe5f7b-d3af-4f10-b9db-be6db9dd18eb",
+                            SecurityStamp = "4ea9af59-a44d-43ac-9264-a3a8ca89a713",
                             TwoFactorEnabled = false,
                             UserName = "first@gmail.com"
                         },
@@ -293,7 +293,7 @@ namespace FitLife.Data.Migrations
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
                             City = "Varna",
-                            ConcurrencyStamp = "719c92ec-f3f9-4ccc-b26c-51882097fe16",
+                            ConcurrencyStamp = "7b43e891-d8e3-4e07-8439-10cdb0a5236b",
                             Email = "second@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Freddy",
@@ -301,9 +301,9 @@ namespace FitLife.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "second@gmail.com",
                             NormalizedUserName = "second@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHg/aVUoNJ0NC8liykkKTIq6r6obgZxZ+nWLb/v2MLLsPVY2mWNpM3h5t9eA/UAe6Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIc4gOpBmfI3TG9LZz9Zkedylx2daNtDhhPa9RuGcMCvsFYQpyqehGXqzkcHPj/6YQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c010f836-4ea1-4444-9788-3c89db27d167",
+                            SecurityStamp = "fb1a2b01-8295-4fc3-85ea-956a124427c4",
                             TwoFactorEnabled = false,
                             UserName = "second@gmail.com"
                         },
@@ -312,7 +312,7 @@ namespace FitLife.Data.Migrations
                             Id = "ad1cc9c3-9fda-440a-a729-1baa02aef94d",
                             AccessFailedCount = 0,
                             City = "Ruse",
-                            ConcurrencyStamp = "5e0f06f8-ecec-49f2-968e-0a34728516c0",
+                            ConcurrencyStamp = "486c20dd-9c8f-4b75-a278-224a4ae745ca",
                             Email = "third@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Chris",
@@ -320,9 +320,9 @@ namespace FitLife.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "THIRD@GMAIL.COM",
                             NormalizedUserName = "THIRD@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPf3sjW5iTEB+JS/9Si8Lzs3IZT1hRtg4pW/7kv9LejxeS6bZAUZyDorSsE0h8KFvg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPfwMx+8vSn57NHykXozPX6LHOmMtGFAH+8IAZy9/hMQFe6BXxzCLJy9sZNCBfqsbQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "79c59180-f206-4834-a6b0-7446d9fb65c3",
+                            SecurityStamp = "d4b9c4c9-6ab6-4df1-89b3-a59e303d4b13",
                             TwoFactorEnabled = false,
                             UserName = "third@gmail.com"
                         },
@@ -331,7 +331,7 @@ namespace FitLife.Data.Migrations
                             Id = "e04b5ff6-29e7-44d5-9b3b-0099d18debd7",
                             AccessFailedCount = 0,
                             City = "SOFIA",
-                            ConcurrencyStamp = "03d795d7-7d17-4d19-9f64-bf96d10ae078",
+                            ConcurrencyStamp = "c392c91b-993d-4806-b0fd-a88753914234",
                             Email = "test@softuni.bg",
                             EmailConfirmed = false,
                             FirstName = "TEST",
@@ -339,11 +339,30 @@ namespace FitLife.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST@SOFTUNI.BG",
                             NormalizedUserName = "TEST@SOFTUNI.BG",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN1Jrlwk/2oZR4GkZ5Q9esxgKpZqgXErdH0vA39fHJyTQYZyzZaEgTEnIKFZ/rjkyg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK8mRSeNJ9S6EahcbvrYIzwWmo6ZuRgx1kqVAXABudFTaoMq3/Bl1cq+B58IL2slxQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "dfc6affe-2506-4065-90ac-c4b8311b118e",
+                            SecurityStamp = "16857607-f38c-4403-a0fa-3a90e09c766c",
                             TwoFactorEnabled = false,
                             UserName = "test@softuni.bg"
+                        },
+                        new
+                        {
+                            Id = "e04b5ff6-29e7-44d5-9b3b-0099d18de007",
+                            AccessFailedCount = 0,
+                            City = "Varna",
+                            ConcurrencyStamp = "0153a984-aa4e-41b9-ad37-6dbeb467f450",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Admin",
+                            LastName = "ItSelf",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBYL2VKD4rrIZdkFOfcZ+S7lRxEDr6hDQwUcWnhsPFabd/Dn6GLuCfwx0bEk/chypA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "bc7da542-537c-4a40-b63e-98189bf23ff5",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@gmail.com"
                         });
                 });
 
@@ -504,6 +523,14 @@ namespace FitLife.Data.Migrations
                             FirstName = "Freddy",
                             LastName = "Philips",
                             UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e"
+                        },
+                        new
+                        {
+                            Id = "5525ab80-3107-4466-a27b-463fb35ad0bb",
+                            Email = "admin@gmail.com",
+                            FirstName = "Admin",
+                            LastName = "ItSelf",
+                            UserId = "e04b5ff6-29e7-44d5-9b3b-0099d18de007"
                         });
                 });
 

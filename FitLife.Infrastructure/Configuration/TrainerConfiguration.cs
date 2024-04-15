@@ -32,8 +32,17 @@ namespace FitLife.Data.Configuration
                     Email = "second@gmail.com",
                     UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                     
-                }
-            };
+                },
+				 new Trainer()
+				{
+					Id = "5525ab80-3107-4466-a27b-463fb35ad0bb",
+					FirstName = "Admin",
+					LastName = "ItSelf",
+					Email = "admin@gmail.com",
+					UserId = "e04b5ff6-29e7-44d5-9b3b-0099d18de007",
+
+				}
+			};
         }
     }
 }
