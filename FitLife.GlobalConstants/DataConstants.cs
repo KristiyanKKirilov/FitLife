@@ -78,12 +78,19 @@ namespace FitLife.GlobalConstants
             /// Event's address maximum length
             /// </summary>
             public const int AddressMaxLength = 150;
-        }
+        }                
 
-        public static class Trainer
+        public static class Product
         {
+            /// <summary>
+            /// Product's minimum price
+            /// </summary>
+            public const int MinPrice = 0;
 
-
+            /// <summary>
+            /// Product's maximum price
+            /// </summary>
+            public const int MaxPrice = 1000000;
         }
 
     }
