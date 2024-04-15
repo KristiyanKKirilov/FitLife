@@ -3,6 +3,7 @@ using FitLife.Core.Services;
 using FitLife.Data;
 using FitLife.Data.Common;
 using FitLife.Data.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -35,15 +36,16 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static IServiceCollection AddApplicationIdentity(this IServiceCollection services, IConfiguration config)
         {
-            services.AddDefaultIdentity<Participant>(options => 
-            { 
+            services.AddDefaultIdentity<Participant>(options =>
+            {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireUppercase = true;
                 options.Password.RequireNonAlphanumeric = false;
             })
-                    .AddEntityFrameworkStores<FitLifeDbContext>();
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<FitLifeDbContext>();
             return services;
         }
     }
