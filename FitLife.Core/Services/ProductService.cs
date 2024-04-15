@@ -50,5 +50,28 @@ namespace FitLife.Core.Services
                 Products = products
             };
         }
+
+        public async Task<bool> ExistsAsync(string productId)
+        {
+            return await repository
+                .AllReadOnly<Product>()
+                .AnyAsync(p => p.Id == productId);
+        }
+
+        public async Task<ProductDetailsServiceModel> ProductDetailsByIdAsync(string productId)
+        {
+            return await repository
+                .AllReadOnly<Product>()
+                .Where(p => p.Id == productId)
+                .Select(p => new ProductDetailsServiceModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    ImageUrl = p.ImageUrl,
+                    Description = p.Description,
+                    IsAvailable = p.IsAvailable,
+                    Price = p.Price
+                }).FirstAsync();
+        }
     }
 }

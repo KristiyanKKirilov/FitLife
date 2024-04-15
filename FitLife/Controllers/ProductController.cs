@@ -1,5 +1,6 @@
 ﻿using FitLife.Controllers;
 using FitLife.Core.Contracts;
+using FitLife.Core.Services;
 using FitLife.Web.ViewModels.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,7 @@ namespace FitLife.Web.Controllers
             participantService = _participantService;
 
         }
+
         [AllowAnonymous]
         public async Task<IActionResult> All([FromQuery] AllProductsQueryModel model)
         {
@@ -28,6 +30,21 @@ namespace FitLife.Web.Controllers
 
             model.TotalProductsCount = products.TotalProductsCount;
             model.Products = products.Products;
+
+            return View(model);
+        }
+
+
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            if (await productService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            var model = await productService.ProductDetailsByIdAsync(id);
 
             return View(model);
         }

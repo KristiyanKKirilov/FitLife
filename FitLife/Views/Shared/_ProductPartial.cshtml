@@ -9,7 +9,7 @@
             <h4>@Model.Name</h4>
             <h6><b>@Model.Price lv</b></h6>            
             <br />
-            <a asp-controller="Event" asp-action="Details" asp-route-id="@Model.Id"
+            <a asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id"
                class="btn btn-success">Details</a>
 
             @if(await trainerService.ExistsByIdAsync(User.Id()) == false)

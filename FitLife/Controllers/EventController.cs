@@ -96,6 +96,7 @@ namespace FitLife.Web.Controllers
             return RedirectToAction(nameof(All));
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Details(string id)
         {
