@@ -12,16 +12,20 @@
             <a asp-controller="Event" asp-action="Details" asp-route-id="@Model.Id"
                class="btn btn-success">Details</a>
 
-            @if (this.User.Identity.IsAuthenticated)
+            @if(await trainerService.ExistsByIdAsync(User.Id()) == false)
             {
-               <a asp-controller="Order" asp-action="Cart" asp-route-id="@Model.Id"
-                       class="btn btn-warning">Add to Cart</a>                               
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <a asp-controller="Order" asp-action="Cart" asp-route-id="@Model.Id"
+                       class="btn btn-warning">Add to Cart</a>
+                }
+                else
+                {
+                    <a asp-area="Identity" asp-page="/Account/Register"
+                       class="btn btn-primary">Add to Cart</a>
+                }
             }
-            else
-            {
-                <a asp-area="Identity" asp-page="/Account/Register"
-                   class="btn btn-primary">Add to Cart</a>
-            }
+            
 
         </div>
     </div>
