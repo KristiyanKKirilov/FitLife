@@ -1,23 +1,24 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<Participant> SignInManager
-@inject IParticipantService participantService
+@inject UserManager<Participant> UserManager
 @inject ITrainerService trainerService
+@{
+	string userName = string.Empty;
 
+	if (SignInManager.IsSignedIn(User))
+	{
+		var user = await UserManager.FindByIdAsync(User.Id());
+		userName = $"{user.FirstName} {user.LastName}";
+	}
+}
 <ul class="navbar-nav">
 	@if (SignInManager.IsSignedIn(User))
 	{
 		<li class="nav-item">
-				@if (await participantService.ParticipantFirstName(User.Id()) is var firstName && firstName != null)
-				{
-					<a class="nav-link text-dark">Hello, @firstName!</a>
-				}
-				else
-				{
-					<a class="nav-link text-dark">Hello, @User.Identity.Name!</a>
-				}
-			</li>
-		
-		
+			<a class="nav-link text-dark">Hello, @userName!</a>
+		</li>
+
+
 		<li class="nav-item">
 			<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
 				<button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
