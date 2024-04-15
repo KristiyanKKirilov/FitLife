@@ -2,13 +2,14 @@
 @inject SignInManager<Participant> SignInManager
 @inject UserManager<Participant> UserManager
 @inject ITrainerService trainerService
+
 @{
 	string userName = string.Empty;
 
 	if (SignInManager.IsSignedIn(User))
 	{
-		var user = await UserManager.FindByIdAsync(User.Id());
-		userName = $"{user.FirstName} {user.LastName}";
+		userName = User.FindFirstValue(UserFullNameClaim) ?? string.Empty;
+
 	}
 }
 <ul class="navbar-nav">
