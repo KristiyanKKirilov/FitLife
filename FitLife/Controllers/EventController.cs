@@ -118,7 +118,8 @@ namespace FitLife.Web.Controllers
                 return BadRequest();
             }
 
-            if (await eventService.HasTrainerWithIdAsync(id, User.Id()) == false)
+            if (await eventService.HasTrainerWithIdAsync(id, User.Id()) == false
+                && User.IsAdmin() == false)
             {
                 return Unauthorized();
             }
@@ -137,7 +138,8 @@ namespace FitLife.Web.Controllers
                 return BadRequest();
             }
 
-            if (await eventService.HasTrainerWithIdAsync(model.Id, User.Id()) == false)
+            if (await eventService.HasTrainerWithIdAsync(model.Id, User.Id()) == false
+				 && User.IsAdmin() == false)
             {
                 return Unauthorized();
             }
@@ -166,7 +168,8 @@ namespace FitLife.Web.Controllers
                 return BadRequest();
             }
 
-            if (await eventService.HasTrainerWithIdAsync(id, User.Id()) == false)
+            if (await eventService.HasTrainerWithIdAsync(id, User.Id()) == false 
+                && User.IsAdmin() == false)
             {
                 return Unauthorized();
             }
@@ -206,7 +209,8 @@ namespace FitLife.Web.Controllers
                 return BadRequest();
             }
 
-            if (await trainerService.ExistsByIdAsync(User.Id()))
+            if (await trainerService.ExistsByIdAsync(User.Id()) 
+                && User.IsAdmin() == false)
             {
                 return BadRequest();
             }

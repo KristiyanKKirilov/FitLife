@@ -121,7 +121,8 @@ namespace FitLife.Controllers
 
             string userId = User.Id();
 
-            if(await trainingProgramService.HasTrainerWithIdAsync(id, userId) == false)
+            if(await trainingProgramService.HasTrainerWithIdAsync(id, userId) == false
+                && User.IsAdmin() == false)
             {
                 return Unauthorized();
             }
@@ -141,7 +142,8 @@ namespace FitLife.Controllers
 
             string userId = User.Id();
 
-            if (!await trainingProgramService.HasTrainerWithIdAsync(model.Id, userId))
+            if (await trainingProgramService.HasTrainerWithIdAsync(model.Id, userId) == false
+                && User.IsAdmin() == false)
             {
                 return Unauthorized();
             }
@@ -173,7 +175,8 @@ namespace FitLife.Controllers
 
             string userId = User.Id();
 
-            if(await trainerService.ExistsByIdAsync(userId))
+            if(await trainerService.ExistsByIdAsync(userId) 
+                && User.IsAdmin() == false)
             {
                 return Unauthorized();
             }
@@ -198,7 +201,8 @@ namespace FitLife.Controllers
 
             string userId = User.Id();
 
-            if(await trainingProgramService.HasTrainerWithIdAsync(id, userId) == false)
+            if(await trainingProgramService.HasTrainerWithIdAsync(id, userId) == false
+                && User.IsAdmin() == false)
             {
                 return Unauthorized();
             }

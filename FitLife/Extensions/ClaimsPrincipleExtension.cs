@@ -1,4 +1,5 @@
-﻿namespace System.Security.Claims
+﻿using static FitLife.GlobalConstants.RoleConstants;
+namespace System.Security.Claims
 {
     public static class ClaimsPrincipleExtension
     {
@@ -11,5 +12,10 @@
         {
             return user.FindFirstValue(ClaimTypes.Email);
         }        
+
+        public static bool IsAdmin(this ClaimsPrincipal user)
+        {
+            return user.IsInRole(AdminRole);
+        }
     }
 }
