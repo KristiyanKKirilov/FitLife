@@ -12,7 +12,6 @@ namespace FitLife.Data.Models
         public Trainer()
         {
             Id = Guid.NewGuid().ToString();
-            TrainingProgramsTrainers = new HashSet<TrainingProgramTrainer>();
             Events = new HashSet<Event>();
         }
 
@@ -41,7 +40,6 @@ namespace FitLife.Data.Models
         [ForeignKey(nameof(UserId))]
         public Participant User { get; set; } = null!;       
 
-        public ICollection<TrainingProgramTrainer> TrainingProgramsTrainers { get; set; }
 
         public ICollection<Event> Events { get; set; }
         

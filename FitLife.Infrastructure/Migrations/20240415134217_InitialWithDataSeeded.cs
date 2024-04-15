@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FitLife.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialWithDataSeeded : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -235,6 +235,7 @@ namespace FitLife.Data.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Product's identifier"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "Product's name"),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false, comment: "Product's nutrition described"),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Product's image url"),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false, comment: "Product's price"),
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false, comment: "Product's state"),
                     AvailableStockCount = table.Column<int>(type: "int", nullable: false, comment: "Product's available count in storage"),
@@ -365,30 +366,79 @@ namespace FitLife.Data.Migrations
                 },
                 comment: "TrainingProgramsParticipants");
 
-            migrationBuilder.CreateTable(
-                name: "TrainingProgramsTrainers",
-                columns: table => new
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "City", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
                 {
-                    TrainerId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Trainer's identifier"),
-                    TrainingProgramId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Training program's identifier")
-                },
-                constraints: table =>
+                    { "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e", 0, "Varna", "719c92ec-f3f9-4ccc-b26c-51882097fe16", "second@gmail.com", false, "Freddy", "Philips", false, null, "second@gmail.com", "second@gmail.com", "AQAAAAEAACcQAAAAEHg/aVUoNJ0NC8liykkKTIq6r6obgZxZ+nWLb/v2MLLsPVY2mWNpM3h5t9eA/UAe6Q==", null, false, "c010f836-4ea1-4444-9788-3c89db27d167", false, "second@gmail.com" },
+                    { "ad1cc9c3-9fda-440a-a729-1baa02aef94d", 0, "Ruse", "5e0f06f8-ecec-49f2-968e-0a34728516c0", "third@gmail.com", false, "Chris", "Stevens", false, null, "THIRD@GMAIL.COM", "THIRD@GMAIL.COM", "AQAAAAEAACcQAAAAEPf3sjW5iTEB+JS/9Si8Lzs3IZT1hRtg4pW/7kv9LejxeS6bZAUZyDorSsE0h8KFvg==", null, false, "79c59180-f206-4834-a6b0-7446d9fb65c3", false, "third@gmail.com" },
+                    { "dea12856-c198-4129-b3f3-b893d8395082", 0, "Sofia", "50275506-2909-4aef-84ee-8fe7faa1a1e9", "first@gmail.com", false, "Tom", "Johnson", false, null, "first@gmail.com", "first@gmail.com", "AQAAAAEAACcQAAAAENbKKS0lRwWiL8hVYD7u1AtyDZXGdaY9JgxA1Rrvf2KNCfPpla/9O0i2hXOjpizY+Q==", null, false, "6cbe5f7b-d3af-4f10-b9db-be6db9dd18eb", false, "first@gmail.com" },
+                    { "e04b5ff6-29e7-44d5-9b3b-0099d18debd7", 0, "SOFIA", "03d795d7-7d17-4d19-9f64-bf96d10ae078", "test@softuni.bg", false, "TEST", "SOFTUNI", false, null, "TEST@SOFTUNI.BG", "TEST@SOFTUNI.BG", "AQAAAAEAACcQAAAAEN1Jrlwk/2oZR4GkZ5Q9esxgKpZqgXErdH0vA39fHJyTQYZyzZaEgTEnIKFZ/rjkyg==", null, false, "dfc6affe-2506-4065-90ac-c4b8311b118e", false, "test@softuni.bg" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EventCategories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
                 {
-                    table.PrimaryKey("PK_TrainingProgramsTrainers", x => new { x.TrainerId, x.TrainingProgramId });
-                    table.ForeignKey(
-                        name: "FK_TrainingProgramsTrainers_Trainers_TrainerId",
-                        column: x => x.TrainerId,
-                        principalTable: "Trainers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_TrainingProgramsTrainers_TrainingPrograms_TrainingProgramId",
-                        column: x => x.TrainingProgramId,
-                        principalTable: "TrainingPrograms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                },
-                comment: "TrainingProgramsTrainers");
+                    { 1, "Sport" },
+                    { 2, "Seminar" },
+                    { 3, "Entertainment" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "AvailableStockCount", "Count", "Description", "ImageUrl", "IsAvailable", "Name", "OrderId", "Price" },
+                values: new object[,]
+                {
+                    { "d2a12856-c198-4129-b3f3-b803d8395022", 50, 1, "Refreshing drink, 100% natural flavour, 0% sugar, 230 calories", "https://smartymockups.com/wp-content/uploads/2019/05/Smoothie_Bottle_Mockup_2.jpg", true, "Strawberry smoothie", null, 7m },
+                    { "dea12856-c198-4129-b3f3-b803d8395022", 100, 1, "Ideal for diets, 0% sugar, 30 calories per 100g", "https://cdn.shopify.com/s/files/1/2090/1141/files/bepure-perfect-plant-protein-chocolate-flavour-600g-jar_3125x.png?v=1690512984", true, "Sugarfree chocolate", null, 12m },
+                    { "eea12856-c198-4129-b3f3-b893d8395022", 250, 1, "30g of protein, 230 calories", "https://www.wellplated.com/wp-content/uploads/2018/04/Peanut-Butter-Protein-Cookies.jpg", true, "Protein cookie", null, 3.20m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TrainingProgramCategories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Beginner" },
+                    { 2, "Intermediate" },
+                    { 3, "Expert" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Trainers",
+                columns: new[] { "Id", "Email", "FirstName", "LastName", "UserId" },
+                values: new object[] { "5525ab80-3107-4466-a27b-463fb35ad0eo", "second@gmail.com", "Freddy", "Philips", "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e" });
+
+            migrationBuilder.InsertData(
+                table: "Trainers",
+                columns: new[] { "Id", "Email", "FirstName", "LastName", "UserId" },
+                values: new object[] { "5525ab8f-3107-4466-a27b-463fb35ad0eo", "first@gmail.com", "Tom", "Johnson", "dea12856-c198-4129-b3f3-b893d8395082" });
+
+            migrationBuilder.InsertData(
+                table: "Events",
+                columns: new[] { "Id", "Address", "CategoryId", "City", "CreatorId", "Description", "ImageUrl", "StartTime", "Title" },
+                values: new object[,]
+                {
+                    { "1525ab8f-3107-4466-a27b-463fb35ad0e9", "street. Bulgaria", 2, "Sofia", "5525ab80-3107-4466-a27b-463fb35ad0eo", "Seminar at the new business building in Sofia, we are going to discuss calorie deficit and proper training program depending on everyone's lifestyle! Don't be shy to participate and help us improve our seminars! We are waiting for you!", "https://images.squarespace-cdn.com/content/v1/5e113e254eae7b30460a0fba/1585970390295-ASEJJYD8ZYPY28IO48SE/IMG_6324.jpg", new DateTime(2024, 4, 12, 10, 0, 0, 0, DateTimeKind.Unspecified), "Healthy Food" },
+                    { "5526ab8f-3107-4466-a27b-463fb35ad0e9", "At the beginning of the sea garden, Varna", 1, "Varna", "5525ab8f-3107-4466-a27b-463fb35ad0eo", "Starting our run together at 7 oclock in the central park. Prepare yourself with comfortable shoes and big smile. The run will be 3km long and if it is needed, we will take a break and then continue our training!", "https://hips.hearstapps.com/hmg-prod/images/running-is-one-of-the-best-ways-to-stay-fit-royalty-free-image-1036780592-1553033495.jpg?crop=0.88976xw:1xh;center,top&resize=1200:*", new DateTime(2024, 4, 12, 7, 0, 0, 0, DateTimeKind.Unspecified), "Morning Run" },
+                    { "f4130617-4f66-4775-8c6a-e80be1ea8380", "Varna Center, near Starbucks", 3, "Varna", "5525ab8f-3107-4466-a27b-463fb35ad0eo", "Get a coffee and meet a new friend in our new designed healthy bar food!", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnrnGh9dQ-ktCzYC-Bxd0ixhza-1uaa7xU2a1V6nKK4g&s", new DateTime(2024, 9, 5, 8, 30, 0, 0, DateTimeKind.Unspecified), "Coffee Time and Relax" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TrainingPrograms",
+                columns: new[] { "Id", "CategoryId", "CreatorId", "Description", "DurationDays", "ImageUrl", "StartDate", "Title" },
+                values: new object[,]
+                {
+                    { "8bb2f74c-dde5-4217-b985-0f623ec4349f", 2, "5525ab8f-3107-4466-a27b-463fb35ad0eo", "Be prepared for the montains in Bulgaria every year!", 7, "https://i.namu.wiki/i/z4SlzF00Hi7dzXpkkj_mdNnXyY2WTHD6hmxzCks5e6PxQ7KwHosVlzQatl42tPiui_EICYUhL-iEBxxbRQUN7w.webp", new DateTime(2024, 1, 20, 11, 0, 0, 0, DateTimeKind.Unspecified), "Rock Climbers" },
+                    { "dd87ea80-b2fe-4034-aa6a-63d505837a15", 1, "5525ab8f-3107-4466-a27b-463fb35ad0eo", "Beach training every afternoon to get 6 pack for the summer!", 7, "https://thumbs.dreamstime.com/b/fitness-people-jumping-fitness-workout-beach-group-fitness-people-jumping-fitness-workout-beach-192257084.jpg", new DateTime(2024, 6, 21, 13, 0, 0, 0, DateTimeKind.Unspecified), "Summer body" },
+                    { "dd87ea99-b2fe-4034-aa6a-63d505837a15", 2, "5525ab8f-3107-4466-a27b-463fb35ad0eo", "Crossfit gives you the opportunity to look good, feel good and train different from others. If you are bored from the gym and you are looking to start some new challenge, our crossfit program is the right place for you!", 60, "https://www.crossfit.com/wp-content/uploads/2023/11/13131232/crossfit-coach-led-fitness-training-adapted-for-you-handstand-hold.jpg", new DateTime(2024, 11, 5, 20, 0, 0, 0, DateTimeKind.Unspecified), "Strong and flexible" },
+                    { "dea11856-c198-4129-b3f3-a893d8395022", 2, "5525ab8f-3107-4466-a27b-463fb35ad0eo", "Burpies and jumping jacks to do in the morning and 20 minutes cardio afternoon are only the begining. Join us to be fit for the summer!", 14, "https://media.istockphoto.com/id/637772834/photo/set-your-fitness-goals-high-and-reach-them.jpg?s=612x612&w=0&k=20&c=w0ZkUVwEOm6AUJO8eGqxeHt-Jrx5us5uK4BfWW9HDy8=", new DateTime(2024, 9, 8, 10, 0, 0, 0, DateTimeKind.Unspecified), "Jumping Month" },
+                    { "dea22806-c198-4129-b3f3-a893d8395022", 2, "5525ab8f-3107-4466-a27b-463fb35ad0eo", "Summer swim trainings for people with a little bit of experience. We will teach you some techniques to improve your swimming skills.", 28, "https://media.istockphoto.com/id/465383082/photo/female-swimmer-at-the-swimming-pool.webp?b=1&s=612x612&w=0&k=20&c=I4TM5zIDe-19EWq6OlzwZ1eqr8_tlEQ86SC-0eomEhU=", new DateTime(2024, 7, 19, 10, 0, 0, 0, DateTimeKind.Unspecified), "Swim like a pro" },
+                    { "dea22856-c198-4129-b3f3-a893d8395022", 3, "5525ab8f-3107-4466-a27b-463fb35ad0eo", "Gym is your second home and you want to achieve even more? Subscribe for our program to become better version of yourself only for 3 months!", 90, "https://img.freepik.com/free-photo/low-angle-view-unrecognizable-muscular-build-man-preparing-lifting-barbell-health-club_637285-2497.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1712793600&semt=sph", new DateTime(2024, 4, 22, 13, 0, 0, 0, DateTimeKind.Unspecified), "Mass gain" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -473,11 +523,6 @@ namespace FitLife.Data.Migrations
                 name: "IX_TrainingPrograms_CreatorId",
                 table: "TrainingPrograms",
                 column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TrainingProgramsTrainers_TrainingProgramId",
-                table: "TrainingProgramsTrainers",
-                column: "TrainingProgramId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -505,9 +550,6 @@ namespace FitLife.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "TrainingProgramParticipant");
-
-            migrationBuilder.DropTable(
-                name: "TrainingProgramsTrainers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

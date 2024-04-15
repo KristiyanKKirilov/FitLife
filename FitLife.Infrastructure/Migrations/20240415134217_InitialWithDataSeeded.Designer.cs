@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitLife.Data.Migrations
 {
     [DbContext(typeof(FitLifeDbContext))]
-    [Migration("20240412172214_DataSeeded")]
-    partial class DataSeeded
+    [Migration("20240415134217_InitialWithDataSeeded")]
+    partial class InitialWithDataSeeded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,13 +86,13 @@ namespace FitLife.Data.Migrations
                         new
                         {
                             Id = "5526ab8f-3107-4466-a27b-463fb35ad0e9",
-                            Address = "Park",
+                            Address = "At the beginning of the sea garden, Varna",
                             CategoryId = 1,
                             City = "Varna",
                             CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
-                            Description = "Starting our run together at 8 am in the central park. Prepare yourself with comfortable shoes and big smile.",
+                            Description = "Starting our run together at 7 oclock in the central park. Prepare yourself with comfortable shoes and big smile. The run will be 3km long and if it is needed, we will take a break and then continue our training!",
                             ImageUrl = "https://hips.hearstapps.com/hmg-prod/images/running-is-one-of-the-best-ways-to-stay-fit-royalty-free-image-1036780592-1553033495.jpg?crop=0.88976xw:1xh;center,top&resize=1200:*",
-                            StartTime = new DateTime(2024, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2024, 4, 12, 7, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Morning Run"
                         },
                         new
@@ -102,10 +102,22 @@ namespace FitLife.Data.Migrations
                             CategoryId = 2,
                             City = "Sofia",
                             CreatorId = "5525ab80-3107-4466-a27b-463fb35ad0eo",
-                            Description = "Seminar at the new bussines building in Sofia, we are going to discuss calorie deficit and proper training program",
+                            Description = "Seminar at the new business building in Sofia, we are going to discuss calorie deficit and proper training program depending on everyone's lifestyle! Don't be shy to participate and help us improve our seminars! We are waiting for you!",
                             ImageUrl = "https://images.squarespace-cdn.com/content/v1/5e113e254eae7b30460a0fba/1585970390295-ASEJJYD8ZYPY28IO48SE/IMG_6324.jpg",
-                            StartTime = new DateTime(2024, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2024, 4, 12, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Healthy Food"
+                        },
+                        new
+                        {
+                            Id = "f4130617-4f66-4775-8c6a-e80be1ea8380",
+                            Address = "Varna Center, near Starbucks",
+                            CategoryId = 3,
+                            City = "Varna",
+                            CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
+                            Description = "Get a coffee and meet a new friend in our new designed healthy bar food!",
+                            ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnrnGh9dQ-ktCzYC-Bxd0ixhza-1uaa7xU2a1V6nKK4g&s",
+                            StartTime = new DateTime(2024, 9, 5, 8, 30, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Coffee Time and Relax"
                         });
                 });
 
@@ -262,17 +274,17 @@ namespace FitLife.Data.Migrations
                             Id = "dea12856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
                             City = "Sofia",
-                            ConcurrencyStamp = "cb17bba8-8e30-4585-bda5-84c8a1e1a4b4",
+                            ConcurrencyStamp = "50275506-2909-4aef-84ee-8fe7faa1a1e9",
                             Email = "first@gmail.com",
                             EmailConfirmed = false,
-                            FirstName = "Ivan",
-                            LastName = "Ivanov",
+                            FirstName = "Tom",
+                            LastName = "Johnson",
                             LockoutEnabled = false,
                             NormalizedEmail = "first@gmail.com",
                             NormalizedUserName = "first@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAED6EsV6f10r0mIGLldRAG0YR6pOcSVR2c/Kky2oxSPLFQs3kyV49mdWO7jPwJT36Ag==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENbKKS0lRwWiL8hVYD7u1AtyDZXGdaY9JgxA1Rrvf2KNCfPpla/9O0i2hXOjpizY+Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f330b055-d221-4371-bad2-f60b21d31e62",
+                            SecurityStamp = "6cbe5f7b-d3af-4f10-b9db-be6db9dd18eb",
                             TwoFactorEnabled = false,
                             UserName = "first@gmail.com"
                         },
@@ -281,19 +293,57 @@ namespace FitLife.Data.Migrations
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
                             City = "Varna",
-                            ConcurrencyStamp = "9b6fb58b-0ca0-45db-b0e8-4ae47ccaa0cc",
+                            ConcurrencyStamp = "719c92ec-f3f9-4ccc-b26c-51882097fe16",
                             Email = "second@gmail.com",
                             EmailConfirmed = false,
-                            FirstName = "Nikola",
-                            LastName = "Nikolaev",
+                            FirstName = "Freddy",
+                            LastName = "Philips",
                             LockoutEnabled = false,
                             NormalizedEmail = "second@gmail.com",
                             NormalizedUserName = "second@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDDQlAuOQnOe74ynNyS4OoflkOqjetBkeV7lsZFvvTNSshruZ2cbQ/lZmmoDqASCug==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHg/aVUoNJ0NC8liykkKTIq6r6obgZxZ+nWLb/v2MLLsPVY2mWNpM3h5t9eA/UAe6Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4f774f84-c2d2-4307-9231-e5e8bdbf7fcf",
+                            SecurityStamp = "c010f836-4ea1-4444-9788-3c89db27d167",
                             TwoFactorEnabled = false,
                             UserName = "second@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "ad1cc9c3-9fda-440a-a729-1baa02aef94d",
+                            AccessFailedCount = 0,
+                            City = "Ruse",
+                            ConcurrencyStamp = "5e0f06f8-ecec-49f2-968e-0a34728516c0",
+                            Email = "third@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Chris",
+                            LastName = "Stevens",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "THIRD@GMAIL.COM",
+                            NormalizedUserName = "THIRD@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPf3sjW5iTEB+JS/9Si8Lzs3IZT1hRtg4pW/7kv9LejxeS6bZAUZyDorSsE0h8KFvg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "79c59180-f206-4834-a6b0-7446d9fb65c3",
+                            TwoFactorEnabled = false,
+                            UserName = "third@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "e04b5ff6-29e7-44d5-9b3b-0099d18debd7",
+                            AccessFailedCount = 0,
+                            City = "SOFIA",
+                            ConcurrencyStamp = "03d795d7-7d17-4d19-9f64-bf96d10ae078",
+                            Email = "test@softuni.bg",
+                            EmailConfirmed = false,
+                            FirstName = "TEST",
+                            LastName = "SOFTUNI",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST@SOFTUNI.BG",
+                            NormalizedUserName = "TEST@SOFTUNI.BG",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN1Jrlwk/2oZR4GkZ5Q9esxgKpZqgXErdH0vA39fHJyTQYZyzZaEgTEnIKFZ/rjkyg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "dfc6affe-2506-4065-90ac-c4b8311b118e",
+                            TwoFactorEnabled = false,
+                            UserName = "test@softuni.bg"
                         });
                 });
 
@@ -336,6 +386,11 @@ namespace FitLife.Data.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasComment("Product's nutrition described");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("Product's image url");
+
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit")
                         .HasComment("Product's state");
@@ -368,6 +423,7 @@ namespace FitLife.Data.Migrations
                             AvailableStockCount = 250,
                             Count = 1,
                             Description = "30g of protein, 230 calories",
+                            ImageUrl = "https://www.wellplated.com/wp-content/uploads/2018/04/Peanut-Butter-Protein-Cookies.jpg",
                             IsAvailable = true,
                             Name = "Protein cookie",
                             Price = 3.20m
@@ -378,9 +434,21 @@ namespace FitLife.Data.Migrations
                             AvailableStockCount = 100,
                             Count = 1,
                             Description = "Ideal for diets, 0% sugar, 30 calories per 100g",
+                            ImageUrl = "https://cdn.shopify.com/s/files/1/2090/1141/files/bepure-perfect-plant-protein-chocolate-flavour-600g-jar_3125x.png?v=1690512984",
                             IsAvailable = true,
                             Name = "Sugarfree chocolate",
                             Price = 12m
+                        },
+                        new
+                        {
+                            Id = "d2a12856-c198-4129-b3f3-b803d8395022",
+                            AvailableStockCount = 50,
+                            Count = 1,
+                            Description = "Refreshing drink, 100% natural flavour, 0% sugar, 230 calories",
+                            ImageUrl = "https://smartymockups.com/wp-content/uploads/2019/05/Smoothie_Bottle_Mockup_2.jpg",
+                            IsAvailable = true,
+                            Name = "Strawberry smoothie",
+                            Price = 7m
                         });
                 });
 
@@ -425,16 +493,16 @@ namespace FitLife.Data.Migrations
                         {
                             Id = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
                             Email = "first@gmail.com",
-                            FirstName = "Ivan",
-                            LastName = "Ivanov",
+                            FirstName = "Tom",
+                            LastName = "Johnson",
                             UserId = "dea12856-c198-4129-b3f3-b893d8395082"
                         },
                         new
                         {
                             Id = "5525ab80-3107-4466-a27b-463fb35ad0eo",
                             Email = "second@gmail.com",
-                            FirstName = "Nikola",
-                            LastName = "Nikolaev",
+                            FirstName = "Freddy",
+                            LastName = "Philips",
                             UserId = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e"
                         });
                 });
@@ -498,7 +566,7 @@ namespace FitLife.Data.Migrations
                             Description = "Burpies and jumping jacks to do in the morning and 20 minutes cardio afternoon are only the begining. Join us to be fit for the summer!",
                             DurationDays = 14,
                             ImageUrl = "https://media.istockphoto.com/id/637772834/photo/set-your-fitness-goals-high-and-reach-them.jpg?s=612x612&w=0&k=20&c=w0ZkUVwEOm6AUJO8eGqxeHt-Jrx5us5uK4BfWW9HDy8=",
-                            StartDate = new DateTime(2024, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 9, 8, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Jumping Month"
                         },
                         new
@@ -509,8 +577,52 @@ namespace FitLife.Data.Migrations
                             Description = "Gym is your second home and you want to achieve even more? Subscribe for our program to become better version of yourself only for 3 months!",
                             DurationDays = 90,
                             ImageUrl = "https://img.freepik.com/free-photo/low-angle-view-unrecognizable-muscular-build-man-preparing-lifting-barbell-health-club_637285-2497.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1712793600&semt=sph",
-                            StartDate = new DateTime(2024, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 4, 22, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Mass gain"
+                        },
+                        new
+                        {
+                            Id = "dd87ea80-b2fe-4034-aa6a-63d505837a15",
+                            CategoryId = 1,
+                            CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
+                            Description = "Beach training every afternoon to get 6 pack for the summer!",
+                            DurationDays = 7,
+                            ImageUrl = "https://thumbs.dreamstime.com/b/fitness-people-jumping-fitness-workout-beach-group-fitness-people-jumping-fitness-workout-beach-192257084.jpg",
+                            StartDate = new DateTime(2024, 6, 21, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Summer body"
+                        },
+                        new
+                        {
+                            Id = "8bb2f74c-dde5-4217-b985-0f623ec4349f",
+                            CategoryId = 2,
+                            CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
+                            Description = "Be prepared for the montains in Bulgaria every year!",
+                            DurationDays = 7,
+                            ImageUrl = "https://i.namu.wiki/i/z4SlzF00Hi7dzXpkkj_mdNnXyY2WTHD6hmxzCks5e6PxQ7KwHosVlzQatl42tPiui_EICYUhL-iEBxxbRQUN7w.webp",
+                            StartDate = new DateTime(2024, 1, 20, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Rock Climbers"
+                        },
+                        new
+                        {
+                            Id = "dea22806-c198-4129-b3f3-a893d8395022",
+                            CategoryId = 2,
+                            CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
+                            Description = "Summer swim trainings for people with a little bit of experience. We will teach you some techniques to improve your swimming skills.",
+                            DurationDays = 28,
+                            ImageUrl = "https://media.istockphoto.com/id/465383082/photo/female-swimmer-at-the-swimming-pool.webp?b=1&s=612x612&w=0&k=20&c=I4TM5zIDe-19EWq6OlzwZ1eqr8_tlEQ86SC-0eomEhU=",
+                            StartDate = new DateTime(2024, 7, 19, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Swim like a pro"
+                        },
+                        new
+                        {
+                            Id = "dd87ea99-b2fe-4034-aa6a-63d505837a15",
+                            CategoryId = 2,
+                            CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
+                            Description = "Crossfit gives you the opportunity to look good, feel good and train different from others. If you are bored from the gym and you are looking to start some new challenge, our crossfit program is the right place for you!",
+                            DurationDays = 60,
+                            ImageUrl = "https://www.crossfit.com/wp-content/uploads/2023/11/13131232/crossfit-coach-led-fitness-training-adapted-for-you-handstand-hold.jpg",
+                            StartDate = new DateTime(2024, 11, 5, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Strong and flexible"
                         });
                 });
 
@@ -570,25 +682,6 @@ namespace FitLife.Data.Migrations
                     b.ToTable("TrainingProgramParticipant");
 
                     b.HasComment("TrainingProgramsParticipants");
-                });
-
-            modelBuilder.Entity("FitLife.Data.Models.TrainingProgramTrainer", b =>
-                {
-                    b.Property<string>("TrainerId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasComment("Trainer's identifier");
-
-                    b.Property<string>("TrainingProgramId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasComment("Training program's identifier");
-
-                    b.HasKey("TrainerId", "TrainingProgramId");
-
-                    b.HasIndex("TrainingProgramId");
-
-                    b.ToTable("TrainingProgramsTrainers");
-
-                    b.HasComment("TrainingProgramsTrainers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -833,25 +926,6 @@ namespace FitLife.Data.Migrations
                     b.Navigation("TrainingProgram");
                 });
 
-            modelBuilder.Entity("FitLife.Data.Models.TrainingProgramTrainer", b =>
-                {
-                    b.HasOne("FitLife.Data.Models.Trainer", "Trainer")
-                        .WithMany("TrainingProgramsTrainers")
-                        .HasForeignKey("TrainerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("FitLife.Data.Models.TrainingProgram", "TrainingProgram")
-                        .WithMany("TrainingProgramsTrainers")
-                        .HasForeignKey("TrainingProgramId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Trainer");
-
-                    b.Navigation("TrainingProgram");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -930,15 +1004,11 @@ namespace FitLife.Data.Migrations
             modelBuilder.Entity("FitLife.Data.Models.Trainer", b =>
                 {
                     b.Navigation("Events");
-
-                    b.Navigation("TrainingProgramsTrainers");
                 });
 
             modelBuilder.Entity("FitLife.Data.Models.TrainingProgram", b =>
                 {
                     b.Navigation("TrainingProgramsParticipants");
-
-                    b.Navigation("TrainingProgramsTrainers");
                 });
 
             modelBuilder.Entity("FitLife.Data.Models.TrainingProgramCategory", b =>

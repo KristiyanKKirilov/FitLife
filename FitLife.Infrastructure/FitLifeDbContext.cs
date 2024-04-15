@@ -29,7 +29,6 @@ namespace FitLife.Data
 
        public DbSet<TrainingProgramCategory> TrainingProgramCategories { get; set; } = null!;
 
-        public DbSet<TrainingProgramTrainer> TrainingProgramsTrainers { get; set; } = null!;  
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -44,7 +43,6 @@ namespace FitLife.Data
             builder.ApplyConfiguration(new OrderConfiguration());
             builder.ApplyConfiguration(new ParticipantEventConfiguration());           
             builder.ApplyConfiguration(new TrainingProgramParticipantConfiguration());
-            builder.ApplyConfiguration(new TrainingProgramTrainerConfiguration());
             
             base.OnModelCreating(builder);            
 

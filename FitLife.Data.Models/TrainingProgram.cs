@@ -14,7 +14,6 @@ namespace FitLife.Data.Models
         public TrainingProgram()
         {
             Id = Guid.NewGuid().ToString();
-            TrainingProgramsTrainers = new HashSet<TrainingProgramTrainer>();
             TrainingProgramsParticipants = new HashSet<TrainingProgramParticipant>();
         }
 
@@ -56,9 +55,6 @@ namespace FitLife.Data.Models
         public string CreatorId { get; set; } = null!;
         [ForeignKey(nameof(CreatorId))]
         public Trainer Creator { get; set; } = null!;        
-
-        public ICollection<TrainingProgramTrainer> TrainingProgramsTrainers { get; set; }
-
         public ICollection<TrainingProgramParticipant> TrainingProgramsParticipants { get; set; }
 
     }
