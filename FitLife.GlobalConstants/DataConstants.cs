@@ -91,6 +91,16 @@ namespace FitLife.GlobalConstants
             /// Product's maximum price
             /// </summary>
             public const int MaxPrice = 1000000;
+
+            /// <summary>
+            /// Product's minimum available stock
+            /// </summary>
+            public const int MinStock = 1;
+
+            /// <summary>
+            /// Product's maximum available stock
+            /// </summary>
+            public const int MaxStock = 1000000;
         }
 
     }
