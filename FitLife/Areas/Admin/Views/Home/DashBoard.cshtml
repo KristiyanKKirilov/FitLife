@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Admin DashBoard";
+}
+
+<h2 class="text-center" style="color:white;">@ViewData["Title"]</h2>
+
+<div class="jumbotron" style="background-color: white; color:black; padding: 40px" >
+    <h1 class="display-4">Hello, admin!</h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" asp-controller="Trainer" asp-action="Hire" role="button">Hire a trainer</a>
+        <a class="btn btn-primary btn-lg" asp-controller="Product" asp-action="Modify" role="button">Product's modification</a>
+    </p>
+
+</div>

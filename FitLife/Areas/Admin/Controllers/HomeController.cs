@@ -4,7 +4,7 @@ namespace FitLife.Web.Areas.Admin.Controllers
 {
     public class HomeController : AdminBaseController
     {
-        public IActionResult Index()
+        public IActionResult DashBoard()
         {
             return View();
         }
