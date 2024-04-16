@@ -1,57 +1,61 @@
-﻿
-@{
-	ViewData["Title"] = "Home Page";
+﻿@{
+    ViewData["Title"] = "Home Page";
 }
-
+<link rel="stylesheet" href="~/css/Index.css" />
 <div class="mb-5"></div>
 
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-	<div class="carousel-inner">
-		@for (int i = 0; i < 3; i++)
-		{			
-			switch (i)
-			{
-				case 0: <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
-							<img class="d-block w-100" style="height:500px" src="EventIndexPic.jpg" alt="Events">
-								<div class="carousel-caption d-none d-md-block">
-									<h5>
-										<a class="btn btn-primary" asp-controller="Event" asp-action="All">Check Latest Events</a>
-									</h5>
-								</div>
-						</div>		
-						break;
-				case 1:
-					<div class="carousel-item @(i == 0 ? "active" : string.Empty)">
-										<img class="d-block w-100" style="height:500px" src="TrainingProgramIndexPicture.jpg" alt="TrainingPrograms">
-											<div class="carousel-caption d-none d-md-block">
-												<h5>
-													<a class="btn btn-primary" asp-controller="TrainingProgram" asp-action="All">Check Latest Training Programs</a>
-												</h5>
-											</div>
-									</div>		
-					break;
-				case 2:
-								<div class="carousel-item @(i == 0 ? "active" : string.Empty)">
-													<img class="d-block w-100" style="height:500px" src="FoodIndexPicture.jpg" alt="Food">
-														<div class="carousel-caption d-none d-md-block">
-															<h5>
-																<a class="btn btn-primary" asp-controller="Product" asp-action="All">Check Latest Foods</a>
-															</h5>
-														</div>
-												</div>		
-					break;
-			}
-											
-		}
-	</div>
-	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="visually-hidden">Previous</span>
-	</button>
-	<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="visually-hidden">Next</span>
-	</button>
+    <div class="carousel-inner">
+        @for (int i = 0; i < 3; i++)
+        {
+            var imgSrc = "";
+            var action = "";
+            var controller = "";
+            var buttonText = "";
+            var buttonClass = "";
+            switch (i)
+            {
+                case 0:
+                    imgSrc = "IndexImageEvent.jpg";
+                    action = "All";
+                    controller = "Event";
+                    buttonText = "CHECK LATEST EVENTS";
+                    buttonClass = "btn-custom-food";
+                    break;
+                case 1:
+                    imgSrc = "TrainingProgramIndexPicture.jpg";
+                    action = "All";
+                    controller = "TrainingProgram";
+                    buttonText = "CHECK LATEST TRAINING PROGRAMS";
+                    buttonClass = "btn-custom-food";
+                    break;
+                case 2:
+                    imgSrc = "FoodIndexPicture.jpg";
+                    action = "All";
+                    controller = "Product";
+                    buttonText = "CHECK LATEST FOODS";
+                    buttonClass = "btn-custom-food";
+                    break;
+            }
+            <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
+                <div class="carousel-image-container">
+                    <img class="d-block w-100" src="@imgSrc" alt="Image" height="150" widht="400">
+                </div>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5><a class="@buttonClass" asp-controller="@controller" asp-action="@action">@buttonText</a></h5>
+                </div>
+            </div>
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
 
 <div class="mb-5"></div>
+

@@ -1,6 +1,7 @@
 ﻿@model TrainingProgramServiceModel
 @inject ITrainerService trainerService
 @inject ITrainingProgramService trainingProgramService
+<link rel="stylesheet" href="~/css/TrainingProgram.css" />
 
 <div class="col-md-4">
     <div class="card mb-3">
@@ -9,7 +10,7 @@
             <h4>@Model.Title</h4>
             <h6>Start Date: <b>@Model.StartDate.ToString("dd/MM/yyyy hh:mm")</b></h6>
             <h6>
-                Duration:
+                Duration
                 <b>@Model.Duration days</b>
             </h6>
             <h6>

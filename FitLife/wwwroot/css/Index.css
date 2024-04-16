@@ -1,0 +1,70 @@
+﻿
+    .carousel {
+        max-width: 80%; 
+        margin: auto;
+    }
+
+    .carousel-item {
+        position: relative;
+        height: 300px; 
+    }
+
+    .carousel-image-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+        .carousel-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-image-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
+        }
+
+    .carousel-caption {
+        z-index: 2; 
+    }
+
+
+    
+        .carousel-caption a {
+            text-decoration: none;
+        }
+
+
+    .btn-custom {
+        border-radius: 20px; 
+        padding: 10px 20px;
+        font-size: 16px; 
+        transition: background-color 0.3s, color 0.3s; 
+    }
+
+
+.btn-custom-food {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 1em;
+    font-size: 15px;
+    padding: 10px 20px;
+}
+
+        .btn-custom-food:hover {
+            background-color: grey; 
+            color: white; 
+        }
+
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url('../background.jpg');
+}
