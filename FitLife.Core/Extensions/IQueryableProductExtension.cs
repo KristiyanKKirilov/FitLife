@@ -32,6 +32,20 @@ namespace System.Linq
 				};
 		}
 
-		
+		public static IQueryable<ProductServiceModel> ProjectToProductServiceModel(this IQueryable<ParticipantProduct> products)
+		{
+			return products
+				.Select(p => new ProductServiceModel()
+				{
+					Id = p.Id,
+					ImageUrl = p.Product.ImageUrl,
+					Description = p.Product.Description,
+					IsAvailable = p.Product.IsAvailable,
+					Name = p.Product.Name,
+					Price = p.Product.Price
+				});
+		}
+
+
 	}
 }
