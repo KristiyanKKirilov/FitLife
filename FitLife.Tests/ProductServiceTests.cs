@@ -82,7 +82,7 @@ namespace FitLife.Tests
 			products = new List<Product>() { productOne, productTwo, productThree };
 
 			var options = new DbContextOptionsBuilder<FitLifeDbContext>()
-				.UseInMemoryDatabase(databaseName: "NovelNestInMemoryDb" + Guid.NewGuid().ToString())
+				.UseInMemoryDatabase(databaseName: "FitLifeInMemoryDb" + Guid.NewGuid().ToString())
 				.Options;
 
 			dbContext = new FitLifeDbContext(options);
@@ -110,7 +110,7 @@ namespace FitLife.Tests
 		}
 
 		[Test]
-		public void Participant_ReturnsCorrectCoutnAll()
+		public void Product_ReturnsCorrectCoutnAll()
 		{
 			// Arrange
 			var productId = "eea12856-c198-4129-b3f3-b893d8395022";
@@ -124,7 +124,7 @@ namespace FitLife.Tests
 		}
 
 		[Test]
-		public void Participant_ReturnsCorrectParticipantById()
+		public void Product_ReturnsCorrectParticipantById()
 		{
 			// Arrange
 			var productId = "eea12856-c198-4129-b3f3-b893d8395022";
@@ -138,7 +138,7 @@ namespace FitLife.Tests
 		}
 
 		[Test]
-		public void Participant_ReturnsCorrectAllProductNames()
+		public void Product_ReturnsCorrectAllProductNames()
 		{
 			// Arrange
 
@@ -152,7 +152,7 @@ namespace FitLife.Tests
 		}
 
 		[Test]
-		public void Participant_ReturnsCorrectProductIdByName()
+		public void Product_ReturnsCorrectProductIdByName()
 		{
 			// Arrange
 
@@ -166,7 +166,7 @@ namespace FitLife.Tests
 		}
 
 		[Test]
-		public void Participant_ReturnsCorrectModifyModelById()
+		public void Product_ReturnsCorrectModifyModelById()
 		{
 			// Arrange
 
@@ -179,7 +179,7 @@ namespace FitLife.Tests
 		}
 
 		[Test]
-		public void Participant_ReturnsCorrectModify()
+		public void Product_ReturnsCorrectModify()
 		{
 			// Arrange
 
@@ -193,7 +193,7 @@ namespace FitLife.Tests
 		}
 
 		[Test]
-		public void Participant_ReturnsCorrectModelDetails()
+		public void Product_ReturnsCorrectModelDetails()
 		{
 			// Arrange
 
@@ -207,7 +207,7 @@ namespace FitLife.Tests
 		}
 
 		[Test]
-		public void Participant_CorrectModify()
+		public void Product_CorrectModify()
 		{
 			// Arrange
 			ProductModifyModel model = new()

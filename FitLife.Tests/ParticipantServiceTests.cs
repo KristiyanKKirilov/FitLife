@@ -117,7 +117,7 @@ namespace FitLife.Tests
 			users = new List<Participant>() { userOne, userTwo, userThree, userFour, userFive};
 
 			var options = new DbContextOptionsBuilder<FitLifeDbContext>()
-				.UseInMemoryDatabase(databaseName: "NovelNestInMemoryDb" + Guid.NewGuid().ToString())
+				.UseInMemoryDatabase(databaseName: "FitLifeInMemoryDb" + Guid.NewGuid().ToString())
 				.Options;
 
 			dbContext = new FitLifeDbContext(options);
