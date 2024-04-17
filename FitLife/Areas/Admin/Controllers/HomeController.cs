@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FitLife.Web.Areas.Admin.Controllers
 {
-	public class HomeController : AdminBaseController
+    public class HomeController : AdminBaseController
 	{
 		private readonly IProductService productService;
 
@@ -20,12 +20,18 @@ namespace FitLife.Web.Areas.Admin.Controllers
 
 		public async Task<IActionResult> ProductOptions()
 		{
-			var model = new ProductOptionsModel()
+			var model = new ProductOptionsModel
 			{
-				ProductNames = await productService.GetAllProductsNamesAsync()
+				Products = await productService
+				.AllAsync()
 			};
 
-			return View(model);
+			return View(model);			
+
 		}
+
+		
+		
+		
 	}
 }

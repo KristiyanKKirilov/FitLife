@@ -77,14 +77,8 @@ namespace FitLife.Web.Controllers
 
 		[Authorize(Roles = AdminRole)]
 		[HttpGet]
-		public async Task<IActionResult> Modify(string name)
-		{
-            string id = string.Empty;
-
-            if (name != null)
-            {
-                id = await productService.GetProductIdByNameAsync(name);
-            }
+		public async Task<IActionResult> Modify(string id)
+		{           
 
             if (await productService.ExistsAsync(id) == false)
 			{
@@ -99,34 +93,28 @@ namespace FitLife.Web.Controllers
 			return View(model);
 		}
 
-		//[HttpPost]
-		//public async Task<IActionResult> Modify(EventModifyModel model)
-		//{
-		//	if (await eventService.ExistsAsync(model.Id) == false)
-		//	{
-		//		return BadRequest();
-		//	}
+        [Authorize(Roles = AdminRole)]
+        [HttpPost]
+        public async Task<IActionResult> Modify(ProductModifyModel model)
+        {
+            if (await productService.ExistsAsync(model.Id) == false)
+            {
+                return BadRequest();
+            }
 
-		//	if (await eventService.HasTrainerWithIdAsync(model.Id, User.Id()) == false
-		//		 && User.IsAdmin() == false)
-		//	{
-		//		return Unauthorized();
-		//	}
+            if (User.IsAdmin() == false)
+            {
+                return Unauthorized();
+            }           
 
-		//	if (await eventService.CategoryExistsAsync(model.CategoryId) == false)
-		//	{
-		//		ModelState.AddModelError(nameof(model.CategoryId), "Category does not exist!");
-		//	}
+            if (ModelState.IsValid == false)
+            {
+                return View(model);
+            }
 
-		//	if (ModelState.IsValid == false)
-		//	{
-		//		model.EventCategories = await eventService.AllCategoriesAsync();
-		//		return View(model);
-		//	}
+            await productService.ModifyAsync(model.Id, model);
 
-		//	await eventService.ModifyAsync(model.Id, model);
-
-		//	return RedirectToAction(nameof(Details), new { model.Id });
-		//}
-	}
+            return RedirectToAction("ProductOptions", "Home", new { area = "Admin" });
+        }
+    }
 }

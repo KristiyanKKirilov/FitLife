@@ -1,49 +1,38 @@
 ﻿@model ProductOptionsModel
-@inject IProductService productService
+<link rel="stylesheet" href="~/css/TrainingProgramAll.css" />
+<link rel="stylesheet" href="~/css/Products.css" />
 
 @{
-	ViewData["Title"] = "Product Modification";
-
+    ViewBag.Title = "Products Modification";
 }
-<h2 class="text-center h4" style="color:white">@ViewData["Title"]</h2>
-<br />
-<h3 class="h4" style="color:white">Select product to modify/delete</h3>
-<br/>
-<form method="get" class="align-content-center">
-	<div class="row">
-		<div class="form-group col-md-3 d-flex justify-content-between">
-			<div class="form-group">
-				<label asp-for="Name" style="color:white"></label>
-				<select asp-for="Name" class="form-control">
-					<option value="">All</option>
-					@foreach (var name in Model.ProductNames)
-					{
-						<option value="@name">@name</option>
-					}
-				</select>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="form-group">
-				<p>
-					<input asp-area="" asp-controller="Product" asp-action="Modify" asp-route-name="@Model.Name" type="submit" value="Modify" class="list-group-item list-group-item-action list-group-item-primary" />
-				</p>
-				<p>
-					<input asp-area="" asp-controller="Product" asp-action="Delete" asp-route-name="@Model.Name" type="submit" value="Delete" class="list-group-item list-group-item-action list-group-item-danger" />
-				</p>
-			</div>
-		</div>
-	</div>
-	
-</form>
 
-<form method="post">
-	<div class="list-group text-center">
-		<a asp-area="" asp-controller="Product" asp-action="Add" class="list-group-item list-group-item-action list-group-item-success">Add new Product</a>
-		
-
-	</div>
-</form>
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
 
 
+
+@if (!Model.Products.Any())
+{
+    <h2 class="text-center">No products available!</h2>
+}
+
+
+<div class="row">
+        <div>
+            <a class="btn custom-add-train-button"
+               asp-controller="TrainingProgram"
+               asp-action="Add">Add Training Program</a>
+        </div>
+    </div>
+    <br />
+
+
+
+
+<div class="row">
+    @foreach (var product in Model.Products)
+    {
+        <partial name="_ProductOptionsPartial" model="@product" />
+    }
+</div>
 

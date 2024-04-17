@@ -6,7 +6,8 @@ using FitLife.GlobalConstants;
 using FitLife.Web.ViewModels.Event;
 using FitLife.Web.ViewModels.Product;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+using System;
+using System.Globalization;
 
 namespace FitLife.Core.Services
 {
@@ -53,7 +54,15 @@ namespace FitLife.Core.Services
 			};
 		}
 
-		public async Task<string> CreateAsync(ProductFormModel model)
+        public async Task<IEnumerable<ProductServiceModel>> AllAsync()
+        {
+            return await repository
+				.AllReadOnly<Product>()
+				.ProjectToProductServiceModel()
+				.ToListAsync();
+        }
+
+        public async Task<string> CreateAsync(ProductFormModel model)
 		{
 			var newProduct = new Product()
 			{
@@ -71,6 +80,7 @@ namespace FitLife.Core.Services
 
 			return newProduct.Id;
 		}
+				
 
 		public async Task<bool> ExistsAsync(string productId)
 		{
@@ -119,6 +129,25 @@ namespace FitLife.Core.Services
                 }).FirstOrDefaultAsync();            
 
             return currentProduct;
+        }
+
+        public async Task ModifyAsync(string productId, ProductModifyModel model)
+        {
+            var product = await repository
+                .GetByIdAsync<Product>(productId);            
+
+            if (product != null)
+            {				
+                product.Name = model.Name;
+				product.Price = model.Price;
+				product.Description = model.Description;
+				product.AvailableStockCount = model.AvailableStockCount;
+				product.Count = model.Count;
+				product.IsAvailable = Convert.ToBoolean((int)model.IsAvailable);
+                product.ImageUrl = model.ImageUrl;
+
+                await repository.SaveChangesAsync();
+            }
         }
 
         public async Task<ProductDetailsServiceModel> ProductDetailsByIdAsync(string productId)

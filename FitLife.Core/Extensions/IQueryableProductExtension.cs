@@ -18,5 +18,20 @@ namespace System.Linq
                     Price = p.Price
                 });
         }
-    }
+
+		public static ProductServiceModel ProjectToProductServiceModel(this Product products)
+		{
+			return new ProductServiceModel()
+				{
+					Id = products.Id,
+					ImageUrl = products.ImageUrl,
+					Description = products.Description,
+					IsAvailable = products.IsAvailable,
+					Name = products.Name,
+					Price = products.Price                    
+				};
+		}
+
+		
+	}
 }

@@ -1,47 +1,57 @@
 ﻿@model ProductModifyModel
 
-<div class="row">
-    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-        <form method="post">
-            <div class="form-group">
-                <label asp-for="Name"></label>
-                <input asp-for="Name" class="form-control" placeholder="Name...">
-                <span asp-validation-for="Name" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description"></label>
-                <input asp-for="Description" class="form-control" placeholder="Description...">
-                <span asp-validation-for="Description" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageUrl"></label>
-                <textarea asp-for="ImageUrl" rows="4" class="form-control" placeholder="Image Url"></textarea>
-                <span asp-validation-for="ImageUrl" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price"></label>
-                <input asp-for="Price" class="form-control">
-                <span asp-validation-for="Price" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AvailableStockCount"></label>
-                <input asp-for="AvailableStockCount" class="form-control">
-                <span asp-validation-for="AvailableStockCount" class="small text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Count"></label>
-                <input asp-for="Count" class="form-control" placeholder="dd/MM/yyyy HH:mm">
-                <span asp-validation-for="Count" class="small text-danger"></span>
-            </div>
+@{
+    ViewBag.Title = "Modify Product";
+}
 
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form asp-action="Modify">
+    <div class="row">
+        <div class="col-md-4">
+            <img class="card-img-top" src="@Model.ImageUrl" alt="Product Image">
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input asp-for="ImageUrl" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="AvailableStockCount" class="control-label"></label>
+                <input asp-for="AvailableStockCount" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Count" class="control-label"></label>
+                <input asp-for="Count" class="form-control" />
+            </div>            
+            <div class="form-group col-md-3">
+                <div class="form-group">
+                    <label asp-for="IsAvailable" style="color:white"></label>
+                    <select asp-for="IsAvailable" class="form-control">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Modify" class="btn btn-warning" />
             </div>
-        </form>
-    </div>
-</div>
 
-<form class="ml-2" asp-controller="Event"
-      asp-action="Delete" asp-route-id="@Model.Id" method="post">
-    <input class="btn btn-primary" type="submit" value="Delete" />
+
+        </div>
+    </div>
 </form>
+

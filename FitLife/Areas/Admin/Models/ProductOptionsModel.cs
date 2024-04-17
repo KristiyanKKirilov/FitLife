@@ -1,13 +1,15 @@
-﻿namespace FitLife.Web.Areas.Admin.Models
+﻿using FitLife.Web.ViewModels.Product;
+
+namespace FitLife.Web.Areas.Admin.Models
 {
 	public class ProductOptionsModel
 	{
         public ProductOptionsModel()
         {
-			ProductNames = new List<string>();
+            Products = new HashSet<ProductServiceModel>();
         }
-        public string Name { get; set; } = null!;
-        public IEnumerable<string> ProductNames { get; set; }
+        
+        public IEnumerable<ProductServiceModel> Products { get; set; }
 
     }
 }

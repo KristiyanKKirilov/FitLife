@@ -3,12 +3,16 @@ using FitLife.Web.ViewModels.Product;
 
 namespace FitLife.Core.Contracts
 {
-	public interface IProductService
+    public interface IProductService
     {
         Task<ProductQueryServiceModel> AllAsync(
             string? searchTerm = null,
             ProductSorting sorting = ProductSorting.PriceAscending);
-        Task<bool> ExistsAsync(string productId);
+
+        Task<IEnumerable<ProductServiceModel>> AllAsync();
+
+
+		Task<bool> ExistsAsync(string productId);
         Task<ProductDetailsServiceModel> ProductDetailsByIdAsync(string productId);
 
         Task<string> CreateAsync(ProductFormModel model);
@@ -17,5 +21,6 @@ namespace FitLife.Core.Contracts
 
         Task<IEnumerable<string>> GetAllProductsNamesAsync();
         Task<ProductModifyModel?> GetProductModifyModelByIdAsync(string productId);
+        Task ModifyAsync(string productId, ProductModifyModel model);
     }
 }
