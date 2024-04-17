@@ -43,7 +43,8 @@ namespace FitLife.Data
             builder.ApplyConfiguration(new OrderConfiguration());
             builder.ApplyConfiguration(new ParticipantEventConfiguration());           
             builder.ApplyConfiguration(new TrainingProgramParticipantConfiguration());
-            
+            builder.ApplyConfiguration(new AspNetUserClaimsConfiguration());
+
             base.OnModelCreating(builder);            
 
            
