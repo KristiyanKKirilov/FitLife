@@ -15,13 +15,15 @@ namespace FitLife.Web.Controllers
     {
         private readonly IProductService productService;
         private readonly IParticipantService participantService;
+        private readonly ITrainerService trainerService;
 
         public ProductController(IProductService _productService,
-            IParticipantService _participantService)
+            IParticipantService _participantService,
+            ITrainerService _trainerService)
         {
             productService = _productService;
             participantService = _participantService;
-
+            trainerService = _trainerService;
         }
 
         [AllowAnonymous]
@@ -59,13 +61,13 @@ namespace FitLife.Web.Controllers
             var model = new ProductFormModel();
 
             return View(model);
-		}
+        }
 
-		[Authorize(Roles = AdminRole)]
+        [Authorize(Roles = AdminRole)]
         [HttpPost]
-		public async Task<IActionResult> Add(ProductFormModel model)
-		{
-		    if(ModelState.IsValid == false)
+        public async Task<IActionResult> Add(ProductFormModel model)
+        {
+            if (ModelState.IsValid == false)
             {
                 return BadRequest();
             }
@@ -73,25 +75,25 @@ namespace FitLife.Web.Controllers
             string newProduct = await productService.CreateAsync(model);
 
             return RedirectToAction(nameof(All));
-		}
+        }
 
-		[Authorize(Roles = AdminRole)]
-		[HttpGet]
-		public async Task<IActionResult> Modify(string id)
-		{           
+        [Authorize(Roles = AdminRole)]
+        [HttpGet]
+        public async Task<IActionResult> Modify(string id)
+        {
 
             if (await productService.ExistsAsync(id) == false)
-			{
-				return BadRequest();
-			}			
-            if(id == "")
             {
                 return BadRequest();
             }
-			var model = await productService.GetProductModifyModelByIdAsync(id);
+            if (id == "")
+            {
+                return BadRequest();
+            }
+            var model = await productService.GetProductModifyModelByIdAsync(id);
 
-			return View(model);
-		}
+            return View(model);
+        }
 
         [Authorize(Roles = AdminRole)]
         [HttpPost]
@@ -105,7 +107,7 @@ namespace FitLife.Web.Controllers
             if (User.IsAdmin() == false)
             {
                 return Unauthorized();
-            }           
+            }
 
             if (ModelState.IsValid == false)
             {
@@ -115,6 +117,42 @@ namespace FitLife.Web.Controllers
             await productService.ModifyAsync(model.Id, model);
 
             return RedirectToAction("ProductOptions", "Home", new { area = AdminArea });
+        }
+
+        [Authorize(Roles = AdminRole)]
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (await productService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            await productService.DeleteAsync(id);
+
+            return RedirectToAction("ProductOptions", "Home", new { area = AdminArea });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddToCart(string id)
+        {
+            if(await productService.ExistsAsync(id) == false)
+            {
+                return BadRequest();
+            }
+
+            await productService.AddToCartAsync(id, User.Id());
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Mine()
+        {                   
+
+             var products = await productService.AllProductsByParticipantAsync(User.Id());            
+
+            return View(products);
         }
     }
 }

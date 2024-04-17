@@ -10,17 +10,15 @@ namespace FitLife.Core.Contracts
             ProductSorting sorting = ProductSorting.PriceAscending);
 
         Task<IEnumerable<ProductServiceModel>> AllAsync();
-
-
-		Task<bool> ExistsAsync(string productId);
+        Task<IEnumerable<ProductServiceModel>> AllProductsByParticipantAsync(string participantId);
+        Task<bool> ExistsAsync(string productId);
+        Task AddToCartAsync(string productId, string userId);
         Task<ProductDetailsServiceModel> ProductDetailsByIdAsync(string productId);
-
         Task<string> CreateAsync(ProductFormModel model);
-
         Task<string> GetProductIdByNameAsync(string productName);
-
         Task<IEnumerable<string>> GetAllProductsNamesAsync();
         Task<ProductModifyModel?> GetProductModifyModelByIdAsync(string productId);
         Task ModifyAsync(string productId, ProductModifyModel model);
+        Task DeleteAsync(string productId);
     }
 }
