@@ -16,6 +16,7 @@ using FitLife.Web.ViewModels.Product;
 
 namespace FitLife.Tests
 {
+	[TestFixture]
 	public class ProductServiceTests
 	{
 		//Database and Services

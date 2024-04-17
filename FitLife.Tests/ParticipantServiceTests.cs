@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 
 namespace FitLife.Tests
 {
+	[TestFixture]
 	public class ParticipantServiceTests
 	{
 		//Database and Services

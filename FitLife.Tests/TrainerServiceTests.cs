@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using static FitLife.GlobalConstants.DataConstants;
+using NUnit.Framework;
 
 namespace FitLife.Tests
 {
+	[TestFixture]
 	public class TrainerServiceTests
 	{
 		//Database and Services
