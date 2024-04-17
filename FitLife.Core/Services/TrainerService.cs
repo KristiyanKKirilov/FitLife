@@ -2,11 +2,6 @@
 using FitLife.Data.Common;
 using FitLife.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FitLife.Core.Services
 {
@@ -32,9 +27,18 @@ namespace FitLife.Core.Services
                 .FirstOrDefaultAsync(t => t.UserId == userId))?.Id;
         }
 
-        public Task<bool> TrainerHasTrainingProgramsAsync(string trainerId)
+        public async Task HireParticipantAsync(Participant participant)
         {
-            throw new NotImplementedException();
+            var newTrainer = new Trainer()
+            {
+                FirstName = participant.FirstName,
+                LastName = participant.LastName,
+                Email = participant.Email,
+                UserId = participant.Id
+            };
+
+            await repository.AddAsync(newTrainer);
+            await repository.SaveChangesAsync();
         }
     }
 }

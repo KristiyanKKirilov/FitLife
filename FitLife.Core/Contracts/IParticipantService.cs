@@ -1,9 +1,16 @@
-﻿namespace FitLife.Core.Contracts
+﻿using FitLife.Data.Models;
+using FitLife.Web.ViewModels.Participant;
+
+namespace FitLife.Core.Contracts
 {
     public interface IParticipantService
     {
-        Task<string> ParticipantFirstName(string userId);
+        
         Task<string> ParticipantCity(string userId);
+        Task<bool> ExistsByIdAsync(string userId);
+        Task<ParticipantQueryServiceModel> AllAsync(string? searchTerm = null);
 
-	}
+        Task<Participant> GetByIdAsync(string userId);
+
+    }
 }
