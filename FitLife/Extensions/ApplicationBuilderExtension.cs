@@ -1,6 +1,6 @@
 ﻿using FitLife.Data.Models;
 using Microsoft.AspNetCore.Identity;
-using static FitLife.GlobalConstants.RoleConstants;
+using static FitLife.GlobalConstants.AdminConstants;
 
 namespace Microsoft.AspNetCore.Builder
 {

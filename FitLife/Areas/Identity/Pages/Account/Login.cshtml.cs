@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
-using static FitLife.GlobalConstants.RoleConstants;
+using static FitLife.GlobalConstants.AdminConstants;
 
 namespace FitLife.Areas.Identity.Pages.Account
 {

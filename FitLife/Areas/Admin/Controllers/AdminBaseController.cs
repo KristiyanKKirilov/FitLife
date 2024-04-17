@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static FitLife.GlobalConstants.RoleConstants;
+using static FitLife.GlobalConstants.AdminConstants;
 namespace FitLife.Web.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area(AdminArea)]
     [Authorize(Roles = AdminRole)]
     public class AdminBaseController : Controller
     {

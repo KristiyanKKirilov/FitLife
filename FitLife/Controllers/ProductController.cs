@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Security.Claims;
-using static FitLife.GlobalConstants.RoleConstants;
+using static FitLife.GlobalConstants.AdminConstants;
 
 namespace FitLife.Web.Controllers
 {
@@ -114,7 +114,7 @@ namespace FitLife.Web.Controllers
 
             await productService.ModifyAsync(model.Id, model);
 
-            return RedirectToAction("ProductOptions", "Home", new { area = "Admin" });
+            return RedirectToAction("ProductOptions", "Home", new { area = AdminArea });
         }
     }
 }

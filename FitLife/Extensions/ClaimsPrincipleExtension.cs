@@ -1,4 +1,4 @@
-﻿using static FitLife.GlobalConstants.RoleConstants;
+﻿using static FitLife.GlobalConstants.AdminConstants;
 namespace System.Security.Claims
 {
     public static class ClaimsPrincipleExtension
