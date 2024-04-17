@@ -1,6 +1,8 @@
 ﻿using FitLife.Data.Models;
+using FitLife.GlobalConstants;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Globalization;
 
 namespace FitLife.Data.Configuration
 {
@@ -31,7 +33,7 @@ namespace FitLife.Data.Configuration
                     ImageUrl = "https://hips.hearstapps.com/hmg-prod/images/running-is-one-of-the-best-ways-to-stay-fit-royalty-free-image-1036780592-1553033495.jpg?crop=0.88976xw:1xh;center,top&resize=1200:*",
                     City = "Varna",
                     Address = "At the beginning of the sea garden, Varna",
-                    StartTime = DateTime.Parse("04/12/2024 07:00"),
+                    StartTime = DateTime.ParseExact("04/12/2024 07:00", DataConstants.DateFormat, CultureInfo.InvariantCulture),
                     CategoryId = 1,
                     CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
                    
@@ -44,7 +46,7 @@ namespace FitLife.Data.Configuration
                     ImageUrl = "https://images.squarespace-cdn.com/content/v1/5e113e254eae7b30460a0fba/1585970390295-ASEJJYD8ZYPY28IO48SE/IMG_6324.jpg",
                     City = "Sofia",
                     Address = "street. Bulgaria",
-                    StartTime = DateTime.Parse("04/12/2024 10:00"),
+                    StartTime = DateTime.ParseExact("04/12/2024 10:00", DataConstants.DateFormat, CultureInfo.InvariantCulture),
                     CategoryId = 2,
                     CreatorId = "5525ab80-3107-4466-a27b-463fb35ad0eo",
                     
@@ -54,10 +56,10 @@ namespace FitLife.Data.Configuration
                     Id ="f4130617-4f66-4775-8c6a-e80be1ea8380",
                     Title = "Coffee Time and Relax",
                     Description = "Get a coffee and meet a new friend in our new designed healthy bar food!",
-                    ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnrnGh9dQ-ktCzYC-Bxd0ixhza-1uaa7xU2a1V6nKK4g&s",
+                    ImageUrl = "https://ucare.inhersight.com/ff031afb-60c7-4bc4-ad17-bf3b1dac93f3/-/format/auto/-/quality/lighter/-/progressive/yes/-/resize/800x/",
                     City = "Varna",
                     Address = "Varna Center, near Starbucks",
-                    StartTime = DateTime.Parse("09/05/2024 08:30"),
+                    StartTime = DateTime.ParseExact("09/05/2024 08:30", DataConstants.DateFormat, CultureInfo.InvariantCulture),
                     CategoryId = 3,
                     CreatorId = "5525ab8f-3107-4466-a27b-463fb35ad0eo",
 

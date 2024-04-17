@@ -7,11 +7,13 @@ using Microsoft.EntityFrameworkCore;
 namespace FitLife.Data
 {
     public class FitLifeDbContext : IdentityDbContext<Participant>
-    {
-        public FitLifeDbContext(DbContextOptions<FitLifeDbContext> options)
+    {		
+
+		public FitLifeDbContext(DbContextOptions<FitLifeDbContext> options)
             : base(options)
         {
-        }
+			
+		}
 
         public DbSet<Event> Events { get; set; } = null!;
 
@@ -32,17 +34,19 @@ namespace FitLife.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new ParticipantConfiguration());
-            builder.ApplyConfiguration(new EventCategoryConfiguration());
-            builder.ApplyConfiguration(new TrainingProgramCategoryConfiguration());
-            builder.ApplyConfiguration(new TrainerConfiguration());
-            builder.ApplyConfiguration(new EventConfiguration());
-            builder.ApplyConfiguration(new TrainingProgramConfiguration());
-            builder.ApplyConfiguration(new ProductConfiguration());
-            builder.ApplyConfiguration(new ParticipantProductConfiguration());
-            builder.ApplyConfiguration(new ParticipantEventConfiguration());           
-            builder.ApplyConfiguration(new TrainingProgramParticipantConfiguration());
-            builder.ApplyConfiguration(new AspNetUserClaimsConfiguration());
+            
+				builder.ApplyConfiguration(new ParticipantConfiguration());
+				builder.ApplyConfiguration(new EventCategoryConfiguration());
+				builder.ApplyConfiguration(new TrainingProgramCategoryConfiguration());
+				builder.ApplyConfiguration(new TrainerConfiguration());
+				builder.ApplyConfiguration(new EventConfiguration());
+				builder.ApplyConfiguration(new TrainingProgramConfiguration());
+				builder.ApplyConfiguration(new ProductConfiguration());
+				builder.ApplyConfiguration(new ParticipantProductConfiguration());
+				builder.ApplyConfiguration(new ParticipantEventConfiguration());
+				builder.ApplyConfiguration(new TrainingProgramParticipantConfiguration());
+				builder.ApplyConfiguration(new AspNetUserClaimsConfiguration());
+			          
 
             base.OnModelCreating(builder);            
 
