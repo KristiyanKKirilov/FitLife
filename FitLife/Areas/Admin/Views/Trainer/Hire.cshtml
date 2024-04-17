@@ -1,0 +1,42 @@
+﻿@model AllParticipantsQueryModel
+@inject ITrainerService trainerService
+<link rel="stylesheet" href="~/css/TrainingProgramAll.css" />
+
+@{
+    ViewBag.Title = "All Participants";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form method="get">
+    <div class="row">    
+        <div class="form-group col-md-3">
+            <label asp-for="SearchTerm" style="color:white"></label>
+            <input asp-for="SearchTerm" class="form-control" placeholder="...">
+        </div>       
+
+        <div class="col-md-3">
+            <div class="form-group mt-4 p-2">
+                <input type="submit" value="Search" class="btn custom-add-train-button" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+@if (!Model.Participants.Any())
+{
+    <h2 class="text-center">No Participants found by the given criteria!</h2>
+}
+
+<div class="row">
+    @foreach (var currentParticipant in Model.Participants)
+    {
+         <partial name="_TrainerPartial" model="@currentParticipant" />
+        
+        
+    }
+</div>
+

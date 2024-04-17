@@ -1,8 +1,61 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<link rel="stylesheet" href="~/css/Index.css" />
+<div class="mb-5"></div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @for (int i = 0; i < 3; i++)
+        {
+            var imgSrc = "";
+            var action = "";
+            var controller = "";
+            var buttonText = "";
+            var buttonClass = "";
+            switch (i)
+            {
+                case 0:
+                    imgSrc = "EventIndexImage.jpg";
+                    action = "All";
+                    controller = "Event";
+                    buttonText = "CHECK LATEST EVENTS";
+                    buttonClass = "btn-custom-food";
+                    break;
+                case 1:
+                    imgSrc = "TrainingProgramImage.jpg";
+                    action = "All";
+                    controller = "TrainingProgram";
+                    buttonText = "CHECK LATEST TRAINING PROGRAMS";
+                    buttonClass = "btn-custom-food";
+                    break;
+                case 2:
+                    imgSrc = "FoodIndexPicture.jpg";
+                    action = "All";
+                    controller = "Product";
+                    buttonText = "CHECK LATEST FOODS";
+                    buttonClass = "btn-custom-food";
+                    break;
+            }
+            <div class="carousel-item @(i == 0 ? "active" : string.Empty)">
+                <div class="carousel-image-container">
+                    <img class="d-block w-100" src="@imgSrc" alt="Image" height="150" widht="400">
+                </div>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5><a class="@buttonClass" asp-controller="@controller" asp-action="@action">@buttonText</a></h5>
+                </div>
+            </div>
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
+
+<div class="mb-5"></div>
+

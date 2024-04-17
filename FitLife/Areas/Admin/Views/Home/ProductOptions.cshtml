@@ -1,0 +1,39 @@
+﻿@model ProductOptionsModel
+<link rel="stylesheet" href="~/css/TrainingProgramAll.css" />
+<link rel="stylesheet" href="~/css/Products.css" />
+
+@{
+    ViewBag.Title = "Products Modification";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+
+
+@if (!Model.Products.Any())
+{
+    <h2 class="text-center">No products available!</h2>
+}
+
+
+<div class="row">
+        <div>
+            <a class="btn custom-add-train-button"
+               asp-area=""
+               asp-controller="Product"
+               asp-action="Add">Add Product</a>
+        </div>
+    </div>
+    <br />
+
+
+
+
+<div class="row">
+    @foreach (var product in Model.Products)
+    {
+        <partial name="_ProductOptionsPartial" model="@product" />
+    }
+</div>
+

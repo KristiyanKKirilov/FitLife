@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ProductServiceModel>
+
+@{
+	ViewData["Title"] = "Cart";
+	decimal totalPrice = Model.Sum(p => p.Price);
+}
+
+<h2 class="text-center" style="color:white">@ViewBag.Title</h2>
+<hr />
+
+@if (!Model.Any())
+{
+	<h2 class="text-center" style="color:white">You have no products yet!</h2>
+}
+
+<div class="row">
+	@foreach (var currentEvent in Model)
+	{
+		<partial name="_ProductCartPartial" model=@currentEvent />
+	}
+</div>
+
+@if (@Model.Any())
+{
+	<p>
+		<h4 class="text-center" style="color:white">Total Price: @totalPrice lv.</h4>
+	</p>
+}

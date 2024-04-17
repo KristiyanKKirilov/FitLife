@@ -1,0 +1,14 @@
+﻿@{
+	ViewData["Title"] = "Admin DashBoard";
+}
+
+<h2 class="text-center" style="color:white;">@ViewData["Title"]</h2>
+
+<div class="jumbotron" style="background-color: white; color:black; padding: 40px">
+	<h1 class="display-4 text-center">Hello, admin!</h1>	
+	<div class="list-group">
+		<a asp-area="Admin" asp-controller="Home" asp-action="ProductOptions" class="list-group-item list-group-item-action list-group-item-primary">Products modification</a>
+		<br/>
+		<a asp-area ="Admin" asp-controller="Trainer" asp-action="Hire" class="list-group-item list-group-item-action list-group-item-info">Hire a trainer</a>
+	</div>
+</div>

@@ -1,0 +1,71 @@
+﻿@model EventServiceModel
+@inject ITrainerService trainerService
+@inject IEventService eventService
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        <img class="card-img-top" src="@Model.ImageUrl" alt="TrainingProgram Image" height="300">
+        <div class="card-body text-center">
+            <h4>@Model.Title</h4>
+            <h6>Start Date: <b>@Model.StartTime.ToString("dd/MM/yyyy hh:mm")</b></h6>
+            <h6>
+                Address:
+                <b>@Model.Address</b>
+            </h6>
+            <h6>
+                City:
+                <b>@Model.City</b>
+            </h6>
+            <h6>
+                Trainer:
+                <b>@Model.CreatorName</b>
+            </h6>
+            <h6>
+                Category:
+                <b>@Model.CategoryName</b>
+            </h6>
+            <br />
+            <a asp-controller="Event" asp-action="Details" asp-route-id="@Model.Id"
+               class="btn btn-success">Details</a>
+
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                @if (await eventService.HasTrainerWithIdAsync(Model.Id, User.Id()) || User.IsAdmin())
+                {
+                    <a asp-controller="Event" asp-action="Modify" asp-route-id="@Model.Id"
+                       class="btn btn-warning">Modify</a>
+                }
+                if (await trainerService.ExistsByIdAsync(User.Id()) == false || User.IsAdmin())
+                {
+                    @if (await eventService.HasParticipantWithIdAsync(@Model.Id, User.Id()))
+                    {
+                        <br />
+                        <br />
+                        <form class="ml-2" asp-controller="Event"
+                              asp-action="Join" asp-route-id="@Model.Id" method="post">
+                            <input class="btn btn-primary" type="submit" value="Joined" disabled />
+                        </form>
+                    }
+                    else
+                    {
+                        <br />
+                        <br />
+                        <form class="ml-2" asp-controller="Event"
+                              asp-action="Join" asp-route-id="@Model.Id" method="post">
+                            <input class="btn btn-primary" type="submit" value="Join" />
+                        </form>
+                    }
+
+                }
+            }
+            else
+            {
+                <a asp-area="Identity" asp-page="/Account/Register"
+                   class="btn btn-primary">Join</a>
+
+
+            }
+
+        </div>
+    </div>
+</div>

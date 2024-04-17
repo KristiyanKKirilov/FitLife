@@ -1,0 +1,16 @@
+﻿@model ParticipantServiceModel
+
+<div class="col-md-4">
+    <div class="card mb-3">        
+        <div class="card-body text-center">
+            <h4>@(Model.FirstName + " " + Model.LastName)</h4>
+            <h6>@Model.Email</b></h6>
+            
+            <form class="ml-2" asp-area="Admin" asp-controller="Trainer"
+                  asp-action="Hire" asp-route-id="@Model.Id" method="post">
+                <input class="btn btn-primary" type="submit" value="Hire" />
+            </form>
+
+        </div>
+    </div>
+</div>

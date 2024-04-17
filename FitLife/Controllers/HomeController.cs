@@ -1,10 +1,11 @@
-﻿using FitLife.Models;
+﻿using FitLife.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace FitLife.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -13,20 +14,32 @@ namespace FitLife.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        [AllowAnonymous]
+        public async Task<IActionResult> Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+        [AllowAnonymous]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public async Task<IActionResult> Error(int statusCode)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if(statusCode == 400)
+            {
+                return View("Error400");
+            }
+
+            if(statusCode == 401)
+            {
+                return View("Error401");
+            }
+
+            if (statusCode == 404)
+            {
+                return View("Error404");
+            }
+
+            return View();
         }
     }
 }
