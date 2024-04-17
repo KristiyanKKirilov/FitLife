@@ -4,12 +4,11 @@ using FitLife.Data.Models;
 using FitLife.GlobalConstants;
 using FitLife.Web.ViewModels.TrainingProgram;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 using System.Globalization;
 
 namespace FitLife.Core.Services
 {
-    public class TrainingProgramService : ITrainingProgramService
+	public class TrainingProgramService : ITrainingProgramService
     {
         private readonly IRepository repository;
 

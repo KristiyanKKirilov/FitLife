@@ -1,4 +1,5 @@
 ﻿using FitLife.Data;
+using FitLife.Data.Common;
 using FitLife.Data.Models;
 using FitLife.GlobalConstants;
 using FitLife.Tests.Mocks;
