@@ -12,6 +12,7 @@ namespace FitLife.Data.Models
         public Product()
         {
             Id = Guid.NewGuid().ToString();
+            ParticipantsProducts = new List<ParticipantProduct>();
         }
 
         [Key]
@@ -48,5 +49,7 @@ namespace FitLife.Data.Models
         [Required]
         [Comment("Product's count in a participant's order")]
         public int Count { get; set; }       
+
+        public IList<ParticipantProduct> ParticipantsProducts { get; set; }
     }
 }

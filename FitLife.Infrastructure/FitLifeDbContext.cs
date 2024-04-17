@@ -15,9 +15,7 @@ namespace FitLife.Data
 
         public DbSet<Event> Events { get; set; } = null!;
 
-        public DbSet<EventCategory> EventCategories { get; set; } = null!;
-
-        public DbSet<Order> Orders { get; set; } = null!;
+        public DbSet<EventCategory> EventCategories { get; set; } = null!;       
 
         public DbSet<Participant> Participants { get; set; } = null!;
 
@@ -28,6 +26,7 @@ namespace FitLife.Data
         public DbSet<TrainingProgram> TrainingPrograms { get; set; } = null!;
 
        public DbSet<TrainingProgramCategory> TrainingProgramCategories { get; set; } = null!;
+        public DbSet<ParticipantProduct> ParticipantsProducts { get; set; } = null!;
 
 
 
@@ -40,7 +39,7 @@ namespace FitLife.Data
             builder.ApplyConfiguration(new EventConfiguration());
             builder.ApplyConfiguration(new TrainingProgramConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
-            builder.ApplyConfiguration(new OrderConfiguration());
+            builder.ApplyConfiguration(new ParticipantProductConfiguration());
             builder.ApplyConfiguration(new ParticipantEventConfiguration());           
             builder.ApplyConfiguration(new TrainingProgramParticipantConfiguration());
             builder.ApplyConfiguration(new AspNetUserClaimsConfiguration());

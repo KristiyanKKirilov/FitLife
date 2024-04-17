@@ -10,13 +10,10 @@ namespace FitLife.Data.Models
     public class Participant : IdentityUser
     {
         public Participant()
-        {           
-            Orders = new HashSet<Order>();
+        {
+            ParticipantsProducts = new List<ParticipantProduct>();
             ParticipantsEvents = new HashSet<ParticipantEvent>();
-            TrainingProgramsParticipants = new HashSet<TrainingProgramParticipant>();
-            //Roles = new HashSet<IdentityUserRole<string>>();
-            //Claims = new HashSet<IdentityUserClaim<string>>();
-            //Logins = new HashSet<IdentityUserLogin<string>>();
+            TrainingProgramsParticipants = new HashSet<TrainingProgramParticipant>();            
         }
 
         [Required]
@@ -34,14 +31,11 @@ namespace FitLife.Data.Models
         [Comment("Participant's living town")]
         public string City { get; set; } = null!;       
 
-        public ICollection<Order> Orders { get; set; }
+        public IList<ParticipantProduct> ParticipantsProducts { get; set; }
 
         public ICollection<ParticipantEvent> ParticipantsEvents { get; set; }
 
-        public ICollection<TrainingProgramParticipant> TrainingProgramsParticipants { get; set; }
-                    
-        //public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
-        //public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
-        //public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+        public ICollection<TrainingProgramParticipant> TrainingProgramsParticipants { get; set; }                    
+      
     }
 }
