@@ -101,7 +101,7 @@ namespace FitLife.Controllers
             if (await trainerService.ExistsByIdAsync(userId))
             {
                 string? trainerId = await trainerService.GetTrainerByIdAsync(userId);
-                model = await trainingProgramService.AllTrainingProgramsByTrainerAsync(userId);
+                model = await trainingProgramService.AllTrainingProgramsByTrainerAsync(trainerId);
             }
             else
             {

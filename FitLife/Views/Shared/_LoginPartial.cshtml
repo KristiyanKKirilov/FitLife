@@ -14,9 +14,16 @@
 <ul class="navbar-nav">
 	@if (SignInManager.IsSignedIn(User))
 	{
-		<li class="nav-item">
-			<a class="nav-link text-dark">Hello, @userName!</a>
-		</li>
+		<div class="dropdown">
+			<button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				Hello, @userName!
+			</button>
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" asp-area="" asp-controller="TrainingProgram" asp-action="Mine">My Training Programs</a></li>
+				<li><a class="dropdown-item" asp-area="" asp-controller="Event" asp-action="Mine">My Events</a></li>
+				<li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Mine">Cart</a></li>
+			</ul>
+		</div>
 		@if (User.IsAdmin())
 		{
 			<li class="nav-item">
