@@ -1,11 +1,8 @@
 ﻿using FitLife.Controllers;
 using FitLife.Core.Contracts;
-using FitLife.Core.Services;
-using FitLife.Web.ViewModels.Event;
 using FitLife.Web.ViewModels.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 using System.Security.Claims;
 using static FitLife.GlobalConstants.AdminConstants;
 

@@ -4,7 +4,6 @@ using FitLife.Data.Models;
 using FitLife.Data.Models.Enumerations;
 using FitLife.Web.ViewModels.Product;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace FitLife.Core.Services
 {
