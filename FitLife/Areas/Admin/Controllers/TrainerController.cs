@@ -23,7 +23,7 @@ namespace FitLife.Web.Areas.Admin.Controllers
 		public async Task<IActionResult> Hire([FromQuery] AllParticipantsQueryModel model)
 		{			
 
-			var participants = await participantService.AllAsync(model.SearchTerm);
+			var participants = await participantService.GetParticipantsAsync(model.SearchTerm);
 
 
 			model.TotalParticipantsCount = participants.TotalParticipantsCount;

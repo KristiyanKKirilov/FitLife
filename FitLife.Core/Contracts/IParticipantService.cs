@@ -8,8 +8,8 @@ namespace FitLife.Core.Contracts
         
         Task<string> ParticipantCity(string userId);
         Task<bool> ExistsByIdAsync(string userId);
-        Task<ParticipantQueryServiceModel> AllAsync(string? searchTerm = null);
-
+        Task<ParticipantQueryServiceModel> GetParticipantsAsync(string? searchTerm = null);
+        Task<IEnumerable<AllParticipantsServiceModel>> AllAsync();
         Task<Participant> GetByIdAsync(string userId);
 
     }

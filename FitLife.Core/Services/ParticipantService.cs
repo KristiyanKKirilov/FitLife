@@ -31,7 +31,7 @@ namespace FitLife.Core.Services
 			return participant.City;
 		}
 
-		public async Task<ParticipantQueryServiceModel> AllAsync(string? searchTerm = null)
+		public async Task<ParticipantQueryServiceModel> GetParticipantsAsync(string? searchTerm = null)
 		{
 			List<string> trainers = repository
 				.AllReadOnly<Trainer>()
@@ -80,5 +80,18 @@ namespace FitLife.Core.Services
 				.AllReadOnly<Participant>()
 				.FirstAsync(p => p.Id == userId);
         }
-    }
+
+		public async Task<IEnumerable<AllParticipantsServiceModel>> AllAsync()
+		{
+			return await repository
+				.AllReadOnly<Participant>()
+				.Select(p => new AllParticipantsServiceModel()
+				{
+					Id = p.Id,
+					FullName = p.FirstName + " " + p.LastName,
+					City = p.City,
+					Email = p.Email
+				}).ToListAsync();
+		}
+	}
 }
