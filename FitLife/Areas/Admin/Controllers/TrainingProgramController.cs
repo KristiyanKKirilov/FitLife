@@ -1,5 +1,6 @@
 ﻿using FitLife.Core.Contracts;
 using FitLife.Web.Areas.Admin.Models;
+using FitLife.Web.Areas.Admin.Models.TrainingProgram;
 using FitLife.Web.ViewModels.TrainingProgram;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;

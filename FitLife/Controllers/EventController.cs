@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 using System.Security.Claims;
+using static FitLife.GlobalConstants.AdminConstants;
 
 namespace FitLife.Web.Controllers
 {
@@ -185,6 +186,10 @@ namespace FitLife.Web.Controllers
             string userId = User.Id();
             IEnumerable<EventServiceModel> events;
 
+            if(User.IsAdmin())
+            {
+                return RedirectToAction("Mine", "Event", new { area = AdminArea });
+            }
             if (await trainerService.ExistsByIdAsync(userId))
             {
                 string? trainerId = await trainerService.GetTrainerByIdAsync(userId);
