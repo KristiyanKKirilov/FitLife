@@ -33,7 +33,7 @@
                        class="btn btn-warning">Modify</a>
                 }
 
-                if(await trainerService.ExistsByIdAsync(User.Id()) == false || User.IsAdmin())
+                if(await trainerService.ExistsByIdAsync(User.Id()) == false)
                 {                    
                     @if(await trainingProgramService.HasParticipantWithIdAsync(@Model.Id, User.Id()))
                     {

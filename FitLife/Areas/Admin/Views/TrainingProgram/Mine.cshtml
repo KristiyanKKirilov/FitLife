@@ -1,0 +1,36 @@
+﻿@model MyTrainingProgramViewModel
+<link rel="stylesheet" href="~/css/TrainingProgramAll.css" />
+
+@{
+    ViewBag.Title = "My Training Programs";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<h4 style="color:white">My Training Programs</h4>
+<hr />
+@if (!Model.AddedTrainingPrograms.Any())
+{
+    <h2 class="text-center">You have no added training programs yet!</h2>
+}
+<div class="row">
+    @foreach (var trainingProgram in Model.AddedTrainingPrograms)
+    {
+        <partial name="_TrainingProgramPartial" model=@trainingProgram />
+    }
+</div>
+<br />
+
+<h4 style="color:white">My Subscribed Training Programs</h4>
+<hr />
+@if (!Model.SubscribedTrainingPrograms.Any())
+{
+    <h2 class="text-center">You have no subscribed training programs yet!</h2>
+}
+
+<div class="row">
+    @foreach (var trainingProgram in Model.SubscribedTrainingPrograms)
+    {
+        <partial name="_TrainingProgramPartial" model=@trainingProgram />
+    }
+</div>
