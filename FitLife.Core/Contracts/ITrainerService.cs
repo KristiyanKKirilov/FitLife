@@ -1,4 +1,5 @@
 ﻿using FitLife.Data.Models;
+using FitLife.Web.ViewModels.Trainer;
 
 namespace FitLife.Core.Contracts
 {
@@ -8,5 +9,6 @@ namespace FitLife.Core.Contracts
         Task<string?> GetTrainerByIdAsync(string userId);
 
         Task HireParticipantAsync(Participant participant);
+        Task<IEnumerable<AllTrainersServiceModel>> AllAsync();
     }
 }

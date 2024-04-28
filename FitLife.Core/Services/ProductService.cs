@@ -84,11 +84,12 @@ namespace FitLife.Core.Services
 
         public async Task<IEnumerable<ProductServiceModel>> AllProductsByParticipantAsync(string participantId)
         {
-            return await repository
+            return  await repository
                 .AllReadOnly<ParticipantProduct>()
                 .Where(p => p.Participant.Id == participantId)
                 .ProjectToProductServiceModel()
                 .ToListAsync();
+                                
         }      
 
         public async Task<string> CreateAsync(ProductFormModel model)

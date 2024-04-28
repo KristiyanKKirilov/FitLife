@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using FitLife.Web.ViewModels.Trainer;
 
 namespace FitLife.Web.ViewModels.Participant
 {
-	public class AllParticipantsQueryModel
+    public class AllParticipantsQueryModel
 	{
         public AllParticipantsQueryModel()
         {

@@ -1,6 +1,8 @@
-﻿namespace FitLife.Web.ViewModels.Participant
+﻿using FitLife.Web.ViewModels.Trainer;
+
+namespace FitLife.Web.ViewModels.Participant
 {
-	public class ParticipantQueryServiceModel
+    public class ParticipantQueryServiceModel
 	{
 		public ParticipantQueryServiceModel()
 		{

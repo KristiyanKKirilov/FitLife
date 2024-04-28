@@ -1,6 +1,6 @@
 ﻿@model AllParticipantsQueryModel
 @inject ITrainerService trainerService
-<link rel="stylesheet" href="~/css/TrainingProgramAll.css" />
+<link rel="stylesheet" href="~/css/HireParticipant.css" />
 
 @{
     ViewBag.Title = "All Participants";
@@ -34,7 +34,7 @@
 <div class="row">
     @foreach (var currentParticipant in Model.Participants)
     {
-         <partial name="_TrainerPartial" model="@currentParticipant" />
+         <partial name="_ParticipantPartial" model="@currentParticipant" />
         
         
     }

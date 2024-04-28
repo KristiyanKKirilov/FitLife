@@ -178,19 +178,7 @@ namespace FitLife.Tests
 			Assert.AreEqual(expectedCity, result);
 		}
 
-		[Test]
-		public void ParticipantCount_ReturnsCorrectCount()
-		{
-			// Arrange
-			
-			var expectedCount = 5;
-
-			// Act
-			var result = participantService.AllAsync().Result;
-
-			// Assert
-			Assert.AreEqual(expectedCount, result.TotalParticipantsCount);
-		}
+		
 
 		[Test]
 		public void Participant_ReturnsCorrectParticipantById()

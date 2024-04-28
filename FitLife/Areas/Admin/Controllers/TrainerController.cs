@@ -19,41 +19,13 @@ namespace FitLife.Web.Areas.Admin.Controllers
 			trainerService = _trainerService;
         }
 
-        [HttpGet]
-		public async Task<IActionResult> Hire([FromQuery] AllParticipantsQueryModel model)
-		{			
+		[HttpGet]
+        public async Task<IActionResult> All()
+        {
+            var allTrainers = await trainerService.AllAsync();
+            return View(allTrainers);
+        }
 
-			var participants = await participantService.GetParticipantsAsync(model.SearchTerm);
-
-
-			model.TotalParticipantsCount = participants.TotalParticipantsCount;
-			model.Participants = participants.Participants;
-
-			return View(model);
-		}
-
-		[HttpPost]
-		public async Task<IActionResult> Hire(string id)
-		{
-			if(await participantService.ExistsByIdAsync(id) == false)
-			{
-				return BadRequest();
-			}
-
-			if(await trainerService.ExistsByIdAsync(id))
-			{
-				return BadRequest();
-			}
-
-			var participant = await participantService.GetByIdAsync(id);
-
-			if(participant != null)
-			{
-                await trainerService.HireParticipantAsync(participant);
-            }
-
-			return RedirectToAction(nameof(Hire));	
-
-		}
+        
 	}
 }
