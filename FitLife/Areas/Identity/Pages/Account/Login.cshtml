@@ -1,16 +1,17 @@
 ﻿@page
 @model LoginModel
+<link rel="stylesheet" href="~/css/login.css" />
 
 @{
     ViewData["Title"] = "Log in";
 }
 
-<h1 class="text-center" style="color:white;">@ViewData["Title"]</h1>
+<h1 class="text-center">@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-4 offset-md-4">
         <section>
             <form id="account" method="post">
-                <h2 style="color:white;">Use a local account to log in.</h2>
+                <h2>Use a local account to log in.</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating">
@@ -30,7 +31,7 @@
                 </div>
                 <div>                   
                     <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"><b style="color:white">Register as a new user</b></a>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"><b>Register as a new user</b></a>
                     </p>                    
                 </div>
             </form>
