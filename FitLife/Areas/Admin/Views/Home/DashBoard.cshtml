@@ -7,8 +7,10 @@
 <div class="jumbotron" style="background-color: white; color:black; padding: 40px">
 	<h1 class="display-4 text-center">Hello, admin!</h1>	
 	<div class="list-group">
-		<a asp-area="Admin" asp-controller="Home" asp-action="ProductOptions" class="list-group-item list-group-item-action list-group-item-primary">Products modification</a>
+		<a asp-area="Admin" asp-controller="Product" asp-action="Options" class="list-group-item list-group-item-action list-group-item-primary">Products modification</a>
 		<br/>
-		<a asp-area ="Admin" asp-controller="Trainer" asp-action="Hire" class="list-group-item list-group-item-action list-group-item-info">Hire a trainer</a>
+		<a asp-area ="Admin" asp-controller="Participant" asp-action="Hire" class="list-group-item list-group-item-action list-group-item-info">Hire a trainer</a>
+		<br />
+		<a asp-area="Admin" asp-controller="Trainer" asp-action="All" class="list-group-item list-group-item-action list-group-item-danger">All Users</a>
 	</div>
 </div>

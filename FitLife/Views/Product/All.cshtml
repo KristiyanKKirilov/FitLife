@@ -13,13 +13,13 @@
 <form method="get">
 	<div class="row">
 		<div class="form-group col-md-3">
-			<label asp-for="SearchTerm" style="color:white"></label>
+			<label asp-for="SearchTerm"></label>
 			<input asp-for="SearchTerm" class="form-control" placeholder="...">
 		</div>
 
 		<div class="form-group col-md-3">
 			<div class="form-group">
-				<label asp-for="Sorting" style="color:white"></label>
+				<label asp-for="Sorting"></label>
 				<select asp-for="Sorting" class="form-control">
 					<option value="0">Price (Ascending)</option>
 					<option value="1">Price (Descending)</option>
@@ -29,7 +29,7 @@
 
 		<div class="col-md-3">
 			<div class="form-group mt-4 p-2">
-				<input type="submit" value="Search" class="btn custom-add-train-button" />
+				<input type="submit" value="Search" class="btn btn-primary" />
 			</div>
 		</div>
 	</div>

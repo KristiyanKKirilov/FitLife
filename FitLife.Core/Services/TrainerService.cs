@@ -1,6 +1,8 @@
 ﻿using FitLife.Core.Contracts;
 using FitLife.Data.Common;
 using FitLife.Data.Models;
+using FitLife.Web.ViewModels.Participant;
+using FitLife.Web.ViewModels.Trainer;
 using Microsoft.EntityFrameworkCore;
 
 namespace FitLife.Core.Services
@@ -12,6 +14,18 @@ namespace FitLife.Core.Services
         public TrainerService(IRepository _repository)
         {
             repository = _repository;
+        }
+        public async Task<IEnumerable<AllTrainersServiceModel>> AllAsync()
+        {
+            return await repository
+                .AllReadOnly<Trainer>()
+                .Select(p => new AllTrainersServiceModel()
+                {
+                    Id = p.Id,                    
+                    FullName = p.FirstName + " " + p.LastName,
+                    City = p.User.City,
+                    Email = p.Email
+                }).ToListAsync();
         }
 
         public async Task<bool> ExistsByIdAsync(string userId)

@@ -1,0 +1,36 @@
+﻿@model MyEventViewModel
+<link rel="stylesheet" href="~/css/TrainingProgramAll.css" />
+
+@{
+    ViewBag.Title = "My Events";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<h4 style="color:white">My Events</h4>
+<hr />
+@if (!Model.AddedEvents.Any())
+{
+    <h2 class="text-center">You have no added events yet!</h2>
+}
+<div class="row">
+    @foreach (var currentEvent in Model.AddedEvents)
+    {
+        <partial name="_EventPartial" model=@currentEvent />
+    }
+</div>
+<br />
+
+<h4 style="color:white">My Joined Events</h4>
+<hr />
+@if (!Model.JoinedEvents.Any())
+{
+    <h2 class="text-center">You have no joined events yet!</h2>
+}
+
+<div class="row">
+    @foreach (var currentEvent in Model.JoinedEvents)
+    {
+        <partial name="_EventPartial" model=@currentEvent />
+    }
+</div>
