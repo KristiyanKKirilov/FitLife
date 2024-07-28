@@ -1,4 +1,4 @@
-z# FitLife
+FitLife
 ASP.NET Core web application, using Entity Framework Core and MS SQL Server
 <br/>
 <br/>
