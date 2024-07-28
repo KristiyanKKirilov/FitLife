@@ -1,0 +1,20 @@
+﻿header {
+    background-color: #05c46b;
+    color: #1e272e;
+}
+
+body {
+    background-color: #1e272e;
+    height: 100vh;
+}
+
+footer a {
+    color: #05c46b;
+    text-decoration: none;
+}
+
+
+li a:hover {
+    background-color: #04ae5f;
+    border-radius: 0.3em;
+}
