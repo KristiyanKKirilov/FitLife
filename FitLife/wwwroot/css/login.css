@@ -7,29 +7,35 @@ form{
     flex-direction: column;
     gap: 1em;
     max-width: 700px;
-    padding: 2em;
+    padding: 3em 4em;
     box-shadow: 0 0 1em 0 rgb(0,0,0,0.2);
 }
 
-.head-form{
+.field{
     display: flex;
-    flex-direction: row;
-    flex: 1 0 40%;
-    justify-content: center;    
+    flex-direction: column;
+    margin: 0;
 }
 
-.head-form h3 {
-        padding: 0.5em 0.8em;
-        box-shadow: 0 0 1em 0 rgb(0, 0, 0, 0.1);
-        border-radius: 0.3em;
+.field label{
+    margin: 0;
+    order: -1;
+}
+input{   
+    padding: 0.5em 0.8em;    
+    border: 1px solid #000;
+    border-radius: 0.3em;
 }
 
-.head-form h3:hover{
-    background-color:blueviolet;
+input:focus{
+    outline-color: blueviolet;
 }
 
-.head-form h3 a {
+input~label{
+    margin-top: 1em;
+    padding: 0;
+}
+
+p a{
     text-decoration: none;
-    color: #000;
-
 }
