@@ -1,3 +1,107 @@
-﻿
+﻿h2 {
+    display: inline-block;
+    padding: 1.5em 0 0em 0;
+    color: #d2dae2;
+    font-size: 2.5em;
+}
 
+.btn-add {
+    position: absolute;
+    display: inline-block;
+    width: 1.7em;
+    aspect-ratio: 1/1;
+    padding: 0em 0.5em;
+    background-color: #05c46b;
+    color: #1e272e;
+    border-radius: 50%;
+    text-decoration: none;
+    top: 35%;
+}
 
+.btn-add:hover {
+        color: #d2dae2;
+        background-color: #04ae5f;
+}
+
+.header{
+    position: relative;
+    text-align: center;
+    padding-bottom: 2em;
+}
+
+.card-body {
+    background-color: #808e9b;
+}
+
+.btn-details {
+    padding: 0.5em 0.8em;
+    border: 2px solid #1e272e;
+    background-color: #808e9b;
+    color: #1e272e;
+    text-decoration: none;
+    border-radius: 0.3em;
+}
+
+.btn-details:hover {
+        background-color: #1e272e;
+        color: #d2dae2;
+}
+
+.btn-modify {
+    padding: 0.5em 0.8em;
+    border: 2px solid #f53b57;
+    color: #f53b57;
+    background-color: #808e9b;
+    text-decoration: none;
+    border-radius: 0.3em;
+}
+
+.btn-modify:hover {
+    background-color:  #f53b57;
+    color: #d2dae2;
+}
+
+.card-img{
+    height: 300px;
+}
+
+.card {
+    margin: 2em 0;
+    border: 1px solid #808e9b;
+}
+
+.btn-subscribe {
+    padding: 0.5em 0.8em;
+    border: 2px solid #3c40c6;
+    color: #3c40c6;
+    background-color: #808e9b;
+    text-decoration: none;
+    border-radius: 0.3em;
+}
+
+.btn-subscribe:hover{
+    background-color: #3c40c6;    
+    color:#d2dae2;
+}
+.btn-subscribed {
+    background-color: #3c40c6;    
+    color:#d2dae2;
+    padding: 0.5em 0.8em;
+    border-radius: 0.3em;
+}
+
+.buttons{
+    margin-top: 4em;
+    display: flex;
+    gap: 0.5em;
+    justify-content: center;
+}
+
+.btn-page {
+    padding: 0.5em 0.8em;
+    background-color: #05c46b;
+    color: #1e272e;
+    text-align: center;
+    border-radius: 0.3em;
+    text-decoration: none;
+}
