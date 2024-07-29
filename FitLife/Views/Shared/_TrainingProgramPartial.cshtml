@@ -30,7 +30,7 @@
                 @if (await trainingProgramService.HasTrainerWithIdAsync(Model.Id, User.Id()) || User.IsAdmin())
                 {
                     <a asp-controller="TrainingProgram" asp-action="Modify" asp-route-id="@Model.Id" 
-                       class="btn btn-warning">Modify</a>
+                       class="btn-modify">Modify</a>
                 }
 
                 if(await trainerService.ExistsByIdAsync(User.Id()) == false)
@@ -41,7 +41,7 @@
                         <br />
                         <form class="ml-2" asp-controller="TrainingProgram"
                               asp-action="Subscribe" asp-route-id="@Model.Id" method="post">
-                            <input class="btn btn-primary" type="submit" value="Subscribed" disabled />
+                            <input class="btn-subscribed" type="submit" value="Subscribed" disabled />
                         </form>
                     }
                     else
@@ -50,18 +50,12 @@
                         <br />
                         <form class="ml-2" asp-controller="TrainingProgram"
                               asp-action="Subscribe" asp-route-id="@Model.Id" method="post">
-                            <input class="btn btn-primary" type="submit" value="Subscribe" />
+                            <input class="btn-subscribe" type="submit" value="Subscribe" />
                         </form>
                     }
                     
                 }
-            }
-            else
-            {
-                <a asp-area="Identity" asp-page="/Account/Register"
-                   class="btn btn-primary">Subscribe</a>             
-            }
-           
+            }              
         </div>
     </div>
 </div>

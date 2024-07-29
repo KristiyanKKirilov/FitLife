@@ -5,7 +5,7 @@
 @{
     ViewBag.Title = "All Training Programs";
 }
- <div class="header">
+ <div class="header ">
         <h2 class="text-center">@ViewBag.Title</h2>
         @if (await trainerService.ExistsByIdAsync(User.Id()))
         {
