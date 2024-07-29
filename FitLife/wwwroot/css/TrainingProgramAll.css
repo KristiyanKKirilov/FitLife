@@ -18,10 +18,10 @@
     top: 35%;
 }
 
-    .btn-add:hover {
+.btn-add:hover {
         color: #d2dae2;
         background-color: #04ae5f;
-    }
+}
 
 .header{
     position: relative;
@@ -29,5 +29,22 @@
     padding-bottom: 2em;
 }
 
+.card-body {
+    background-color: #808e9b;
+}
+
+.btn-details {
+    padding: 0.5em 0.8em;
+    border: 2px solid #1e272e;
+    background-color: #808e9b;
+    color: #1e272e;
+    text-decoration: none;
+    border-radius: 0.3em;
+}
+
+    .btn-details:hover {
+        background-color: #1e272e;
+        color: #d2dae2;
+    }
 
 
