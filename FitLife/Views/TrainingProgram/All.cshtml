@@ -5,31 +5,19 @@
 @{
     ViewBag.Title = "All Training Programs";
 }
-
-<h2 class="text-center">@ViewBag.Title</h2>
-<hr />
-
-
+ <div class="header">
+        <h2 class="text-center">@ViewBag.Title</h2>
+        @if (await trainerService.ExistsByIdAsync(User.Id()))
+        {
+            <a class="btn-add" asp-controller="TrainingProgram" asp-action="Add">+</a>
+        }
+</div>
+   
 
 @if (!Model.TrainingPrograms.Any())
 {
     <h2 class="text-center">No training programs found by the given criteria!</h2>
 }
-
-
-@if (await trainerService.ExistsByIdAsync(User.Id()))
-{
-    <div class="row">
-        <div>
-            <a class="btn btn-primary"
-               asp-controller="TrainingProgram"
-               asp-action="Add">Add Training Program</a>
-        </div>
-    </div>
-    <br />
-
-}
-
 
 <div class="row">
     @foreach (var trainingProgram in Model.TrainingPrograms)
