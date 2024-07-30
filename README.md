@@ -1,4 +1,3 @@
-![Details Page](https://github.com/user-attachments/assets/b17cb38e-6312-433e-9ae3-07f0b69327f3)FitLife
 ASP.NET Core web application, using Entity Framework Core and MS SQL Server
 <br/>
 <br/>
