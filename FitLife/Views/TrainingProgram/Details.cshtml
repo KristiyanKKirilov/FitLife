@@ -29,7 +29,7 @@
                     <div class="accordion-body">
                         <p><b>Category:</b> @Model.CategoryName</p>
                         <p><b>Start Date:</b> @Model.StartDate</p>
-                        <p><b>Duration:</b> @Model.Duration</p> 
+                        <p><b>Duration:</b> @Model.Duration days</p> 
                         <p><b>Trainer:</b> @Model.CreatorName - <b>Email:</b> @Model.CreatorEmail</>
                     </div>
                 </div>
@@ -37,3 +37,77 @@
         </div>
     </section>
 </div>
+
+
+
+
+
+
+
+@* <div class="container" style="display:inline">
+    <div class="row">
+        <div class="col-4">
+            <img src="@Model.ImageUrl" alt="TrainingProgram Image">
+        </div>
+        <div class="card col-8 border-0">
+            <p>@Model.Title</p>
+            <p>Starts at: <b>@Model.StartDate.ToString(DateFormat)</b></p>
+            <p>
+                Duration:
+                <b>@Model.Duration days</b>
+            </p>
+            <p>
+                Description:
+                <b>@Model.Description</b>
+            </p>
+            <p>Category: <b>@Model.CategoryName</b></p>
+           
+            <div class="form-inline">
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    @if (await trainingProgramService.HasTrainerWithIdAsync(Model.Id, User.Id()))
+                    {
+                        <a class="btn btn-warning" asp-controller="TrainingProgram" asp-action="Modify"
+                           asp-route-id="@Model.Id">Modify</a>
+                    }
+
+                    @if (await trainerService.ExistsByIdAsync(User.Id()) == false)
+                    {
+                        @if (await trainingProgramService.HasParticipantWithIdAsync(@Model.Id, User.Id()))
+                        {
+                            <br />
+                            <br />
+                            <form class="ml-2" asp-controller="TrainingProgram"
+                                  asp-action="Subscribe" asp-route-id="@Model.Id" method="post">
+                                <input class="btn btn-primary" type="submit" value="Subscribed" disabled />
+                            </form>
+                        }
+                        else
+                        {
+                            <br />
+                            <br />
+                            <form class="ml-2" asp-controller="TrainingProgram"
+                                  asp-action="Subscribe" asp-route-id="@Model.Id" method="post">
+                                <input class="btn btn-primary" type="submit" value="Subscribe" />
+                            </form>
+                        }
+                    }
+                }
+                else
+                {
+                    <a asp-area="Identity" asp-page="/Account/Register"
+                       class="btn btn-primary">Subscribe</a>
+                    
+                }
+            </div>
+            <p></p>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Trainer Info</h5>
+                    <p class="card-text">Name:  @Model.CreatorName</p>
+                    <p class="card-text">Email:  @Model.CreatorEmail</p>                    
+                </div>
+            </div>
+        </div>
+    </div> *@
+@* </div> *@

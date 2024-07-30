@@ -1,11 +1,14 @@
 ﻿@model TrainingProgramModifyModel
-
+<link rel="stylesheet" href="~/css/modify.css">
 @{
-    ViewBag.Title = "Modify Training Program";
+    ViewBag.Title = "Modify";
 }
 
-<h2 class="text-center">@ViewBag.Title</h2>
+<h2>@ViewBag.Title - @Model.Title</h2>
 <hr />
+
+<div class="site">
+
 
 <form asp-action="Modify">
     <div class="row">
@@ -44,8 +47,8 @@
                 </select>
                 <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Modify" class="btn btn-warning" />
+            <div>
+                <input type="submit" value="Modify" class="btn-modify" />
             </div>
             
         </div>
@@ -53,5 +56,6 @@
 </form>
 <form class="ml-2" asp-controller="TrainingProgram"
       asp-action="Delete" asp-route-id="@Model.Id" method="post">
-    <input class="btn btn-danger" type="submit" value="Delete" />
+    <input class="btn-delete" type="submit" value="Delete" />
 </form>
+</div>
