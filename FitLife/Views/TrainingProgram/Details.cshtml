@@ -1,22 +1,56 @@
 ﻿@model TrainingProgramDetailsServiceModel
 @inject ITrainerService trainerService
 @inject ITrainingProgramService trainingProgramService
+<link rel="stylesheet" href="~/css/details.css" />
 
+@* @Model.ImageUrl, Title, Duration, Description, StartDate, Category, CreatorName, CreatorEmail *@
 @{
-    ViewBag.Title = "Training Program Details";
+    ViewBag.Title = "Details";
 }
 
-<h2 class="text-center">@ViewBag.Title</h2>
-<hr />
+<h2>@ViewBag.Title</h2>
 
-<div class="container" style="display:inline">
+<div class="site">
+    <section class="aside">
+        <h3>@Model.Title</h3>        
+        <img src="@Model.ImageUrl" alt="TrainingProgram Image" />        
+    </section>
+    <section class="main">
+        <hr />
+        <p>@Model.Description</p>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        More Info
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <p><b>Category:</b> @Model.CategoryName</p>
+                        <p><b>Start Date:</b> @Model.StartDate</p>
+                        <p><b>Duration:</b> @Model.Duration days</p> 
+                        <p><b>Trainer:</b> @Model.CreatorName - <b>Email:</b> @Model.CreatorEmail</>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+
+
+@* <div class="container" style="display:inline">
     <div class="row">
         <div class="col-4">
-            <img class="card-img-top" style="width: 20rem;"
-                 src="@Model.ImageUrl" alt="TrainingProgram Image">
+            <img src="@Model.ImageUrl" alt="TrainingProgram Image">
         </div>
         <div class="card col-8 border-0">
-            <p style="font-size:25px;"><u>@Model.Title</u></p>
+            <p>@Model.Title</p>
             <p>Starts at: <b>@Model.StartDate.ToString(DateFormat)</b></p>
             <p>
                 Duration:
@@ -75,5 +109,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </div> *@
+@* </div> *@

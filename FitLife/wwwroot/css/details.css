@@ -1,0 +1,66 @@
+﻿h2 {
+    color: #d2dae2;
+    text-align: center;
+    font-size: 2.5em;
+    padding: 1em 0;
+}
+
+h3{
+    color: #d2dae2;
+}
+
+hr {
+    background-color: #05c46b;
+}
+
+.site{
+    display: flex;
+    gap: 2em;
+}
+
+.aside{
+    display: flex;
+    flex-direction: column;
+}
+
+.aside img{
+    max-width: 500px;
+    border-radius: 0.3em;
+}
+
+.main {
+    color: #d2dae2;
+    padding-top: 1.5em;
+}
+
+.accordion {
+    padding: 0;
+    background-color: #1e272e;
+}
+
+
+.accordion-item {
+    background-color: #1e272e;
+    padding: 0;
+    margin: 0;
+}
+
+.accordion-header {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #05c46b;
+}
+
+.accordion-button {
+    margin: 0;
+    padding: 1em;
+    color: #05c46b;
+    background-color: #1e272e;
+}
+
+.accordion-button[aria-expanded="true"]{
+    background-color: #05c46b;
+    color: #1e272e;
+}
+
+

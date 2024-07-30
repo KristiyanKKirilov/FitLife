@@ -1,0 +1,58 @@
+﻿h2 {
+    color: #d2dae2;
+    text-align: center;
+    font-size: 2.5em;
+    padding-top: 1em;
+}
+
+hr {
+    background-color: #d2dae2;
+}
+
+label {
+    color: #d2dae2;
+}
+
+.form-group{
+    margin-bottom: 1em;
+}
+
+input {
+    background-color: #d2dae2;
+}
+
+.btn-modify {
+    padding: 0.5em 0.8em;
+    border: 2px solid #0fbcf9;
+    color: #0fbcf9;
+    background-color: #1e272e;
+    text-decoration: none;
+    border-radius: 0.3em;
+}
+
+.btn-modify:hover {
+        background-color: #0fbcf9;
+        color: #d2dae2;
+}
+
+.btn-delete {
+    padding: 0.5em 0.8em;
+    border: 2px solid #f53b57;
+    color: #f53b57;
+    background-color: #1e272e;
+    text-decoration: none;
+    border-radius: 0.3em;
+    position:absolute;
+    top: 91.5%;
+    left: 42%;
+}
+
+.btn-delete:hover {
+    background-color:  #f53b57;
+    color: #d2dae2;
+}
+
+.site{
+    position: relative;
+}
+
