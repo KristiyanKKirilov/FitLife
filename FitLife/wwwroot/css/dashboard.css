@@ -1,0 +1,35 @@
+﻿.site{
+    padding: 3em;
+}
+.jumbotron {
+    display: block;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 3em;
+    background-color: #0fbcf9;
+    color: #1e272e;
+    border-radius: 0.3em;
+}
+
+.jumbotron h1{
+    text-align: center;
+}
+
+.list-group{
+    padding: 2em;
+}
+
+.list-group a:nth-child(1),
+.list-group a:nth-child(2){
+    margin-bottom: 1em;
+}
+
+.list-group a{
+   background-color: #3c40c6;
+    color: #fff;
+}
+
+.list-group a:hover{
+    background-color: #575fcf;
+    color: #fff;
+}
