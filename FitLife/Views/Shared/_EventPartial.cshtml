@@ -1,7 +1,7 @@
 ﻿@model EventServiceModel
 @inject ITrainerService trainerService
 @inject IEventService eventService
-
+<link rel="stylesheet" href="~/css/page-layout.css" />
 <div class="col-md-4">
     <div class="card mb-3">
         <img class="card-img-top" src="@Model.ImageUrl" alt="TrainingProgram Image" height="300">
@@ -26,14 +26,14 @@
             </h6>
             <br />
             <a asp-controller="Event" asp-action="Details" asp-route-id="@Model.Id"
-               class="btn btn-success">Details</a>
+               class="btn-details">Details</a>
 
             @if (this.User.Identity.IsAuthenticated)
             {
                 @if (await eventService.HasTrainerWithIdAsync(Model.Id, User.Id()) || User.IsAdmin())
                 {
                     <a asp-controller="Event" asp-action="Modify" asp-route-id="@Model.Id"
-                       class="btn btn-warning">Modify</a>
+                       class="btn-modify">Modify</a>
                 }
                 if (await trainerService.ExistsByIdAsync(User.Id()) == false)
                 {
@@ -43,7 +43,7 @@
                         <br />
                         <form class="ml-2" asp-controller="Event"
                               asp-action="Join" asp-route-id="@Model.Id" method="post">
-                            <input class="btn btn-primary" type="submit" value="Joined" disabled />
+                            <input class="btn-subscribed" type="submit" value="Joined" disabled />
                         </form>
                     }
                     else
@@ -52,7 +52,7 @@
                         <br />
                         <form class="ml-2" asp-controller="Event"
                               asp-action="Join" asp-route-id="@Model.Id" method="post">
-                            <input class="btn btn-primary" type="submit" value="Join" />
+                            <input class="btn-subscribe" type="submit" value="Join" />
                         </form>
                     }
 

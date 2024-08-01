@@ -1,0 +1,31 @@
+﻿body {
+    background-color: #1e272e;
+}
+
+.navbar {
+    background-color: #0fbcf9;
+}
+
+.btn-settings {
+    padding: 0.5em;
+    color: #1e272e;
+    border-radius: 0.3em;
+    border: none;
+    background-color: #0fbcf9;
+}
+
+.btn-settings:hover {
+    background-color:#4bcffa;
+}
+
+li a:hover {
+    background-color: #4bcffa;
+    border-radius: 0.3em;
+}
+
+.dropdown-menu {
+    padding: 0;
+    background-color: #0fbcf9;
+    opacity: 0.7;
+}
+
